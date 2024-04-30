@@ -1,0 +1,73 @@
+<div *ngIf="!isMobile"
+    class="sm:w-48 md:w-56 lg:w-56 xl:w-64 fixed bottom-0 top-4 left-4 rounded-s-2xl w-80 rounded-r-2xl bg-white mb-3 dark:bg-black">
+    <div class="space-y-1">
+        <div class="p-4 sm:ml-0 md:ml-1 mt-4 lg:ml-3 mb-3">
+            <img *ngIf="!darkmode" src="../../../assets/sidebar/informanagemt.png" class=" w-48 h-auto">
+            <img *ngIf="darkmode" src="../../../assets/sidebar/Logo-dark.png" class=" w-48 h-auto ">
+
+        </div>
+        <div class="overflow-y-auto container-with-scrollbar px-4" style="max-height: calc(100vh - 150px);">
+            <app-sidebar-buttons></app-sidebar-buttons>
+
+            <!-- <div *ngIf="moreAppDiv" (mouseleave)="moreAppDiv = false" class="fixed h-fit w-fit p-4 bg-white border border-slate-300 z-50 bottom-16 shadow">
+                <label class="text-sm font-medium">OTHER APPLICATIONS</label>
+                <div class="grid grid-cols-3 space-x-2 space-y-1">
+                    <div>
+                        <img src="../../assets/sidebar/iconssss.svg">
+                        <label class="text-xs">Client App</label>
+                    </div>
+                    <div>
+                        <img src="../../assets/sidebar/file_and_sign.svg">
+                        <label  class="text-xs">File & Sign</label>
+                    </div>
+                    <div>
+                        <img src="../../assets/sidebar/infowijzers.svg">
+                        <label  class="text-xs">Infowijzers</label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 space-x-2">
+                    <div>
+                        <img src="../../assets/sidebar/e_learning.svg">
+                        <label class="text-xs">E - Learning</label>
+                    </div>
+                    <div>
+                        <img src="../../assets/sidebar/survery.svg">
+                        <label  class="text-xs">Surveys</label>
+                    </div>
+                    <div>
+                        
+                        <label  class="text-xs"></label>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="sm:relative sm:bottom-3 lg:relative md:relative flex  justify-between items-center ml-5"> -->
+            <!-- Content goes here -->
+            <!-- <button class="sm:text-sm lg:text-base app" [class.active]="moreApps" (click)="moreApp()">
+                    <img src="../../assets/sidebar/app.png" class="sm:mr-2 w-5 h-5 lg:mr-4 icon mr-4 dark:bg-white"
+                        [class.active]="moreApps">
+                    <p class="dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_MOREAPPS }}</p>
+                </button> -->
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+
+
+
+
+<div *ngIf="isMobile" class="sidebar">
+    <div class="relative">
+        <img src="../assets/bg-img/3169290-200.png" (click)="openPopUp(showDropdown,'dropdown')"
+            class="w-10 h-10 mr-5 dark:invert" />
+        <div *ngIf="showDropdown" class="shadow-md showDropdown absolute flex-col bg-white overflow-y-auto w-64 rounded-lg p-2 dark:bg-black">
+
+            <app-sidebar-buttons (sendData)="receiveDataFromChild($event)"></app-sidebar-buttons>
+
+            <!-- <button class="sm:text-sm lg:text-base button text-left flex items-center">
+                <img src="../../assets/sidebar/app.png" class="sm:mr-2 sm:w-5 sm:h-5 lg:mr-4 lg:w-6 lg:h-6 mr-4 dark:bg-white">
+                <p class="dark:text-white">More Apps</p>
+            </button> -->
+
+        </div>
+    </div>
+</div>

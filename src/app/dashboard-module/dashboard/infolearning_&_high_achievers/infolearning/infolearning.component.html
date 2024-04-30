@@ -1,0 +1,40 @@
+<div class="p-4">
+  <div class="flex">
+    <div>
+    <img src="../../../../assets/dashboard/infolearning.png" class=" dark:invert">
+    </div>
+    <h1 class="font-medium text-sm ml-2  dark:text-white"><strong>{{
+        translation?.CLIENTAPPV2_DASHBOARD_INFOLEARNING }}</strong></h1>
+    <button class="ml-auto mr-2 pl-2 pr-2 border rounded-xl text-sm border-gray-300 dark:bg-black dark:text-white">{{
+      translation?.CLIENTAPPV2_DASHBOARD_VIEWALL }}</button>
+  </div>
+
+
+  <div class="table-container p-3 ">
+    <table id="tre" class="w-full">
+      <thead class="">
+        <tr class="bg-gray-100  dark:bg-neutral-700">
+          <th colspan="3" class="text-sm text-start dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_TITLE }}</th>
+          <th class="text-sm text-start dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_STATUS }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of infolearningData">
+          <td colspan="3">
+            <div class="xl:mb-1 lg:mb-0">
+              <label class="text-sm dark:text-white">{{ item.name }}</label><br />
+            </div>
+          </td>
+          <td colspan="2">
+            <label
+              class="pr-2 pl-2 rounded-lg mr-1 sm:text-sm p-0.5 font-medium tracking-wider lg:text-xs" [ngStyle]="getStatusStyle(item.category)"
+            >
+              {{ item.category }}
+            </label>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

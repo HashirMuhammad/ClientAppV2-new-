@@ -1,0 +1,17 @@
+@media screen and (max-width: 730px) {
+    label {
+        font-size: medium;
+    }
+
+    .potientialdiv,
+    .leadsdiv {
+        margin-top: 20px;
+        height: 110px;
+    }
+}
+
+@media screen and (min-width: 1290px) and (max-width: 1350px) {
+    .high {
+        zoom: 90%;
+    }
+}

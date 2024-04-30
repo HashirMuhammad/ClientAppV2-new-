@@ -1,0 +1,340 @@
+<div class="detailsdiv pb-4 flex-grow h-full">
+    <div class="shadow bg-white mb-5 mt-3 mr-7 rounded-2xl flex-grow dark:bg-black">
+        <label class="flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl dark:text-white dark:border-neutral-700">{{
+            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_WRITEANARTICLE }}</label>
+        <div class="pb-3 mt-3 flex-grow h-full">
+            <!-- Profiling -->
+            <div class="Profiling rounded-lg m-3 p-5 ml-5 mr-5 mt-5 flex-grow bg-gray-100  dark:bg-neutral-700">
+                <label class="text-base font-semibold tracking-wider dark:text-white">{{
+                    translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_PROFILING }}</label>
+                <div class="Profilingdiv flex flex-col xl:grid xl:grid-cols-4 mt-3 lg:pr-8 xl:pr-0 lg:space-x-4">
+
+                    <div class="flex-grow lg:mb-0 ">
+                        <label class="text-base font-medium" style="color: #CC0000;">{{
+                            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_CATEGORY }}</label><br />
+                        <select [(ngModel)]="categoryInput"
+                            class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                            <option class="text-gray-500" value="" disabled selected>{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SELECT }}</option>
+                            <option value="search">Male</option>
+                            <option value="filter">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="mleft flex-grow  lg:mb-0 lg:mt-2 xl:mt-0">
+                        <label class="text-base font-medium" style="color: #CC0000;">{{
+                            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_PROFILING }}</label><br />
+                        <select [(ngModel)]="profilingInput"
+                            class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                            <option class="text-gray-500" value="" disabled selected>{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_STANDARDPROFILES }}</option>
+                            <option value="search">Male</option>
+                            <option value="filter">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="flex-grow lg:mb-0 lg:mt-2 xl:mt-0">
+                        <label class="text-base font-medium" style="color: #CC0000;">{{
+                            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_CUSTOMERSPROFILES }}</label><br />
+                        <select [(ngModel)]="customerProfilesInput"
+                            class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                            <option class="text-gray-500" value="" disabled selected>All - picks up on every news item
+                            </option>
+                            <option value="search">Male</option>
+                            <option value="filter">Female</option>
+                        </select>
+                    </div>
+
+
+                    <!-- select  -->
+                    <div class="flex-grow lg:mb-0 lg:mt-2 xl:mt-0">
+                        <label class="text-base font-medium" style="color: #CC0000;">{{
+                            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_INCLUDEIN }}</label><br />
+                        <select [(ngModel)]="includeInInput"
+                            class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                            <option class="text-gray-500" value="" disabled selected>{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SELECT }}</option>
+                            <option value="search">Male</option>
+                            <option value="filter">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 2nd row select  -->
+                <div class="flex flex-col xl:grid xl:grid-cols-4 mt-3 lg:pr-8 xl:pr-0 lg:space-x-4">
+                    <div class="checkboxdiv lg:mt-5 flex flex-grow  mb-4 lg:mb-0 ">
+                        <div class="flex items-start mr-5">
+                            <input [(ngModel)]="employeeNewsletterInput" type="checkbox"
+                                class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                            <label class="text-base dark:text-white">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_EMPLOYEENEWSLETTER }}</label>
+                        </div>
+                    </div>
+                    <div class="checkboxdiv lg:mt-5 flex flex-grow  mb-4 lg:mb-0 ">
+
+                        <div class="flex items-start mr-5">
+                            <input [(ngModel)]="monthlyNewsletterInput" type="checkbox"
+                                class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                            <label class="text-base dark:text-white">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_MONTHLYNEWSLETTER }}</label>
+                        </div>
+                    </div>
+                    <div class="checkboxdiv lg:mt-5 flex flex-grow  mb-4 lg:mb-0 ">
+
+                        <div class="flex items-start">
+                            <input [(ngModel)]="printedNewsletterInput" type="checkbox"
+                                class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                            <label class="text-base dark:text-white">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_PRINTEDNEWSLETTER }}</label>
+                        </div>
+                    </div>
+
+
+                    <div class="flex items-end xl:ml-5 mb-4 lg:mb-0 lg:mt-5 ">
+                        <button class=" ml-auto p-1 rounded-lg px-5 text-white" style="background-color: #29CCB1;">{{
+                            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SELECT }}</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Newsfeed -->
+            <div class="Profiling rounded-lg m-3 p-5 ml-5 mr-5 mt-5 flex-grow bg-gray-100  dark:bg-neutral-700">
+                <label class="text-base font-semibold tracking-wider dark:text-white">{{
+                    translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_NEWSFEED }}</label>
+                <div class="flex flex-col xl:grid xl:grid-cols-3 mt-3 lg:pr-0">
+
+                    <!-- checkbox -->
+                    <div class="flex">
+                        <div class="flex-grow lg:mr-7 xl:mr-0 mt-7  lg:mb-0">
+                            <div class="flex">
+                                <div class="flex items-start mr-5">
+                                    <input [(ngModel)]="newsfeedInput" type="checkbox"
+                                        class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                                    <label class="text-base dark:text-white">{{
+                                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_NEWSFEED }}?</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" lg:flex flex-grow xl:mr-0 mt-7">
+
+                            <div class="flex items-start">
+                                <input [(ngModel)]="featureThisArticleInput" type="checkbox"
+                                    class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                                <label class="text-base dark:text-white">{{
+                                    translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_FEATURETHISARTICLE }}</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- radio button  -->
+                    <div class="flex">
+
+                        <div class=" flex-grow lg:mr-7 xl:mr-0 mt-7 lg:mb-0">
+                            <div class="flex">
+                                <input type="radio" class="custom-radio dark:bg-black" [(ngModel)]="selectedOption"
+                                    value="alwaysfeature">
+                                <label class="ml-4 text-base font-medium dark:text-white">{{
+                                    translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_ALWAYSFEATURE }}</label>
+                            </div>
+                        </div>
+                        <div class=" flex-grow lg:mr-7 xl:mr-0 mt-7  lg:mb-0">
+                            <div class="flex">
+                                <input type="radio" class="custom-radio dark:bg-black" [(ngModel)]="selectedOption"
+                                    value="featureuntil">
+                                <label class="ml-4 text-base font-medium dark:text-white">{{
+                                    translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_FEATUREUNTIL }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- date -->
+                    <div class="flex-grow lg:mr-7 xl:mr-0 lg:mb-0 mb-6">
+                        <div class="date-picker-container ">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_CHOOSEADATE }}</label><br />
+                            <div class="flex">
+                                <!-- <mat-form-field class="date">
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="picker">
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field> -->
+                                <kendo-datepicker calendarType="classic" [value]="value"
+                                    class="rounded-xl py-1.5 border dark:bg-black dark:text-white dark:border-white"></kendo-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <!-- Social Media -->
+        <div class="Profiling rounded-lg m-3 mr-5 p-5 ml-5 mt-5 flex-grow bg-gray-100  dark:bg-neutral-700">
+            <label class="text-base font-semibold tracking-wider dark:text-white">{{
+                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SOCIALMEDIA }}</label>
+            <div class="xl:flex">
+                <div class=" flex-grow">
+                    <!-- checkbox  -->
+                    <div>
+                        <label class="text-xs dark:text-white">{{
+                            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SOCAILMEDIADETAILS }}</label>
+                        <div class="flex items-start mt-5">
+                            <input [(ngModel)]="socaialMediaInput" type="checkbox"
+                                class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                            <label class="text-base dark:text-white">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SOCIALMEDIA }}?</label>
+                        </div>
+                    </div>
+
+                    <!-- radio button  -->
+                    <div class="radiodiv lg:flex xl:grid xl:grid-cols-3 mt-24">
+                        <div class="flex-grow lg:mr-7 xl:mr-0 mb-4 lg:mb-0">
+                            <div class="flex">
+                                <input type="radio" class="custom-radio dark:bg-black" [(ngModel)]="OptionDate"
+                                    value="pushNow">
+                                <label class="ml-3 text-base font-medium dark:text-white">{{
+                                    translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_PUSHNOW }}</label>
+                            </div>
+                        </div>
+
+                        <div class="flex-grow lg:mr-7 xl:mr-0 mb-4 lg:mb-0">
+                            <div class="flex">
+                                <input type="radio" class="custom-radio dark:bg-black" [(ngModel)]="OptionDate"
+                                    value="pushAfter2Hrs">
+                                <label class="ml-3 text-base font-medium dark:text-white">{{
+                                    translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_PUSHAFTER2HOURS }}</label>
+                            </div>
+                        </div>
+
+                        <div class="flex-grow lg:mr-7 xl:mr-0 mb-4 lg:mb-0">
+                            <div class="flex">
+                                <input type="radio" class="custom-radio dark:bg-black" [(ngModel)]="OptionDate"
+                                    value="specificDate">
+                                <label class="ml-3 text-base font-medium dark:text-white">{{
+                                    translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SPECIFICDATE }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- social media checkbox  -->
+                    <div class="mt-14">
+                        <div class="flex items-start">
+                            <input [(ngModel)]="linkedinInput" type="checkbox"
+                                class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                            <label class="text-base dark:text-white">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_LINKEDIN }}</label>
+                            <img src="../../../../assets/manage_content/linkedin.png" class="ml-2 dark:invert">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ml-5">
+                    <!-- inputs -->
+                    <div class="socialdiv flex xl:grid grid-cols-2 lg:space-x-3 lg:flex-row mt-3  ">
+                        <div class="flex-grow  lg:mr-7 xl:mr-0 mb-4 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SOCIALMEDIATITLE }}</label><br />
+                            <input [(ngModel)]="socaialMediaTitleInput" type="text" placeholder="Enter Here..."
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                            <label class="text-xs">{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SOCAILMEDIATITLEHEADING
+                                }}</label>
+                        </div>
+
+                        <div class="flex-grow  mb-4 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_HASHTAGS }}</label><br />
+                            <input [(ngModel)]="hashtagsInput" type="text" placeholder="Enter Here..."
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                        </div>
+                    </div>
+
+                    <!-- date  -->
+                    <div class="socialdiv flex flex-col lg:flex-row mt-3">
+                        <div class="flex-grow mb-4 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_CHOOSEADATE }}</label><br />
+                            <div class="date-picker-container mt-5 mr-3">
+                                <div class="flex">
+                                    <!-- <mat-form-field class="date">
+                                        <mat-label>Choose a date</mat-label>
+                                        <input matInput [matDatepicker]="picker">
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field> -->
+                                    <kendo-datepicker calendarType="classic" [value]="valuesocial"
+                                        [disabled]="OptionDate == 'pushNow'"
+                                        class="rounded-xl py-1.5 border dark:bg-black dark:text-white dark:border-white"></kendo-datepicker>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-grow lg:mr-4 lg:mb-0 mt-4">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_HOURS }}</label><br />
+                            <select [(ngModel)]="hourInput" id="numericSelect" [disabled]="OptionDate == 'pushNow'"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white"
+                                required pattern="[0-9]+">
+                                <option class="text-gray-500" value="" disabled selected>00</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+
+                        </div>
+
+                        <div class="flex-grow lg:mb-0 mt-4">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_MINUTES }}</label><br />
+                            <select [(ngModel)]="minuteInput" [disabled]="OptionDate == 'pushNow'"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option class="text-gray-500" value="" disabled selected>00</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="60">60</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- buttons -->
+        <div class="buttons flex">
+            <div class="flex flex-row  mt-5 mr-5 mb-7 ml-auto">
+
+                <button class="pl-4 pr-4 p-2 rounded-lg mr-4 sm:mt-2" (click)="routeback()"
+                    style="background-color: #F0F2F7;">{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_BACK }}</button>
+
+                <button
+                    class="bg-white border p-1.5 pl-3 pr-3 mr-5 rounded-lg flex items-center sm:mt-2 dark:text-white"
+                    style="background-color: #00000026;" (click)="discard()">{{
+                    translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_DISCARD }}</button>
+
+                <button class="bg-white border p-1.5 pl-3 pr-3 mr-0 rounded-lg flex items-center text-white sm:mt-2"
+                    style="background-color: #29CCB1;" (click)="routToArtiPreview()">{{
+                    translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_NEXT }}</button>
+            </div>
+
+        </div>
+    </div>
+</div>

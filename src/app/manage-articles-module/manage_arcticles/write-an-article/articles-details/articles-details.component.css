@@ -1,0 +1,40 @@
+.custom-radio {
+  width: 20px;
+  /* Adjust the width as needed */
+  height: 20px;
+  /* Adjust the height as needed */
+  accent-color: #CC0000;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 730px) {
+  .checkboxdiv {
+    display: block;
+  }
+
+  .Profiling {
+    margin-right: 0px;
+  }
+
+  .mleft {
+    padding-left: -20px;
+  }
+
+
+  .radiodiv {
+    display: block;
+  }
+
+  .socialdiv {
+    display: block;
+    margin-left: -15px;
+  }
+
+  .detailsdiv {
+    background-color: white;
+    border-radius: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,100 @@
+.button {
+  padding: 0.75rem 1rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  align-self: start;
+  width: 100%;
+  padding: auto;
+  margin-bottom: 6px;
+  /* box-shadow: #cc0000; */
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+}
+
+.button p {
+  width: 100%;
+}
+
+.button:hover {
+  box-shadow: rgba(204, 0, 0, 0.15) 0px 4px 12px;
+  background-color: #FFF2F2;
+  /* Use your desired hover background color */
+  color: #cc0000;
+  /*rgb(248, 212, 212)ur desired hover text color */
+  border-color: transparent;
+  /* box-shadow: 0 4px 6px rgba(251, 45, 45, 0.777); This adds a shadow */
+}
+
+.button p:hover {
+  color: #cc0000;
+  border-color: transparent;
+}
+
+.button:hover img {
+  background-color: transparent;
+  filter: brightness(80%) saturate(100%) invert(30%) sepia(82%) saturate(900%) hue-rotate(315deg) contrast(100%);
+}
+
+.sub_div {
+  position: absolute;
+  bottom: 0px;
+}
+
+
+/* selected user */
+.active,
+.activecontent {
+  background-color: #FFF2F2;
+  box-shadow: rgba(204, 0, 0, 0.15) 0px 4px 12px;
+
+  /* Use your desired background color */
+  color: #cc0000;
+  /* Use your desired text color */
+}
+
+.active p,
+.activecontent p {
+  color: #cc0000;
+  /* Use your desired text color */
+}
+
+.activeimg,
+.activecontentimg {
+  background-color: transparent;
+  filter: brightness(80%) saturate(100%) invert(30%) sepia(82%) saturate(900%) hue-rotate(315deg) contrast(100%);
+}
+
+
+/* Setting up a box to add the inner shadow to */
+.box {
+  margin: 0.5rem auto;
+  width: 100%;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 1rem;
+}
+
+/* CSS Inner Shadow Code */
+.inner-shadow {
+  width: 100%;
+  height: fit-content;
+  margin-top: 4px;
+  /* box-shadow: inset rgb(207, 207, 207) 0px 0px 60px -12px;
+   */
+
+  }
+
+@media screen and (max-width: 730px) {
+  /* Styles for small screens go here */
+
+  .button {
+    padding: 4px;
+    background-color: transparent;
+    color: black;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    align-self: start;
+    width: 100%;
+    font-size: medium;
+  }
+}

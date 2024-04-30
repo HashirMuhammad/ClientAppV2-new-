@@ -1,0 +1,208 @@
+<div class="sercli pb-8 flex-grow h-full">
+    <div class=" shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black">
+
+        <div class="headerdiv flex border-b border-gray-300 dark:border-neutral-700">
+            <div>
+                <label class="flex  pt-6 pb-5 pl-6 text-2xl dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_SOCIALMEDIASETTINGS }}</label>
+            </div>
+        </div>
+
+        <div>
+            <div class="mt-5">
+                <Label class=" ml-4 text-lg tracking-wider font-medium dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_TURNSOCIALMEDIAPOSTSONOFF }}</Label>
+            </div>
+            <div class="xl:grid xl:grid-cols-5">
+                <div class="griddiv flex">
+                    <div class="flex ml-3">
+                        <img src="../../../assets/linkedin.png" class="w-17 h-17 mr-3  pt-3 pb-3" />
+                        <label class=" mt-6 text-lg font-medium tracking-wide" style="color: #0088cc;">Linkedin</label>
+                    </div>
+
+                    <div class="ml-10 mt-6">
+                        <kendo-switch [(ngModel)]="Linkedinchecked" size="small" onLabel=" " offLabel=" "
+                            class="scale-75 border border-slate-400"></kendo-switch>
+                    </div>
+                </div>
+
+                <div class="griddiv flex">
+                    <div class="flex ml-3">
+                        <img src="../../../assets/facebook.png" class="w-17 h-17 mr-3  pt-3 pb-3" />
+                        <label class=" mt-6 text-lg font-medium tracking-wide" style="color: #3d5499;">Facebook</label>
+                    </div>
+
+                    <div class="ml-10 mt-6">
+                        <kendo-switch [(ngModel)]="Facebookchecked" size="small" onLabel=" " offLabel=" "
+                            class="scale-75 border border-slate-400"></kendo-switch>
+                    </div>
+                </div>
+
+                <div class="griddiv flex">
+                    <div class="flex ml-3">
+                        <img src="../../../assets/instagram.png" class="w-17 h-17 mr-3  pt-3 pb-3" />
+                        <label class=" mt-6 text-lg font-medium tracking-wide" style="color: #9629cc">Instagram</label>
+                    </div>
+
+                    <div class="ml-10 mt-6">
+                        <kendo-switch [(ngModel)]="Instagramchecked" size="small" onLabel=" " offLabel=" "
+                            class="scale-75 border border-slate-400"></kendo-switch>
+                    </div>
+                </div>
+
+                <div class="griddiv flex">
+                    <div class="flex ml-3">
+                        <img src="../../../assets/twitter.png" class="w-17 h-17 mr-3  pt-3 pb-3 dark:invert" />
+                        <label class="text-black mt-6 text-lg font-medium tracking-wide dark:text-white">Twitter</label>
+                    </div>
+
+                    <div class="ml-10 mt-6">
+                        <kendo-switch [(ngModel)]="Twitterchecked" size="small" onLabel=" " offLabel=" "
+                            class="scale-75 border border-slate-400"></kendo-switch>
+                    </div>
+                </div>
+
+                <div class="griddiv flex">
+                    <div class="flex ml-3">
+                        <img src="../../../assets/xing.png" class="w-17 h-17 mr-3  pt-3 pb-3 dark:invert" />
+                        <label class="text-black mt-6 text-lg font-medium tracking-wide dark:text-white">Xing</label>
+                    </div>
+
+                    <div class="ml-10 mt-6">
+                        <kendo-switch [(ngModel)]="Xingchecked" size="small" onLabel=" " offLabel=" "
+                            class="scale-75 border border-slate-400"></kendo-switch>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <Label class=" ml-4 text-lg tracking-wider font-medium dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_SETYOURDAILYPOSTSCHEDULE }}</Label>
+                <div class="search">
+
+                    <div class="blockdiv flex p-4 space-x-3">
+                        <div>
+                            <label class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_SOCIAL_MEDIA_SETMAXIMUMPOSTSPERDAY }}</label><br />
+                            <select [(ngModel)]="selectedOption" (change)="console()"
+                                class="search bg-white border border-gray-400 rounded-lg p-2.5 pr-24 mt-2 sm:pr-24 md:pr-40 lg:pr-10 w-96 flex-grow dark:bg-black dark:text-white">
+                                <option class="text-gray-500" value="" disabled selected>{{
+                                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_NOLIMIT }}</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                            </select>
+                        </div>
+
+                        <div class="blockdiv flex">
+                            <div class="DateAdded blockdiv  flex gap-2 mt-2"
+                                *ngIf="selectedOption == '1' || selectedOption == '2' || selectedOption == '3'">
+                                <div *ngIf="selectedOption >= '1'">
+                                    <label class="2xl:text-base xl:text-sm lg:text-sm font-medium"
+                                        style="color: #CC0000;">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SETTIMESLOT
+                                        }}</label><br />
+                                    <kendo-datepicker placeholder="Choose a date ..." [size]="'small'" [value]="Date1"
+                                        class="p-2.5 rounded-lg w-full dark:bg-black dark:text-white dark:border-white"></kendo-datepicker>
+                                </div>
+
+                                <div *ngIf="selectedOption >= '2'">
+                                    <label class="2xl:text-base xl:text-sm lg:text-sm font-medium"
+                                        style="color: #CC0000;">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SETTIMESLOT
+                                        }}</label><br />
+                                    <kendo-datepicker placeholder="Choose a date ..." [size]="'small'" [value]="Date2"
+                                        class="p-2.5 rounded-lg w-full dark:bg-black dark:text-white dark:border-white"></kendo-datepicker>
+                                </div>
+
+                                <div *ngIf="selectedOption == '3'">
+                                    <label class="2xl:text-base xl:text-sm lg:text-sm font-medium"
+                                        style="color: #CC0000;">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SETTIMESLOT
+                                        }}</label><br />
+                                    <kendo-datepicker placeholder="Choose a date ..." [size]="'small'" [value]="Date3"
+                                        class="p-2.5 rounded-lg w-full dark:bg-black dark:text-white dark:border-white"></kendo-datepicker>
+                                </div>
+                            </div>
+
+
+                            <div class="ml-3 flex-grow mt-8 lg:mb-0">
+                                <button
+                                    class="bg-white border p-2 pl-5 pr-5 mr-0 rounded-lg flex items-center text-white"
+                                    style="background-color: #29CCB1;">
+                                    {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SAVE }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <Label class=" ml-4 text-lg tracking-wider font-medium dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_MANAGEWEEKLYPOSTSTURNONOFF }}</Label>
+                <div class="xl:grid xl:grid-cols-6 mt-3">
+                    <div>
+                        <div class="ml-10 ">
+                            <label class=" dark:text-white">Monday</label><br />
+                            <kendo-switch [(ngModel)]="Mondaychecked" size="small" onLabel=" " offLabel=" "
+                                class="scale-75 border border-slate-400"></kendo-switch>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="ml-10">
+                            <label class=" dark:text-white">Tuesday</label><br />
+                            <kendo-switch [(ngModel)]="Tuesdaychecked" size="small" onLabel=" " offLabel=" "
+                                class="scale-75 border border-slate-400"></kendo-switch>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="ml-10 ">
+                            <label class=" dark:text-white">Wednesday</label><br />
+                            <kendo-switch [(ngModel)]="Wednesdaychecked" size="small" onLabel=" " offLabel=" "
+                                class="scale-75 border border-slate-400"></kendo-switch>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="ml-10 ">
+                            <label class=" dark:text-white">Thursday</label><br />
+                            <kendo-switch [(ngModel)]="Thursdaychecked" size="small" onLabel=" " offLabel=" "
+                                class="scale-75 border border-slate-400"></kendo-switch>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="ml-10 ">
+                            <label class=" dark:text-white">Friday</label><br />
+                            <kendo-switch [(ngModel)]="Fridaychecked" size="small" onLabel=" " offLabel=" "
+                                class="scale-75 border border-slate-400"></kendo-switch>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <Label class=" ml-4 text-lg tracking-wider font-medium dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_INSTAGRAMARTICLE }}</Label><br />
+                <div class="ml-4 mt-3">
+                    <label class=" dark:text-white">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_DOYOUWANTTOSHOWTITLEONINSTAGRAMARTICLES }}</label>
+                    <kendo-switch [(ngModel)]="InstaTitlechecked" size="small" onLabel=" " offLabel=" "
+                        class="scale-75 ml-2 border border-slate-400"></kendo-switch>
+                </div>
+            </div>
+
+            <div class="mt-2 pb-5">
+                <Label class=" ml-4 text-lg tracking-wider font-medium dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_POSTEXCLUSION }}</Label><br />
+                <div class="ml-4 mt-3">
+                    <label class=" dark:text-white">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_DOYOUWANTTOEXCLUDESOCIALMEDIAPOSTSBYDEFAULT }}</label>
+                    <kendo-switch [(ngModel)]="excludeSocialMediaPostschecked" size="small" onLabel=" " offLabel=" "
+                        class="scale-75 ml-2 border border-slate-400"></kendo-switch>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="viewdiv pb-4 flex-grow h-full">
+    <div class="shadow mb-5 mt-3 mr-7 rounded-2xl bg-white dark:bg-black">
+        <div class=" flex border-b border-gray-300 dark:border-neutral-700">
+            <label class="flex pt-6 pb-5 pl-6 text-2xl dark:text-white">{{
+                translation?.CLIENTAPPV2_MANAGE_ARTICLE_VIEWARTICLE }}</label>
+        </div>
+
+
+        <div class="flex justify-center items-center place-items-center">
+            <div class="mt-3 mb-0" *ngFor="let art of ARTICLE_DATA">
+                <div class="flex-grow">
+                    <div class="titlediv">
+                        <label class="text-lg font-medium tracking-wider dark:text-white">{{art.title}}</label><br />
+                        <label class="text-gray-500 text-sm">{{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_PUBLISHEDON }}:
+                            {{art.published_date}}</label>
+                    </div>
+
+                    <div class="imgdiv">
+                        <img src="../../../../../assets/manage_content/Rectangle 1136.png" class="flex-grow">
+                    </div>
+
+                    <div *ngIf="textToogle" class="mt-2 mb-2">
+                        <label class="text-lg font-medium tracking-wider dark:text-white">Text</label>
+                        <label></label>
+                    </div>
+
+                    <div class="textareadiv flex-grow">
+                        <textarea class="w-full h-80 p-4 rounded-lg bg-white dark:bg-black dark:text-white"
+                            [value]="art.arcticles" disabled></textarea>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="btndiv flex ml-auto justify-end items-end p-12">
+            <button class="pl-4 pr-4 p-2 rounded-lg mr-4 sm:mt-2" style="background-color: #F0F2F7;" (click)="back()">{{
+                translation?.CLIENTAPPV2_MANAGE_ARTICLE_BACK }}</button>
+
+            <button class="border border-gray-300  rounded-lg p-1.5 pl-3 pr-3 mr-4 sm:mt-2 dark:text-white"
+                (click)="textToogleFunc()">{{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_SHOWTEXT }}</button>
+
+            <button class=" border p-1.5 pl-3 pr-3 mr-4 rounded-lg items-center text-white sm:mt-2 dark:text-white"
+                style="border-color: #29CCB1; color: #29CCB1;" (click)="routeToSimpleArticle()">{{
+                translation?.CLIENTAPPV2_MANAGE_ARTICLE_MODIFYARTICLE }}</button>
+
+            <button class="flex  border p-1.5 pl-3 pr-3 mr-4 rounded-lg items-center text-black sm:mt-2 dark:text-white"
+                style="border-color: red;" (click)="routeToAIArticle()">
+                {{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_MODIFYARTICLEWITHAI }}
+                <img src="../../../../../assets/manage_clients/add-client/search.png" class="ml-2 dark:invert">
+            </button>
+
+            <button class="bg-white border p-1.5 pl-3 pr-3 mr-0 rounded-lg items-center text-white sm:mt-2"
+                style="background-color: #29CCB1;">{{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_PRINT }}</button>
+
+        </div>
+    </div>
+</div>

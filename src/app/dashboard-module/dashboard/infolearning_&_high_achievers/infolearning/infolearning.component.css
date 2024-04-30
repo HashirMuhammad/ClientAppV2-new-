@@ -1,0 +1,33 @@
+@media screen and (max-width: 730px) {
+  .table-container {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: small;
+  }
+
+  .table-container td label {
+    font-size: small;
+  }
+
+}
+
+@media screen and (min-width: 1290px) and (max-width: 1350px) {
+  .table-container {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: smaller;
+    zoom: 95%;
+  }
+}
+
+/* @media screen and (min-width: 1550px) {
+
+  .table-container th {
+    padding: 15px;
+  }
+
+.table-container td {
+  height: 4rem;
+  border-top: 1px solid #F0F2F7;
+}
+} */

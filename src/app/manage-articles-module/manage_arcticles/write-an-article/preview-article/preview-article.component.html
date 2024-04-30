@@ -1,0 +1,145 @@
+<div class="shadow previewdiv rounded-2xl bg-white pb-4 mr-4 flex-grow h-full dark:bg-black">
+    <div class=" mb-5 mt-3 mr-7 flex-grow">
+        <label class="flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl dark:text-white dark:border-neutral-700">{{
+            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_WRITEANARTICLE }}</label>
+    </div>
+    <div class="p-4">
+        <!-- textarea  -->
+        <div class="">
+            <div>
+                <textarea class="w-full h-80 p-4 rounded-lg bg-white dark:bg-neutral-700 dark:text-white" [value]="textarea"
+                    disabled></textarea>
+            </div>
+        </div>
+
+        <!-- input aera  -->
+        <div>
+            <div class="div1 flex mt-10">
+                <div class="w-full mb-8 lg:mb-0">
+                    <label class="text-base font-medium " style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_INCLUDEINHEADING }}</label><br />
+                    <div class="mt-2">
+                        <span class="bg-slate-200 px-4 py-2 rounded-lg">{{include_in}}</span>
+                    </div>
+                </div>
+
+                <div class="w-full mb-4 lg:mb-0 ">
+                    <label class="text-base font-medium" style="color: #CC0000;">
+                        {{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_INCLUDEIN }}
+                    </label><br />
+                    <div class="mt-2">
+                        <span class="bg-slate-200 px-4 py-2 rounded-lg mr-1"
+                            *ngFor="let item of include_in_currently_proofing">{{item}}</span>
+                    </div>
+                </div>
+
+                <div class="w-full mb-4 lg:mb-0 ">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SOURCE }}</label><br />
+                    <div class="mt-2">
+                        <span class=" dark:text-white">{{source}}</span>
+
+                    </div>
+                </div>
+
+                <div class="w-full mb-4 lg:mb-0 ">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_CATEGORY }}</label><br />
+                    <div class="mt-2">
+                        <span class=" dark:text-white">{{category}}</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="div2 flex mt-10">
+                <div class="w-full mb-4 lg:mb-0 ">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_PROFILING }}: {{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_STANDARDPROFILES }}</label><br />
+                    <div class="mt-2">
+                        <span class="bg-slate-200 px-4 py-2 rounded-lg text-sm">{{profiling}}</span>
+                    </div>
+
+                </div>
+
+                <div class="w-full mb-4 lg:mb-0 ">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_NEWSFEED }}?</label><br />
+                    <div class="mt-2">
+                        <span class=" dark:text-white">{{newsfeed}}</span>
+                    </div>
+
+                </div>
+
+                <div class="w-full mb-4 lg:mb-0 ">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_FEATURETHISARTICLE }}</label><br />
+                    <div class="mt-2">
+                        <span class=" dark:text-white">{{featureThisArticle}}</span>
+                    </div>
+
+                </div>
+
+                <div class="w-full mb-4 lg:mb-0 ">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_FEATUREUNTIL }}</label><br />
+                    <div class="mt-2">
+                        <span class=" dark:text-white">{{featureUntil}}</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="div3 flex mt-10">
+                <div class="w-full mb-4 lg:mb-0 ">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SOCIALMEDIA }}</label><br />
+                    <div class="mt-2">
+                        <img src="{{socialMedia}}" class=" dark:invert">
+                    </div>
+
+                </div>
+
+                <div class="w-full mb-4 lg:mb-0 ">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SOCIALMEDIATITLE }}</label><br />
+                    <div class="mt-2">
+                        <span class=" dark:text-white">{{socialMediaTitle}}</span>
+                    </div>
+
+                </div>
+
+                <div class="w-full mb-4 lg:mb-0 ">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SPECIFICDATE }}</label><br />
+                    <div class="mt-2">
+                        <span class=" dark:text-white">{{specificDate}}</span>
+                    </div>
+
+                </div>
+
+                <div class="w-full">
+                    <label class="text-base font-medium">&nbsp;</label><br />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="flex mt-10 mr-5">
+            <div class="ml-auto">
+                <button class="pl-4 pr-4 p-2 rounded-lg mr-4 sm:mt-2" (click)="routToArticlesDetails()"
+                    style="background-color: #F0F2F7;">{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_BACK }}</button>
+
+                <button class="border border-gray-300  rounded-lg p-1.5 pl-3 pr-3 mr-4 sm:mt-2 dark:text-white">{{
+                    translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SAVEASDRAFT }}</button>
+
+                <button class="bg-white border p-1.5 pl-3 pr-3 mr-0 rounded-lg items-center text-white sm:mt-2"
+                    style="background-color: #29CCB1;">{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SAVE }}</button>
+
+            </div>
+        </div>
+    </div>
+</div>

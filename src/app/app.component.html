@@ -1,0 +1,115 @@
+<div *ngIf="!isMobile">
+  <div class="bg-cover w-full h-screen fixed " [class.bgdark]="darkmode" [class.bg-img]="!darkmode">
+
+  </div>
+  <div>
+    <!-- for window -->
+    <div class="p-1 shadow ">
+      <app-sidebar [receivedValue]="valueToSend"></app-sidebar>
+    </div>
+
+    <div class="fixed w-full z-50">
+      <app-header class="" (buttonClick)="handleButtonClick($event)"></app-header>
+    </div>
+
+    <div class="chatdiv fixed bg-red-700 dark:bg-black p-1 rounded-l-full flex-grow transition-transform transform">
+      <div class="flex w-full cursor-pointer">
+        <div class="bg-white rounded-full p-2">
+          <img src="../assets/android.png" >
+        </div>
+      </div>
+    </div>
+
+    <div class="2xl:ml-64 xl:ml-64 sm:ml-56 md:ml-64 lg:ml-60 h-fit flex-grow mt-14">
+      <div class="xl:ml-7 lg:ml-5 md:ml-2 mt-4">
+        <div>
+          <div class="pb-4 overflow-auto" style="position: relative; ">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- for mobile -->
+<div *ngIf="isMobile" class="flex flex-col dark:bg-neutral-700">
+  <!-- header -->
+  <div class="shadow flex items-center justify-between p-2 bg-white mt-4 mx-4 rounded-lg dark:bg-black">
+    <div class="flex items-center">
+      <app-sidebar></app-sidebar>
+      <img *ngIf="!darkmode" src="../../assets/sidebar/informanagemt.png" class=" w-48 h-auto">
+            <img *ngIf="darkmode" src="../../assets/sidebar/Logo-dark.png" class=" w-48 h-auto ">
+      <!-- <img src="../../assets/sidebar/informanagemt.png" class="ml-3 w-44 h-6 mx-auto dark:invert" /> -->
+    </div>
+    <div class="flex items-center">
+      <div class="ml-3 shadow-inner flex space-x-1 border rounded-full -mt-1.5 mr-5 p-1.5 bg-gray-100 dark:bg-neutral-700" style="zoom: 0.56;">
+        <div class="shadow rounded-full p-2 mr-1.5" [class.bg-transparent]="darkmode" [class.bg-white]="!darkmode">
+          <img src="../../../assets/sun.png" class="cursor-pointer dark:invert" (click)="toggleDarkMode()" />
+        </div>
+        <div class="shadow rounded-full p-2" [class.bg-transparent]="!darkmode" [class.bg-white]="darkmode">
+          <img src="../assets/dashboard/moon.svg" class="cursor-pointer " (click)="toggleDarkMode()" />
+        </div>
+      </div>
+      <!-- <img src="../assets/dashboard/moon.svg" class="mr-1 w-5 h-5 dark:invert " (click)="toggleDarkMode()" /> -->
+      <!-- <img src="../../assets/dashboard/notificationbing.png" class="mr-2 w-5 h-5 dark:invert"
+        (click)="openPopUp(isDropdownOpennotification,'notification')" /> -->
+      <!-- <img src="../../assets/dashboard/messages.png" class="mr-1 w-5 h-5" /> -->
+      <img src="../../assets/dashboard/usersquare.png" class="mr-1 w-5 h-5 dark:invert"
+        (click)="openPopUp(isDropdownOpen,'usercard')" />
+      <div *ngIf="isDropdownOpen" style="top: 4.2rem; z-index: 80;"
+        class="absolute right-2  dark:border-neutral-700 bg-white border border-gray-300 flex-grow rounded-lg shadow-lg w-fit dark:bg-black">
+        <div class="w-72">
+          <div class="flex justify-center items-center mt-8 mb-3">
+            <img src="../assets/history/Avatar.png" class="rounded-full ">
+          </div>
+          <div class="flex justify-center items-center py-3 px-10">
+            <select [(ngModel)]="selectedOpt"
+              class="w-fit bg-white dark:bg-black dark:text-white border border-gray-400 rounded-lg px-8 py-0.5 mt-1 items-start"
+              style="font-size: 13px;" (change)="translationChange()">
+              <option class="text-gray-500 dark:text-white text-sm " value="1" disabled selected>Select
+              </option>
+              <option class="text-gray-500 dark:text-white text-sm " value="1">English</option>
+              <option class="text-gray-500 dark:text-white text-sm" value="2">Dutch</option>
+              <option class="text-gray-500 dark:text-white text-sm" value="3">German</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-2 mt-3 bg-gray-100   dark:bg-neutral-700 p-4 space-x-4">
+            <button
+              class="bg-white dark:bg-black dark:text-white rounded-lg p-1 text-sm flex text-center">&nbsp;&nbsp;{{
+              translation?.CLIENTAPPV2_DASHBOARD_SETTINGS }}&nbsp;<img src="../assets/setting.png"
+                class="w-4 h-4 dark:invert"></button>
+            <button class="bg-white dark:bg-black dark:text-white rounded-lg p-1 text-sm flex">&nbsp;&nbsp;{{
+              translation?.CLIENTAPPV2_DASHBOARD_LOGOUT }}&nbsp;<img src="../../assets/logout.png"
+                class="w-4 h-4 dark:invert"></button>
+          </div>
+        </div>
+      </div>
+      <!-- <div *ngIf="isDropdownOpennotification" style="top: 4.2rem; z-index: 80;"
+        class="absolute right-2 dark:border-neutral-700 bg-white border border-gray-300 flex-grow rounded-lg shadow-lg w-fit dark:bg-black">
+        <div class="w-96 h-fit p-3 overflow-y-auto">
+          <div *ngFor="let noti of notification" class="space-y-1">
+            <div class="flex">
+              <div>
+                <span class="dark:text-white">{{noti.title}}</span><br />
+                <span class="text-sm text-slate-300">{{noti.date}}</span>
+              </div>
+              <div class="ml-auto mr-3">
+                <button class=" hover:text-red-500 dark:text-white">&#x2715;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+
+  <!-- main div -->
+  <div class=" top-0 left-0 w-full h-full overflow-y-auto dark:bg-neutral-700 ">
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

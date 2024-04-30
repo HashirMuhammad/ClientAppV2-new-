@@ -1,0 +1,270 @@
+<div class="sercli pb-4 flex-grow h-full" >
+  <div class="shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black">
+    <div class="flex border-b border-gray-300 pt-6 pb-5 pl-6 dark:border-neutral-700">
+      <label class="text-2xl dark:text-white" >{{
+        translation?.CLIENTAPPV2_DATA_IMPORT_DATAIMPORT }}</label>
+      <!-- buttons -->
+
+
+      <div  class="ml-auto mr-6">
+
+        <div class="relative xl:ml-2">
+          <button class="text-white p-2 pl-3 text-sm rounded-lg flex flex-grow items-center sm:pr-0 lg:pr-6"
+            style="background-color: #29CCB1;" (click)="openPopUp(isNewImportVisible,'import')">
+            {{ translation?.CLIENTAPPV2_DATA_IMPORT_NEWIMPORT }}
+            <img src="../../../assets/manage_clients/data-import-new-import.png"
+              class="ml-auto w-5 h-5 sm:mr-6 lg:ml-3 lg:mr-0">
+          </button>
+        </div>
+
+        <!-- Your dynamic div/modal -->
+        <div *ngIf="isNewImportVisible"
+          class="shadow dynamicdiv absolute bg-white border border-gray-300 k-min-w-max mt-0 rounded-lg  z-50 dark:bg-black dark:border-neutral-700">
+          <div class="pb-2">
+            <div class="flex border-b dark:border-neutral-700">
+              <h2 class="text-lg font-normal text-center p-2 dark:text-white">{{
+                translation?.CLIENTAPPV2_DATA_IMPORT_NEWIMPORT }}
+              </h2>
+              <div>
+              </div>
+              <button (click)="isNewImportVisible = false" class="close-button ml-auto mr-2 dark:text-white"> 
+                <img src="../../../assets/manage_clients/tag-cross.png" class="dark:invert">
+              </button>
+            </div>
+            <div class=" mt-2">
+              <div class="px-10 flex flex-col items-center">
+                <div>
+                  <label class="text-center text-sm font-semibold tracking-wider">{{
+                    translation?.CLIENTAPPV2_DATA_IMPORT_SELECTIMPORTMETHOD }}</label>
+                </div>
+                <div class="mt-3">
+                  <label class="text-center text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_DATA_IMPORT_SELECTIMPORTMETHODS
+                    }}</label>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 mt-5 space-x-2 px-2">
+                <button class="text-white p-2 text-sm rounded-lg flexgrow items-center justify-center cursor-pointer"
+                  style="background-color: #29CCB1;" (click)="RoutetoNormalImport()">{{
+                  translation?.CLIENTAPPV2_DATA_IMPORT_NORMALIMPORT }}</button>
+                <button class="text-white p-2 text-sm rounded-lg flex-grow items-center justify-center"
+                  (click)="RoutetoShareFileImport()" style="background-color: #29CCB1;">{{
+                  translation?.CLIENTAPPV2_DATA_IMPORT_SHAREFILEIMPORT }}</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="xl:flex lg:flex flex-grow">
+
+      <div class="flex-grow p-3 ">
+        <div class=" lg:flex flex-grow">
+
+          <div class="flex ml-3 mt-2">
+            <!-- search input -->
+            <!-- <div class="search">
+              <label class="2xl:text-base xl:text-sm lg:text-sm font-medium"
+                style="color: #CC0000;">Search</label><br />
+
+
+              <select [(ngModel)]="selectedOption"
+                class="bg-white border border-gray-400 rounded-lg p-2.5 pr-32 mt-2 sm:pr-0 md:pr-40 lg:pr-10 xl:pr-20 2xl:pr-32 flex-grow"
+                style="color: #000000BF;">
+                <option class="text-gray-500" value="" disabled selected>Select</option>
+                <option *ngFor="let option of dataImportoptions" [value]="option.value">{{ option.title }}</option>
+
+              </select>
+            </div> -->
+
+            <!-- value input -->
+            <!-- <div class="value lg:ml-0 sm:ml-5 xl:ml-5 flex-grow">
+              <label class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">Value</label><br />
+              <div
+                *ngIf="selectedOption === '' || selectedOption === 'UserID' || selectedOption === 'Type' || selectedOption === 'Rows' || selectedOption === 'Mode' || selectedOption === 'Source'">
+
+                <input [(ngModel)]="enteredValue" type="text" placeholder="Enter Here..."
+                  class="my-input bg-white border border-gray-400 rounded-lg p-2 pr-10 lg:pr-0 xl:pr-3 2xl:pr-10 mt-2 flex-grow">
+              </div>
+              <div *ngIf="selectedOption == 'Share'">
+                <select [(ngModel)]="enteredValue"
+                  class="search bg-white border border-gray-400 rounded-lg p-2.5 pr-10 mt-2 sm:pr-24 md:pr-40 lg:pr-10 xl:pr-20 2xl:pr-10 flex-grow"
+                  style="color: #000000BF; overflow-y: auto;">
+                  <option value="" disabled selected>Select</option>
+                  <option *ngFor="let value of dataImportshareoptions" [value]="value">{{ value }}</option>
+                </select>
+              </div>
+              <div *ngIf="selectedOption == 'Status'">
+                <select [(ngModel)]="enteredValue"
+                  class="search bg-white border border-gray-400 rounded-lg p-2.5 pr-10 mt-2 sm:pr-24 md:pr-40 lg:pr-10 xl:pr-20 2xl:pr-10 flex-grow"
+                  style="color: #000000BF; overflow-y: auto;">
+                  <option value="" disabled selected>Select</option>
+                  <option *ngFor="let value of dataImportStatusoptions" [value]="value.value">{{ value.title }}</option>
+                </select>
+              </div>
+            </div> -->
+          </div>
+
+
+          <!-- buttons -->
+          <div class="xl:pl-6 xl:pr-3 md:ml-auto flex k-ml-auto md:pl-3 ml-auto">
+
+
+            <div class="md:ml-auto items-end flex flex-grow sm:flex-col lg:flex-col xl:flex-row">
+
+              <div *ngIf="selectedUserIds.length > 0" class="deletediv relative lg:mt-2 xl:ml-2">
+                <button
+                  class="text-white p-1.5 pl-3  rounded-lg flex flex-grow items-center sm:pr-0 lg:pr-6 bg-red-500 text-sm"
+                  (click)="deleteSelectedUserids()">
+                  {{ translation?.CLIENTAPPV2_DATA_IMPORT_DELETESELECTED }}
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- table -->
+        <div>
+          <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+            <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+              <thead class="">
+                <tr class="bg-gray-400  dark:bg-neutral-700">
+                  <th class="text-start justify-start">
+                    <input type="checkbox" class="border-gray-400 dark:bg-black" size="large" [(ngModel)]="selectAll"
+                      (change)="toggleSelectAll()" kendoCheckBox checked #large />
+                  </th>
+                  <!-- <th class="text-start xl:text-sm lg:text-sm font-medium sm:text-xs">User ID</th> -->
+                  <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_DATA_IMPORT_DATE }}</th>
+                  <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_DATA_IMPORT_TYPE }}</th>
+                  <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_DATA_IMPORT_SHARE }}</th>
+                  <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_DATA_IMPORT_ROWS }}</th>
+                  <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_DATA_IMPORT_MODE }}</th>
+                  <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_DATA_IMPORT_SOURCE }}</th>
+                  <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_DATA_IMPORT_STATUS }}</th>
+                  <th class="text-start"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- row1 -->
+                <tr *ngFor="let user of paginatedData | slice:0:tableLength">
+                  <td >
+                    <input type="checkbox" class="border-gray-400  dark:bg-black"
+                      (click)="handlecheckboxClick(user.userId)" [(ngModel)]="user.selected" size="large" kendoCheckBox
+                      checked #large />
+                  </td>
+                  <!-- <td class="text-sm">{{ user.userId }}</td> -->
+                  <td class="text-sm dark:text-white">{{ user.dateAdded }}</td>
+                  <td class="text-sm dark:text-white">{{ user.type }}</td>
+                  <td class="text-sm">
+                    <span [class.bg-red]="user.share === 'no'" [class.bg-green]="user.share === 'yes'">{{ user.share
+                      }}</span>
+                  </td>
+                  <td class="text-sm dark:text-white">{{ user.rows }}</td>
+                  <td class="text-sm dark:text-white">{{ user.mode }}</td>
+                  <td class="text-sm">
+                    <label class="bg-blue-200 px-1.5 py-1 rounded-xl">{{ user.from }}</label>
+                  </td>
+                  <td class="text-sm">
+                    <label [ngStyle]="getStatusStyle(user.status)" class="font-medium text-sm">{{ user.status |
+                      uppercase }}</label>
+                  </td>
+                  <td >
+                    <img src="../../../assets/manage_clients/table_buton.png"
+                      class="cursor-pointer sm:mr-0 sm:w-5 sm:h-5 dark:invert"
+                      (click)="togglePanelVisibility(user.userId)">
+
+                    <div *ngIf="panel && (user.userId == panelid)"
+                      class="imgpanel dark:border-neutral-700 absolute bg-white border border-gray-300 k-min-w-max mt-0 py-2 md:right-16 xl:right-20 sm:right-8 2xl:right- rounded-lg shadow-lg pl-2 pr-2 dark:bg-black">
+                      <button (click)="handleEditClick(user.userId)"
+                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                        <img src="../../../assets/manage_clients/edit.png" class="mr-1.5 dark:invert">
+                        {{ translation?.CLIENTAPPV2_DATA_IMPORT_EDIT }}
+                      </button>
+                      <!-- <button (click)="handleHistoryClick(user.userId)" class="drpbtn flex my-2 w-full">
+                        <img src="../../../assets/manage_clients/history.png" class="mr-1.5">
+                        History</button>
+                      <button (click)="handleDataUsageClick(user.userId)" class="drpbtn flex py-2 w-full">
+                        <img src="../../../assets/manage_clients/data_usage.png" class="mr-1.5">
+                        Data&nbsp;Usage&nbsp;[GDPR]</button>
+                      <button (click)="handleSendPasswordClick(user.userId)" class="drpbtn flex py-2 w-full">
+                        <img src="../../../assets/manage_clients/send_password.png" class="mr-1.5">
+                        Send&nbsp;Password</button>
+                      <button (click)="handleSendUsernameClick(user.userId)" class="drpbtn flex py-2 w-full">
+                        <img src="../../../assets/manage_clients/send_username.png" class="mr-1.5">
+                        Send&nbsp;Username</button> -->
+                      <button (click)="handleDeleteClick(user.userId)"
+                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                        <img src="../../../assets/manage_clients/delete-r.png" class="mr-1.5 dark:invert">
+                        {{ translation?.CLIENTAPPV2_DATA_IMPORT_DELETE }}</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+          </div>
+
+          <!-- pagination of table -->
+          <div 
+            class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+            <div class="pagination-info">
+              <span class="text-sm dark:text-white">
+                <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                {{ calculateMaxValue() }}
+                <span class="text-sm text-gray-400">
+                  OF
+                  {{ totalItems }}
+                </span>
+              </span>
+            </div>
+
+            <div class="pagination-controls flex">
+              <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                [ngClass]="{'disabled-button': currentPage === 1}">
+                < </button>
+
+
+                  <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                    <ng-container *ngFor="let page of getPages() | slice:0:4">
+                      <button [disabled]="currentPage === page" (click)="currentPage = page"
+                        [class.pagibtn]="currentPage == page"
+                        class="pagibtn rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page }}</button>
+                    </ng-container>
+                  </div>
+
+                  <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1"
+                    class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                    [ngClass]="{'disabled-button': currentPage * itemsPerPage >= totalItems}">
+                    >
+                  </button>
+                  <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+            </div>
+
+            <div class="pagination-jump">
+              <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_DATA_IMPORT_JUMPTO }}&nbsp; </span>
+              <input type="number" [(ngModel)]="currentPage" min="1" max="{{ totalPages }}"
+                class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+              <button (click)="jumpToPage()"></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

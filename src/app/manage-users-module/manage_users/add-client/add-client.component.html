@@ -1,0 +1,272 @@
+<div class="addcli pb-4 flex-grow h-full">
+    <div class="shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black">
+        <label class="flex border-b pt-6 pb-5 pl-6 text-2xl dark:text-white  dark:border-neutral-700">{{
+            translation?.CLIENTAPPV2_ADD_CLIENT_ADDCLIENT }}</label>
+
+        <!-- Personal Information -->
+        <div class="shadow rounded-lg m-3 p-5 ml-5 mr-5 mt-5 flex-grow bg-gray-100  dark:bg-neutral-700">
+            <label class="text-base font-semibold  dark:text-white">{{
+                translation?.CLIENTAPPV2_ADD_CLIENT_PERSONALINFORMATION }}</label>
+            <div class="lg:grid lg:grid-cols-4 sm:flex sm:flex-col mt-3">
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_CLIENTID }}</label><br />
+                    <input [(ngModel)]="cliendIdInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_TITLE }}</label><br />
+                    <input [(ngModel)]="titleInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_FIRSTNAME }}</label><br />
+                    <input [(ngModel)]="firstnameInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_SURNAME }}</label><br />
+                    <input [(ngModel)]="surnameInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+            </div>
+
+            <div class="lg:grid lg:grid-cols-4 sm:flex sm:flex-col mt-3">
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_CUSTOMGREETINGS }}</label><br />
+                    <input [(ngModel)]="customGreetingInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_EMAILADDRESS }}</label><br />
+                    <input [(ngModel)]="emailInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow lg:mr-7 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_GENDER }}</label><br />
+                    <select [(ngModel)]="genderInput"
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                        <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                            translation?.CLIENTAPPV2_ADD_CLIENT_SELECT }}</option>
+                        <option class=" dark:text-white" value="male">{{ translation?.CLIENTAPPV2_ADD_CLIENT_MALE }}
+                        </option>
+                        <option class=" dark:text-white" value="female">{{ translation?.CLIENTAPPV2_ADD_CLIENT_FEMALE }}
+                        </option>
+                        <!-- <option value="unknown">Unknown</option>
+                        <option value="all">All</option> -->
+                    </select>
+                </div>
+
+                <div class="flex-grow lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">&nbsp;</label><br />
+                    <input type="text" class="w-full bg-transparent p-2" disabled>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Address Details -->
+        <div class="shadow rounded-lg m-3 p-5 ml-5 mr-5 mt-5 flex-grow bg-gray-100   dark:bg-neutral-700">
+            <label class="text-base font-semibold tracking-wider dark:text-white">{{
+                translation?.CLIENTAPPV2_ADD_CLIENT_ADDRESSDETAILS
+                }}</label>
+            <div class="lg:grid lg:grid-cols-4 sm:flex sm:flex-col mt-3">
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_ADDRESS }}</label><br />
+                    <input [(ngModel)]="address1Input" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_ADDRESS }}</label><br />
+                    <input [(ngModel)]="address2Input" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_ADDRESS }}</label><br />
+                    <input [(ngModel)]="address3Input" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_ADDRESS }}</label><br />
+                    <input [(ngModel)]="address4Input" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+            </div>
+
+            <div class="lg:grid lg:grid-cols-4 sm:flex sm:flex-col mt-3">
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_CITY }}</label><br />
+                    <input [(ngModel)]="cityInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_COUNTRY }}</label><br />
+                    <input [(ngModel)]="countryInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_POSTCODE }}</label><br />
+                    <input [(ngModel)]="postCodeInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_USERNAME }}</label><br />
+                    <input [(ngModel)]="usernameInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+            </div>
+
+            <div class="lg:grid lg:grid-cols-4 sm:flex sm:flex-col mt-3">
+                <div class="lg:mt-10 flex-grow lg:mr-10 mb-4 lg:mb-0">
+                    <div class="flex items-center">
+                        <input [(ngModel)]="standardprofileInput" value="standardProfile" type="checkbox"
+                            class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                        <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_ADD_CLIENT_USESTANDARDPROFILE
+                            }}?</label>
+                    </div>
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_CUSTOMERPROFILE }}</label><br />
+                    <select [(ngModel)]="customerProfileInput"
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                        <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                            translation?.CLIENTAPPV2_ADD_CLIENT_SELECT }}</option>
+                        <option class=" dark:text-white" *ngFor="let value of CustomerProfile" [value]="value.value">{{
+                            value.title }}</option>
+                    </select>
+                </div>
+
+                <div class="lg:mt-10 flex-grow lg:mr-24 mb-4 lg:mb-0 ">
+                    <div class="flex items-start">
+                        <input [(ngModel)]="registerOnlineInput" value="registerOnline" type="checkbox"
+                            class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                        <label class="text-base dark:text-white">{{ translation?.CLIENTAPPV2_ADD_CLIENT_REGISTERONLINE
+                            }}</label>
+                    </div>
+                </div>
+
+
+                <div class="flex-grow mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_TAGS }}</label><br />
+                    <input [(ngModel)]="tagsInput" type="text" placeholder="New tag"
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 ml dark:bg-black dark:text-white">
+                </div>
+            </div>
+
+            <div class="lg:grid lg:grid-cols-4 sm:flex sm:flex-col mt-3">
+                <div></div>
+                <div class="flex flex-col lg:flex-row mt-3 lg:pr-0 justify-center">
+                    <div class="flex">
+                        <img src="../../../assets/manage_clients/add-client/search.png" class=" dark:invert">
+                        <label class=" dark:text-white">&nbsp;{{ translation?.CLIENTAPPV2_ADD_CLIENT_SEARCHWITHAI }}</label>
+                    </div>
+                </div>
+                <div></div>
+                <div></div>
+            </div>
+
+        </div>
+
+        <!-- Profiling -->
+        <div class="shadow rounded-lg m-3 p-5 ml-5 mr-5 mt-5 flex-grow bg-gray-100   dark:bg-neutral-700">
+            <label class="text-base font-semibold tracking-wider dark:text-white">{{
+                translation?.CLIENTAPPV2_ADD_CLIENT_PROFILING
+                }}</label>
+            <div class="lg:grid lg:grid-cols-4 sm:flex sm:flex-col mt-3">
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_ACCOUNTMANGER }}</label><br />
+                    <select [(ngModel)]="accountManagerInput"
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                        <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                            translation?.CLIENTAPPV2_ADD_CLIENT_SELECT }}</option>
+                        <option class=" dark:text-white" *ngFor="let value of AccountManager" [value]="value.value">{{
+                            value.title }}</option>
+                    </select>
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_COMPANY }}</label><br />
+                    <input [(ngModel)]="CompanyInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_CLIENT_SICCODE }}</label><br />
+                    <input [(ngModel)]="SICCodeInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                </div>
+
+                <div class="flex-grow mt-8 lg:mr-7 lg:mb-0">
+                    <button class="bg-white border p-1.5 pl-5 pr-5 mr-0 rounded-lg flex items-center text-white"
+                        style="background-color: #29CCB1;">
+                        {{ translation?.CLIENTAPPV2_ADD_CLIENT_SELECT }}
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row mt-3 lg:pr-0">
+                <div class="ml-1 mt-7 pr-4">
+                    <input [(ngModel)]="emailNewsletterInput" type="checkbox" class="border-gray-400 mr-2 dark:bg-black"
+                        size="large" kendoCheckBox #large />
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_ADD_CLIENT_EMAILNEWSLETTER }}</label>
+                </div>
+
+                <div class="ml-0 mt-7 pr-24">
+                    <input [(ngModel)]="printedNewsletterInput" type="checkbox"
+                        class="border-gray-400 mr-2 dark:bg-black" size="large" kendoCheckBox #large />
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_ADD_CLIENT_PRINTEDNEWSLETTER }}</label>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- buttons -->
+        <div class="buttons flex">
+            <div class="flex flex-col lg:flex-row  mt-5 mr-5 mb-7 ml-auto">
+                <button class="pl-4 pr-4 p-2 rounded-lg mr-4 sm:mt-2" style="background-color: #F0F2F7;"
+                    (click)="cancel()">{{ translation?.CLIENTAPPV2_ADD_CLIENT_CANCEL }}</button>
+
+                <button class="border border-gray-300  rounded-lg p-1.5 pl-3 pr-3 mr-4 sm:mt-2 dark:text-white">{{
+                    translation?.CLIENTAPPV2_ADD_CLIENT_SAVEANDMORE }}</button>
+
+                <button class="bg-white border p-1.5 pl-3 pr-3 mr-0 rounded-lg flex items-center text-white sm:mt-2"
+                    style="background-color: #29CCB1;" (click)="saveAndFinish()">{{
+                    translation?.CLIENTAPPV2_ADD_CLIENT_SAVEANDFINISH
+                    }}</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

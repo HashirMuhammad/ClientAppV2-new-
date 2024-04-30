@@ -1,0 +1,93 @@
+.bg-red {
+  background-color: rgb(255, 211, 211);
+  color: #CC0000;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.bg-green {
+  background-color: rgb(192, 254, 192);
+  color: green;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 730px) {
+  .bodydiv {
+    padding-left: 15px;
+  }
+
+  .categorydiv,
+  .Agencydiv,
+  .Qualificationdiv,
+  .btndiv {
+    padding-top: 10px;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    padding-top: 10px;
+    font-size: small;
+    overflow-x: auto;
+  }
+
+  .table-container td img {
+    width: 200%;
+    height: 200%;
+  }
+
+  .imgpanel {
+    right: 2rem;
+    height: fit-content;
+    width: fit-content;
+  }
+
+  .ava.flex {
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ava.flex img {
+    max-width: 50%;
+    height: auto;
+    margin-right: 2px;
+  }
+
+  .ava.flex span {
+    font-size: 14px;
+    /* Adjust the font size as needed for mobile */
+    text-align: left;
+  }
+
+  .drpbtn {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: black;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    align-self: start;
+    width: fit-content;
+    padding: auto;
+  }
+
+  .pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pagination-controls button {
+    font-size: 14px;
+    /* Adjust the font size as needed */
+  }
+
+  .pagination-jump input {
+    margin-top: 4px;
+    width: 50px;
+    /* Adjust the width as needed */
+    margin-right: 0;
+    /* Remove margin */
+  }
+}

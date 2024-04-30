@@ -1,0 +1,403 @@
+<div class="sercli pb-4 flex-grow h-full">
+  <div class="shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black">
+
+    <div class="flex border-b border-gray-300 pt-6 pb-5 pl-6  dark:border-neutral-700">
+      <label class="text-2xl dark:text-white">{{
+        translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_SEARCHEMPLOYEES }}</label>
+  
+        <div class="ml-auto mr-6">
+          <div class="action relative">
+            <button class="bg-teal-500 text-white px-4 py-1.5 text-start rounded-lg flex items-center xl:mt-0"
+              (click)="openPopUp(isDropdownOpen,'action')">
+              {{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_ACTION }}
+              <img src="../../../assets/manage_clients/drop_arrow.png" class="ml-4 mr-2">
+            </button>
+            <div *ngIf="isDropdownOpen"
+              class="absolute bg-white border border-gray-300 flex-grow mt-2 py-2 rounded-lg shadow-lg z-50 dark:bg-black dark:border-neutral-700">
+              <a href="#"
+                class="block drpbtn text-sm px-2 py-2 dark:border-black dark:text-white dark:hover:bg-black">{{
+                translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_EXPORTINCSV }}</a>
+              <a href="#"
+                class="block drpbtn text-sm px-2 py-2 dark:border-black dark:text-white dark:hover:bg-black">{{
+                translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_EXPORTINEXCEL }}</a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="xl:flex lg:flex flex-grow">
+      <div class="sm:w-fit lg:w-fit xl:w-56">
+        <div>
+          <!-- filters -->
+          <div class="flex-grow pl-4">
+
+            <div class="flex pl-4 pr-4 pt-4 pb-2 flex-grow">
+              <label class="fltrlbl pr-52 ml-4 sm:text-sm sm:ml-2.5 sm:pr-0 lg:-ml-3 lg:text-base xl:text-lg"
+                style="color: #999999;">{{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_FILTERS }}</label>
+              <img src="../../../assets/manage_clients/filter.png" class="ml-auto w-5 h-5 sm:w-4 sm:h-4">
+            </div>
+            <!-- filter div -->
+            <div class=" md:flex lg:flex-col">
+              <!-- filter  -->
+              <div class="chkbox flex lg:pt-1 sm:pt-1 sm:pb-1 sm:mr-2 lg:mr-8">
+                <input type="radio" class="chkbx1 " size="none" id="chkbx1" name="chkbx1" (click)="toggleChecked(0)"
+                  [checked]="isChecked[0]" />
+
+                <h6 class="ml-4"><label class=" sm:text-sm sm:text-center lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_REGISTERONLINE }}</label></h6>
+              </div>
+
+              <div class="chkbox flex lg:pt-1 sm:pt-1 sm:pb-1 xl:ml-0 md:ml-0 sm:mr-2">
+                <input type="radio" class="chkbx2" size="none" id="chkbx2" name="chkbx2" (click)="toggleChecked(1)"
+                  [checked]="isChecked[1]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_REGISTEROFFLINE }}</label>
+                </h6>
+              </div>
+
+
+              <div class="sm:flex md:flex-col xl:flex-col">
+                <div class="chkbox flex lg:pt-1 sm:pt-1 sm:pb-1 sm:mr-2">
+                  <input type="radio" class="chkbx7" size="none" id="chkbx7" name="chkbx7" (click)="toggleChecked(2)"
+                    [checked]="isChecked[2]" />
+
+                  <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                      translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_MALE }}</label></h6>
+                </div>
+              </div>
+
+              <div class="chkbox flex lg:pt-1 sm:pt-1 sm:pb-1 xl:ml-0 md:ml-0 sm:mr-2">
+                <input type="radio" class="chkbx8" size="none" id="chkbx8" name="chkbx8" (click)="toggleChecked(3)"
+                  [checked]="isChecked[3]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_FEMALE }}</label></h6>
+              </div>
+
+
+
+              <div class="chkbox flex lg:pt-1 sm:pt-1 sm:pb-1 sm:mr-3">
+                <input type="radio" class="chkbx9" size="none" id="chkbx9" name="chkbx9" (click)="toggleChecked(4)"
+                  [checked]="isChecked[4]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_UNKNOWN }}</label></h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1 lg:ml-0 xl:ml-0 md:ml-7">
+                <input type="radio" class="chkbx10" size="none" id="chkbx10" name="chkbx10" (click)="toggleChecked(5)"
+                  [checked]="isChecked[5]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_ALL }}</label></h6>
+              </div>
+            </div>
+
+            <!-- Display applied filters -->
+            <div class="xl:w-52">
+              <div *ngFor="let filter of selectedFilters; let i = index" class="applied-filter flex mb-1.5">
+                <div>
+                  <button class="border-2 border-slate-800 py-0 px-1 rounded-full text-xs"
+                    (click)="removeFilter(i)">&#10003;</button>
+
+                </div>
+                <div class="ml-4 filter">
+                  <span class=" text-sm dark:text-white">{{ filter.option }}=({{ filter.value }})</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-grow p-3 border-l dark:border-neutral-700">
+        <div class=" lg:flex flex-grow">
+
+          <div class="ml-3 mt-2">
+
+          </div>
+          <div class="sm:flex md:pl-3 lg:pl-0 xl:pl-0">
+            <!-- search input -->
+            <div class="search">
+              <label class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_SEARCH }}</label><br />
+
+              <select [(ngModel)]="selectedOption" (change)="selectedOptionchange()"
+                class="search bg-white border border-gray-400 rounded-lg p-2.5 pr-24 mt-2 sm:pr-24 md:pr-40 lg:pr-12 flex-grow dark:bg-black dark:text-white"
+                style="overflow-y: auto;">
+                <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                  translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_SELECT }}</option>
+                <option class=" dark:text-white" *ngFor="let option of searchEmployeessoptions" [value]="option.value">
+                  {{ option.title }}</option>
+              </select>
+            </div>
+
+            <!-- value input -->
+            <div class="value ml-5 flex-grow">
+
+              <div
+                *ngIf="selectedOption === '' || selectedOption === 'EmployeeID' || selectedOption === 'FirstName' || selectedOption === 'SurName' || selectedOption === 'Company' || selectedOption === 'EmailAddress'">
+                <label class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                  translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_VALUE }}</label><br />
+                <input [(ngModel)]="enteredValue" type="text" placeholder="Enter Here..."
+                  class="my-input bg-white border border-gray-400 rounded-lg p-2 pr-10 lg:pr-0 xl:pr-3  mt-2 flex-grow  dark:bg-black dark:text-white">
+              </div>
+
+              <div
+                *ngIf="selectedOption == 'EmployeeProfile' || selectedOption == 'Qualification' || selectedOption == 'DateAdded' || selectedOption == 'LastUpdated' || selectedOption == 'TagsAssigned'">
+
+                <label *ngIf="selectedOption == 'EmployeeProfile'"
+                  class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                  translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_EMPLOYEEPROFILE }}</label>
+                <label *ngIf="selectedOption == 'Qualification'" class="2xl:text-base xl:text-sm lg:text-sm font-medium"
+                  style="color: #CC0000;">{{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_QUALIFICATION }}</label>
+
+                <div *ngIf="selectedOption == 'EmployeeProfile'">
+                  <select [(ngModel)]="enteredValue" (change)="console()"
+                    class="search bg-white border border-gray-400 rounded-lg p-2.5 mt-2 flex-grow w-52 dark:bg-black dark:text-white"
+                    style="overflow-y: auto;">
+                    <option class=" dark:text-white" value="" disabled selected>{{
+                      translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_SELECT }}</option>
+                    <option class=" dark:text-white" *ngFor="let value of EmployeeProfile" [value]="value.title">{{
+                      value.title }}</option>
+                  </select>
+                </div>
+
+                <div *ngIf="selectedOption == 'Qualification'">
+                  <select [(ngModel)]="enteredValue"
+                    class="search bg-white border border-gray-400 rounded-lg p-2.5 pr-10 mt-2 sm:pr-24 md:pr-40 lg:pr-10 xl:pr-20 2xl:pr-28 flex-grow dark:bg-black dark:text-white"
+                    style="overflow-y: auto;">
+                    <option class=" dark:text-white" value="" disabled selected>{{
+                      translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_SELECT }}</option>
+                    <option class=" dark:text-white" *ngFor="let value of Qualification" [value]="value.value">{{
+                      value.title }}</option>
+                  </select>
+                </div>
+
+                <div *ngIf="selectedOption == 'DateAdded'" class="flex gap-2 mt-2">
+                  <div>
+                    <label class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                      translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_DATEFROM }}</label><br />
+                    <kendo-datepicker placeholder="Choose a date ..." [size]="'small'" [value]="DateAddedto"
+                      class="p-2.5 w-44 rounded-lg dark:bg-black dark:text-white dark:border-white">
+                    </kendo-datepicker>
+
+                  </div>
+                  <div>
+                    <label class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                      translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_DATETO }}</label><br />
+                    <kendo-datepicker placeholder="Choose a date ..." [size]="'small'" [value]="DateAddedfrom"
+                      class="p-2.5 w-44 rounded-lg dark:bg-black dark:text-white dark:border-white">
+                    </kendo-datepicker>
+                  </div>
+                </div>
+
+                <div *ngIf="selectedOption == 'LastUpdated'" class="flex gap-2 mt-2">
+                  <div>
+                    <label class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                      translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_DATEFROM }}</label><br />
+                    <kendo-datepicker placeholder="Choose a date ..." [size]="'small'" [value]="DateLastUpdatedto"
+                      class="p-2.5 w-44 rounded-lg dark:bg-black dark:text-white dark:border-white">
+                    </kendo-datepicker>
+
+                  </div>
+                  <div>
+                    <label class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                      translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_DATETO }}</label><br />
+                    <kendo-datepicker placeholder="Choose a date ..." [size]="'small'" [value]="DateLastUpdatedfrom"
+                      class="p-2.5 w-44 rounded-lg dark:bg-black dark:text-white dark:border-white">
+                    </kendo-datepicker>
+                  </div>
+                </div>
+
+                <div *ngIf="selectedOption == 'TagsAssigned'">
+                  <label class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_TAGSASSIGNED }}</label><br />
+                  <kendo-formfield showHints="always">
+                    <kendo-multiselect
+                      class="search bg-white border border-gray-400 rounded-lg p-1.5 pr-10 mt-2 w-52 flex-grow dark:bg-black dark:text-white"
+                      (valueChange)="console()" [data]="tagsAssignedlistItems" [(ngModel)]="enteredValue"
+                      placeholder="Select"></kendo-multiselect>
+                  </kendo-formfield>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- buttons -->
+          <div class="xl:py-8 xl:pl-8 xl:pr-3 md:ml-auto flex k-ml-auto sm:pt-3 md:pt-3 md:pl-3 ml-auto">
+            <div class="btndiv  md:ml-auto items-end flex flex-grow lg:flex-col xl:flex-row">
+              <div class="sm:mr-0 md:mr-80 xl:mr-0 lg:mr-0  flex-grow">
+                <button class="pl-4 pr-4 p-2 rounded-lg mr-4" style="background-color: #F0F2F7;" (click)="clear()">
+                  {{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_CLEAR }}
+                </button>
+              </div>
+              <div
+                class="filterbtn inline-blockinline-block md:ml-3 xl:ml-0 sm:ml-0 lg:ml-0 flex-grow lg:mt-2 lg:mb-2 xl:mb-0 xl:mt-0">
+                <button
+                  class="bg-white border p-1.5 pl-3 pr-3 mr-0 rounded-lg flex flex-grow items-center sm:pr-0  lg:pr-4 dark:bg-black"
+                  style="color: #29CCB1; border-color: #29CCB1;" (click)="addFilter()">
+                  {{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_ADDFILTERS }}
+                  <img src="../../../assets/manage_clients/filter -blue.png"
+                    class="ml-auto w-5 h-5 sm:mr-6 lg:ml-3 lg:mr-0">
+                </button>
+              </div>
+
+              
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- table -->
+        <div>
+          <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+            <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+              <thead class="">
+                <tr class="bg-gray-400  dark:bg-neutral-700">
+                  <th class="text-start justify-start">
+                    <input type="checkbox" class="border-gray-400 dark:bg-black" size="large" [(ngModel)]="selectAll"
+                      (change)="toggleSelectAll()" kendoCheckBox checked #large />
+                  </th>
+                  <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_EMPLOYEEID }}</th>
+                  <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_SURNAME }}</th>
+                  <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_FIRSTNAME }}</th>
+                  <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_COMPANYNAME }}</th>
+                  <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_EMAILADDRESS }}</th>
+                  <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                    translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_VERIFIED }}</th>
+                  <th class="text-start"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- row1 -->
+                <tr *ngFor="let employee of paginatedData">
+                  <td>
+                    <input type="checkbox" class="border-gray-400  dark:bg-black" [(ngModel)]="employee.selected"
+                      size="large" kendoCheckBox checked #large />
+                  </td>
+                  <td class="xl:text-sm sm:text-xs dark:text-white">{{ employee.employeeId }}</td>
+                  <td>
+                    <div class="flex">
+                      <span class="avatar pt-2.5 mt-1 mr-3 font-medium sm:mr-1 sm:text-xs"
+                        [style.background-color]="avaColorservice(employee.surname.charAt(0) )">{{
+                        employee.surname.charAt(0) }}</span>
+                      <span class="sm:text-xs sm:mt-1.5 lg:mt-2 sm:ml-0 lg:text-sm lg:ml-2 dark:text-white pt-1">{{
+                        employee.surname
+                        }}</span>
+                    </div>
+                  </td>
+                  <td class="xl:text-sm lg:text-sm sm:text-xs dark:text-white">{{ employee.firstName }}</td>
+                  <td class="xl:text-sm lg:text-sm sm:text-xs dark:text-white">{{ employee.companyName }}</td>
+                  <td class="xl:text-sm lg:text-sm sm:text-xs dark:text-white">{{ employee.emailAddress }}</td>
+                  <td>
+                    <div class="verifiedimg">
+                      <img *ngIf="employee.verfied == 'yes'"
+                        src="../../../assets/manage_clients/verified-removebg-preview.png" class="w-5 h-5">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <img src="../../../assets/manage_clients/table_buton.png"
+                        class="cursor-pointer sm:mr-0 sm:w-5 sm:h-5 dark:invert"
+                        (click)="togglePanelVisibility(employee.employeeId)">
+                    </div>
+
+                    <div *ngIf="(panel && (employee.employeeId == panelid))"
+                      class="imgpanel dark:border-neutral-700 absolute bg-white border border-gray-300 k-min-w-max mt-0 py-2 md:right-16 xl:right-20 sm:right-8 2xl:right- rounded-lg shadow-lg pl-2 pr-2 dark:bg-black">
+                      <button (click)="handleEditClick(employee.employeeId)"
+                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                        <img src="../../../assets/manage_clients/edit.png" class="mr-1.5 dark:invert">
+                        {{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_EDIT }}
+                      </button>
+                      <button (click)="handleHistoryClick(employee.employeeId)"
+                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                        <img src="../../../assets/manage_clients/history.png" class="imgpanelimg mr-1.5 dark:invert">
+                        {{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_HISTORY }}</button>
+                      <button (click)="handleDataUsageClick(employee.employeeId)"
+                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                        <img src="../../../assets/manage_clients/data_usage.png" class="imgpanelimg mr-1.5 dark:invert">
+                        {{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_DATAUSAGE }}&nbsp;[GDPR]</button>
+                      <button (click)="handleSendPasswordClick(employee.employeeId)"
+                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                        <img src="../../../assets/manage_clients/send_password.png"
+                          class="imgpanelimg mr-1.5 dark:invert">
+                        {{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_SENDPASSWORD }}</button>
+                      <button (click)="handleSendUsernameClick(employee.employeeId)"
+                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                        <img src="../../../assets/manage_clients/send_username.png"
+                          class="imgpanelimg mr-1.5 dark:invert">
+                        {{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_SENDUSERNAME }}</button>
+                      <button (click)="handleDeleteClick(employee.employeeId)"
+                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                        <img src="../../../assets/manage_clients/delete-r.png" class="imgpanelimg mr-1.5 dark:invert">
+                        {{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_DELETE }}</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+          </div>
+
+          <!-- pagination of table -->
+          <div class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+            <div class="pagination-info">
+              <span class="text-sm dark:text-white">
+                <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                {{ calculateMaxValue() }}
+                <span class="text-sm text-gray-400">
+                  OF
+                  {{ totalItems }}
+                </span>
+              </span>
+            </div>
+
+            <div class="pagination-controls flex">
+              <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                [ngClass]="{'disabled-button': currentPage === 1}">
+                < </button>
+
+
+                  <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                    <ng-container *ngFor="let page of getPages() | slice:0:4">
+                      <button [disabled]="currentPage === page" (click)="currentPage = page"
+                        [class.pagibtn]="currentPage == page"
+                        class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page }}</button>
+                    </ng-container>
+                  </div>
+
+                  <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1"
+                    class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                    [ngClass]="{'disabled-button': currentPage * itemsPerPage >= totalItems}">
+                    >
+                  </button>
+                  <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+            </div>
+
+            <div class="pagination-jump">
+              <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_SEARCH_EMPLOYEES_JUMPTO }}&nbsp; </span>
+              <input type="number" [(ngModel)]="currentPage" min="1" max="{{ totalPages }}"
+                class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+              <button (click)="jumpToPage()"></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

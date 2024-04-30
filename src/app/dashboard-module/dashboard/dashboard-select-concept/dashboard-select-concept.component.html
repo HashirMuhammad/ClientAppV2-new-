@@ -1,0 +1,48 @@
+<div class="flex-grow h-full" >
+    <div class="sercli bg-white mb-5 mt-3 rounded-3xl dark:bg-black " >
+      <div class="flex dark:border-neutral-700 "  >
+        <div class="ml-2">
+          <img src="../../../assets/sidebar/content/proof-b.png" class="mr-1 dark:invert">
+        </div>
+        <label class="font-semibold text-base ml-2  dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_SELECTCONCEPT }}</label>
+        <button class="ml-auto mr-2 pl-2 pr-2 border rounded-xl text-sm dark:text-white">{{
+          translation?.CLIENTAPPV2_DASHBOARD_VIEWALL }}</button>
+      </div>
+      <div class="xl:flex lg:flex flex-grow">
+  
+        <div class="flex-grow p-3">
+  
+          <!-- table -->
+          <div>
+            <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+              <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                <thead class="">
+                  <tr class="bg-gray-400  dark:bg-neutral-700">
+                    <!-- <th class="text-start text-sm">Concept ID</th> -->
+                    <th class="text-start text-sm dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_DESCRIPTION }}</th>
+                    <th class="text-start text-sm dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_CONCEPTDATE }}</th>
+                    <th class="text-start text-sm dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_SENDDATE }}</th>
+                    <th class="text-start text-sm dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_CONCEPTTYPE }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- row1 -->
+                  <tr *ngFor="let user of USER_DATA">
+                    <!-- <td class="text-sm">{{ user.id }}</td> -->
+                    <td class="text-sm dark:text-white">{{ user.description }}</td>
+                    <td class="text-sm dark:text-white">{{ user.conceptDate }}</td>
+                    <td class="text-sm dark:text-white">{{ user.sendConceptDate }}</td>
+                    <td class="text-sm dark:text-white">{{ user.conceptType }}</td>
+                  </tr>
+                </tbody>
+              </table>
+  
+  
+  
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

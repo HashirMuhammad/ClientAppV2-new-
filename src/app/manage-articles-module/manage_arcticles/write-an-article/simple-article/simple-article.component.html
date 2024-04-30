@@ -1,0 +1,94 @@
+<div class="bodydiv pb-4 flex-grow h-full">
+  <div class="shadow bg-white flex-grow mb-5 mt-3 mr-7 rounded-2xl  dark:bg-black">
+    <label class="flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl dark:text-white dark:border-neutral-700">{{
+      translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_WRITEANARTICLE }}</label>
+    <div class="p-4 h-full">
+      <div class="inputdiv flex">
+        <!-- inputs -->
+        <div class="titlediv flex-grow lg:mr-7 lg:mb-0">
+          <label class="text-base font-medium" style="color: #CC0000;">{{
+            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_ARTICLETITLE }}</label><br />
+          <input [(ngModel)]="artTitle" type="text" placeholder="Enter Here..."
+            class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+        </div>
+
+        <div class="titlediv flex-grow lg:mr-7 lg:mb-0">
+          <label class="text-base font-medium" style="color: #CC0000;">{{
+            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SOURCE }}</label><br />
+          <input [(ngModel)]="artSource" type="text" placeholder="Enter Here..."
+            class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+        </div>
+
+        <!-- file -->
+        <div class="filediv lg:mr-4 row-span-full">
+          <label class="text-base font-medium" style="color: #CC0000;">{{
+            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_ATTACHIMAGE }}</label><br />
+          <div class="drop-zone w-96 bg-slate-50 dark:bg-black dark:text-white" (drop)="onDrop($event)"
+            (dragover)="onDragOver($event)">
+            <p>{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_DROPFILESHEREORCLICKTOUPLOAD }}</p>
+            <input [(ngModel)]="file" type="file" (change)="onFileSelected($event)" accept="image/*"
+              [disabled]="uploading" class="mt-5 justify-center items-center dark:bg-black dark:text-white">
+          </div>
+        </div>
+      </div>
+
+      <div class="textareadiv flex mr-10">
+        <!-- textarea -->
+        <div class="editor flex-grow -mt-12 mb-6 rounded-lg h-full">
+          <label class="text-base font-medium" style="color: #CC0000;">{{
+            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_SUMMARY }}</label><br />
+
+          <kendo-editor [(ngModel)]="value" [value]="value"
+            class="editor dark:bg-black dark:text-white dark:border-white "></kendo-editor>
+        </div>
+
+        <!-- file  -->
+        <div class="imgdiv w-96 ml-auto h-fit">
+          <div *ngIf="file && !uploadComplete" class="mt-5 ml-7">
+            <p>{{ file.name }}</p>
+            <div *ngIf="uploading" class="flex">
+              <div class="progress">
+                <div class="progress-bar" [style.width.%]="progress">
+
+                </div>
+              </div>
+              <div *ngIf="uploading">
+                <img src="../../../assets/manage_content/x-circle.png" (click)="cancelUpload()"
+                  class="w-3 h-3 mt-1 ml-2">
+              </div>
+              <!-- <button  [disabled]="!uploading">Cancel</button> -->
+
+            </div>
+            <p>{{ formatFileSize(file.size) }}</p>
+            <!-- <button (click)="uploadFile()" [disabled]="uploading">Upload</button> -->
+          </div>
+
+
+
+          <div class="img2div ml-8">
+            <div *ngIf="uploadComplete" class="mt-5 w-full bg-black">
+              <button (click)="deselectFile()">
+                <img src="../../../assets/manage_content/x-circle.png"></button>
+              <img [src]="fileUrl" alt="Uploaded File" class="bg-cover object-cover w-full">
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+      <div class="btndiv flex mt-8 right-4">
+        <div class="ml-auto">
+          <button class="pl-4 pr-4 p-2 rounded-lg mr-4 sm:mt-2" style="background-color: #F0F2F7;"
+            (click)="routeToWriteAnArticle()">{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_BACK }}</button>
+
+          <button class="p-1 rounded-lg px-5 mr-5 dark:bg-black dark:text-white  dark:border-white" style="background-color: #00000026;"
+            (click)="discard()">{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_DISCARD }}</button>
+
+          <button class="p-1 rounded-lg px-5 mr-5 text-white" style="background-color: #29CCB1;"
+            (click)="routToArtiDetail()">{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_NEXT }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,436 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class HistoryServiceService {
+  CLIENT_DATA = [
+    {
+      clientId: 1,
+      surname: 'Doe',
+      firstName: 'John',
+      companyName: 'ABC Inc.',
+      emailAddress: 'john.doe@abc.com',
+      selected: false,
+    },
+    {
+      clientId: 2,
+      surname: 'Cmith',
+      firstName: 'Jane',
+      companyName: 'XYZ Corp.',
+      emailAddress: 'jane.smith@xyz.com',
+      selected: false,
+    },
+    {
+      clientId: 3,
+      surname: 'Zoe',
+      firstName: 'John',
+      companyName: 'ABC Inc.',
+      emailAddress: 'john.doe@abc.com',
+      selected: false,
+    },
+    {
+      clientId: 4,
+      surname: 'Nit',
+      firstName: 'Jane',
+      companyName: 'XYZ Corp.',
+      emailAddress: 'jane.smith@xyz.com',
+      selected: false,
+    },
+    {
+      clientId: 5,
+      surname: 'Michal',
+      firstName: 'John',
+      companyName: 'ABC Inc.',
+      emailAddress: 'john.doe@abc.com',
+      selected: false,
+    },
+    {
+      clientId: 6,
+      surname: 'Smith',
+      firstName: 'Jane',
+      companyName: 'XYZ Corp.',
+      emailAddress: 'jane.smith@xyz.com',
+      selected: false,
+    },
+    {
+      clientId: 7,
+      surname: 'Doe',
+      firstName: 'John',
+      companyName: 'ABC Inc.',
+      emailAddress: 'john.doe@abc.com',
+      selected: false,
+    },
+    {
+      clientId: 8,
+      surname: 'Smith',
+      firstName: 'Jane',
+      companyName: 'XYZ Corp.',
+      emailAddress: 'jane.smith@xyz.com',
+      selected: false,
+    },
+    {
+      clientId: 9,
+      surname: 'Voe',
+      firstName: 'John',
+      companyName: 'ABC Inc.',
+      emailAddress: 'john.doe@abc.com',
+      selected: false,
+    },
+    {
+      clientId: 10,
+      surname: 'Smith',
+      firstName: 'Jane',
+      companyName: 'XYZ Corp.',
+      emailAddress: 'jane.smith@xyz.com',
+      selected: false,
+    },
+    {
+      clientId: 11,
+      surname: 'Ioe',
+      firstName: 'John',
+      companyName: 'ABC Inc.',
+      emailAddress: 'john.doe@abc.com',
+      selected: false,
+    },
+    {
+      clientId: 12,
+      surname: 'Smith',
+      firstName: 'Jane',
+      companyName: 'XYZ Corp.',
+      emailAddress: 'jane.smith@xyz.com',
+      selected: false,
+    },
+    {
+      clientId: 13,
+      surname: 'Doe',
+      firstName: 'John',
+      companyName: 'ABC Inc.',
+      emailAddress: 'john.doe@abc.com',
+      selected: false,
+    },
+    {
+      clientId: 14,
+      surname: 'Cmith',
+      firstName: 'Jane',
+      companyName: 'XYZ Corp.',
+      emailAddress: 'jane.smith@xyz.com',
+      selected: false,
+    },
+    {
+      clientId: 15,
+      surname: 'Michal',
+      firstName: 'John',
+      companyName: 'ABC Inc.',
+      emailAddress: 'john.doe@abc.com',
+      selected: false,
+    },
+    {
+      clientId: 16,
+      surname: 'Smith',
+      firstName: 'Jane',
+      companyName: 'XYZ Corp.',
+      emailAddress: 'jane.smith@xyz.com',
+      selected: false,
+    },
+    {
+      clientId: 17,
+      surname: 'Doe',
+      firstName: 'John',
+      companyName: 'ABC Inc.',
+      emailAddress: 'john.doe@abc.com',
+      selected: false,
+    },
+    {
+      clientId: 18,
+      surname: 'Smith',
+      firstName: 'Jane',
+      companyName: 'XYZ Corp.',
+      emailAddress: 'jane.smith@xyz.com',
+      selected: false,
+    },
+    {
+      clientId: 19,
+      surname: 'Voe',
+      firstName: 'John',
+      companyName: 'ABC Inc.',
+      emailAddress: 'john.doe@abc.com',
+      selected: false,
+    },
+    {
+      clientId: 20,
+      surname: 'Smith',
+      firstName: 'Jane',
+      companyName: 'XYZ Corp.',
+      emailAddress: 'jane.smith@xyz.com',
+      selected: false,
+    },
+    {
+      clientId: 21,
+      surname: 'Ioe',
+      firstName: 'John',
+      companyName: 'ABC Inc.',
+      emailAddress: 'john.doe@abc.com',
+      selected: false,
+    },
+    {
+      clientId: 22,
+      surname: 'Smith',
+      firstName: 'Jane',
+      companyName: 'XYZ Corp.',
+      emailAddress: 'jane.smith@xyz.com',
+      selected: false,
+    },
+
+    // Add more client data as needed
+  ];
+
+  EMPLOYEES_DATA = [
+    {
+      clientId: 1,
+      imgUrl: '',
+      fullname: 'Doe',
+      email: 'john.doe@abc.com',
+      companyName: 'ABC Inc.',
+      selected: false,
+    },
+    {
+      clientId: 2,
+      imgUrl: '',
+      fullname: 'Smith',
+      email: 'smith.jane@xyz.com',
+      companyName: 'XYZ Corporation',
+      selected: false,
+    },
+    {
+      clientId: 3,
+      imgUrl: '',
+      fullname: 'Johnson',
+      email: 'joe.johnson@def.com',
+      companyName: 'DEF Enterprises',
+      selected: false,
+    },
+    {
+      clientId: 4,
+      imgUrl: '',
+      fullname: 'Brown',
+      email: 'susan.brown@ghi.com',
+      companyName: 'GHI Ltd.',
+      selected: false,
+    },
+    {
+      clientId: 5,
+      imgUrl: '',
+      fullname: 'Taylor',
+      email: 'mike.taylor@jkl.com',
+      companyName: 'JKL Co.',
+      selected: false,
+    },
+    {
+      clientId: 6,
+      imgUrl: '',
+      fullname: 'Williams',
+      email: 'lisa.williams@mno.com',
+      companyName: 'MNO Group',
+      selected: false,
+    },
+    {
+      clientId: 7,
+      imgUrl: '',
+      fullname: 'Lee',
+      email: 'amy.lee@pqr.com',
+      companyName: 'PQR Industries',
+      selected: false,
+    },
+    {
+      clientId: 8,
+      imgUrl: '',
+      fullname: 'Anderson',
+      email: 'robert.anderson@rst.com',
+      companyName: 'RST Ltd.',
+      selected: false,
+    },
+    {
+      clientId: 9,
+      imgUrl: '',
+      fullname: 'Harris',
+      email: 'emily.harris@uvw.com',
+      companyName: 'UVW Corporation',
+      selected: false,
+    },
+    {
+      clientId: 10,
+      imgUrl: '',
+      fullname: 'Clark',
+      email: 'david.clark@xyz.com',
+      companyName: 'XYZ Corporation',
+      selected: false,
+    },
+    {
+      clientId: 11,
+      imgUrl: '',
+      fullname: 'Martin',
+      email: 'sarah.martin@def.com',
+      companyName: 'DEF Enterprises',
+      selected: false,
+    },
+    {
+      clientId: 12,
+      imgUrl: '',
+      fullname: 'Young',
+      email: 'jason.young@ghi.com',
+      companyName: 'GHI Ltd.',
+      selected: false,
+    },
+    {
+      clientId: 13,
+      imgUrl: '',
+      fullname: 'Garcia',
+      email: 'linda.garcia@jkl.com',
+      companyName: 'JKL Co.',
+      selected: false,
+    },
+    {
+      clientId: 14,
+      imgUrl: '',
+      fullname: 'Rodriguez',
+      email: 'paul.rodriguez@mno.com',
+      companyName: 'MNO Group',
+      selected: false,
+    },
+    {
+      clientId: 15,
+      imgUrl: '',
+      fullname: 'Jackson',
+      email: 'jessica.jackson@pqr.com',
+      companyName: 'PQR Industries',
+      selected: false,
+    },
+    // Add more client data as needed
+  ];
+
+  ARTICLES_DATA = [
+    {
+      clientId: 1,
+      imgUrl: '',
+      arcticles:
+        'very utility class in Tailwind can be applied conditionally at different breakpoints',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 2,
+      imgUrl: '',
+      arcticles:
+        'Here’s a simple example of a marketing page component that uses a stacked layout on small screens',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 3,
+      imgUrl: '',
+      arcticles:
+        'very utility class in Tailwind can be applied conditionally at different breakpoints',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 4,
+      imgUrl: '',
+      arcticles:
+        'Here’s a simple example of a marketing page component that uses a stacked layout on small screens',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 5,
+      imgUrl: '',
+      arcticles:
+        'very utility class in Tailwind can be applied conditionally at different breakpoints',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 6,
+      imgUrl: '',
+      arcticles:
+        'Here’s a simple example of a marketing page component that uses a stacked layout on small screens',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 7,
+      imgUrl: '',
+      arcticles:
+        'Here’s a simple example of a marketing page component that uses a stacked layout on small screens',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 8,
+      imgUrl: '',
+      arcticles:
+        'Here’s a simple example of a marketing page component that uses a stacked layout on small screens',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 9,
+      imgUrl: '',
+      arcticles:
+        'very utility class in Tailwind can be applied conditionally at different breakpoints',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 10,
+      imgUrl: '',
+      arcticles:
+        'Here’s a simple example of a marketing page component that uses a stacked layout on small screens',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 11,
+      imgUrl: '',
+      arcticles:
+        'very utility class in Tailwind can be applied conditionally at different breakpoints',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 12,
+      imgUrl: '',
+      arcticles:
+        'Here’s a simple example of a marketing page component that uses a stacked layout on small screens',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 13,
+      imgUrl: '',
+      arcticles:
+        'Here’s a simple example of a marketing page component that uses a stacked layout on small screens',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 14,
+      imgUrl: '',
+      arcticles:
+        'Here’s a simple example of a marketing page component that uses a stacked layout on small screens',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    {
+      clientId: 15,
+      imgUrl: '',
+      arcticles:
+        'very utility class in Tailwind can be applied conditionally at different breakpoints',
+      published_date: '06/11/2023',
+      selected: false,
+    },
+    // Add more client data as needed
+  ];
+  constructor() {}
+}

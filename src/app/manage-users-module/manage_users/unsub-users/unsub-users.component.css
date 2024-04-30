@@ -1,0 +1,138 @@
+.filter {
+  text-overflow: ellipsis;
+  /* will make [...] at the end */
+  width: 10rem;
+  /* change to your preferences */
+  word-wrap: break-word;
+  display: inline-block;
+  overflow: hidden;
+  /* older browsers */
+}
+
+@media screen and (max-width: 730px) {
+  .sercli {
+    padding-left: 17px;
+  }
+
+
+  .chkboxall {
+    margin-top: -7px;
+  }
+
+  .chkbox {
+    margin-top: 15px;
+    font-size: small;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    padding-top: 10px;
+    font-size: small;
+    overflow-x: auto;
+  }
+
+  .table-container td img {
+    width: 200%;
+    height: 200%;
+  }
+
+  .input {
+    display: flex;
+  }
+
+  .my-input {
+    width: 100%;
+    margin-bottom: 7px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .btngrp2 {
+    display: block; 
+    margin-left: -30px;
+  }
+
+  .action {
+    padding-bottom: 10px;
+  }
+
+  .search {
+    flex: 1;
+    margin-bottom: 8px;
+    width: 100%;
+  }
+
+  .value {
+    margin-bottom: 8px;
+  }
+
+  .value input {
+    padding-right: 12px;
+  }
+
+  .filter {
+    margin-left: 0px;
+  }
+
+  .imgpanel {
+    right: 3rem;
+    height: fit-content;
+    width: fit-content;
+  }
+
+  .imgpanelimg {
+    height: 10px;
+    width: 10px;
+  }
+
+  .drpbtn {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: black;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    align-self: start;
+    width: fit-content;
+    padding: auto;
+  }
+
+  .pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pagination-controls button {
+    font-size: 14px;
+    /* Adjust the font size as needed */
+
+  }
+
+  .pagination-jump input {
+    margin-top: 4px;
+    width: 50px;
+    /* Adjust the width as needed */
+    margin-right: 0;
+    /* Remove margin */
+  }
+
+  .avatar {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    /* Adjust line height for vertical centering */
+  }
+
+  .verifiedimg {
+    width: 25px;
+    height: 15px;
+  }
+}

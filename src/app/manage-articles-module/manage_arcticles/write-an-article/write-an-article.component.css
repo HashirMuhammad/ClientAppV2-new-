@@ -1,0 +1,25 @@
+.custom-radio {
+  width: 20px;
+  height: 20px;
+  accent-color: #CC0000;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 730px) {
+  .main {
+    margin-left: 20px;
+  }
+
+  .rd {
+    display: block;
+    padding-right: 20px;
+  }
+
+  .rd1 {
+    margin-bottom: 30px;
+  }
+
+  .radiodiv {
+    padding-left: -15px;
+  }
+}

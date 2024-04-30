@@ -1,0 +1,112 @@
+<div class="sercli pb-4 flex-grow h-full">
+    <div class=" shadow bg-white mb-5 mt-3 mr-7 rounded-2xl h-full dark:bg-black ">
+        <div class="flex border-b border-gray-300 dark:border-neutral-700">
+            <label class="flex pt-6 pb-5 pl-6 text-2xl dark:text-white">{{
+                translation?.CLIENTAPPV2_CONNECTION_CONNECTIONS }}</label>
+        </div>
+
+        <div class="flex items-center justify-center mt-4">
+            <kendo-stepper [steps]="steps" [linear]="false" stepType="full" [style.width.px]="1000"
+                class=" dark:bg-black dark:text-white" [style.marginBottom.px]="50" [style.fontSize.px]="18"
+                (currentStepChange)="console($event)" [(currentStep)]="currentStep">
+            </kendo-stepper>
+        </div>
+
+        <div *ngIf="currentStep == 0" class="ml-10">
+            <div>
+                <label class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                    translation?.CLIENTAPPV2_CONNECTION_SELECTSTEP }}</label><br />
+                <select [(ngModel)]="selectedOption"
+                    class="search bg-white border border-gray-400 rounded-lg p-1.5 mt-2 sm:pr-24 md:pr-40 flex-grow dark:bg-black dark:text-white">
+                    <option class=" dark:text-white" value="" disabled selected>{{
+                        translation?.CLIENTAPPV2_CONNECTION_SELECT }}</option>
+                    <option class=" dark:text-white" *ngFor="let option of addConectionoptions" [value]="option.value">
+                        {{ option.title }}
+                    </option>
+                </select>
+            </div>
+
+            <div class=" flex">
+                <button
+                    class="ml-auto mr-12 mt-8 mb-4 bg-white border p-1.5 pl-5 pr-5 rounded-lg flex items-center text-white sm:mt-2"
+                    style="background-color: #29CCB1;" (click)="Next()">{{ translation?.CLIENTAPPV2_CONNECTION_NEXT
+                    }}</button>
+            </div>
+
+        </div>
+
+        <div *ngIf="currentStep == 1" class="ml-4">
+            <div>
+                <!-- Sample form for illustration purposes, adjust as needed -->
+                <div class="authenticationinputdiv grid grid-cols-2 mb-4 ">
+                    <div class="flex-grow lg:ml-7 mb-4 lg:mr-7 lg:mb-0 ">
+                        <label class="text-base font-medium" style="color: #CC0000;">{{
+                            translation?.CLIENTAPPV2_CONNECTION_CLIENTID }}</label><br />
+                        <input [(ngModel)]="cliendIdInput" type="text" placeholder="Enter Here..."
+                            class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                    </div>
+
+                    <div class="flex-grow lg:mr-14 mb-4 lg:mb-0">
+                        <label class="text-base font-medium" style="color: #CC0000;">{{
+                            translation?.CLIENTAPPV2_CONNECTION_CLIENTSECRET }}</label><br />
+                        <input [(ngModel)]="cliendSecretInput" type="text" placeholder="Enter Here..."
+                            class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                    </div>
+                </div>
+
+                <div class="connection-instructions ml-7">
+                    <p class="mb-1 font-medium  dark:text-white">{{ translation?.CLIENTAPPV2_CONNECTION_INSTRUCTIONS }}:
+                    </p>
+                    <ul class="list">
+                        <p class=" dark:text-white">{{ translation?.CLIENTAPPV2_CONNECTION_HEREARESOMEINSTRUCTION }}</p>
+                        <div class="ml-5 mt-2 mb-2">
+                            <li class="text-sm dark:text-white">{{
+                                translation?.CLIENTAPPV2_CONNECTION_CREATEAXEROAPPFROMTHISLINK }} <a
+                                    href="https://developer.xero.com/" target="_blank" class="text-red-700">https://developer.xero.com/</a>.
+                            </li>
+                            <li class="text-sm mt-1.5 dark:text-white">{{
+                                translation?.CLIENTAPPV2_CONNECTION_INSERTTHISURL }}
+                                "https://clients.informanagement.com/connections/addnewconnection" {{
+                                translation?.CLIENTAPPV2_CONNECTION_INTHEFIELDOFREDIRECTURL }}</li>
+                            <li class="text-sm mt-1.5 dark:text-white">{{
+                                translation?.CLIENTAPPV2_CONNECTION_GETCLIENTIDANDCLIENTSECRETFROMTHEXEROAPP }}</li>
+                            <li class="text-sm mt-1.5 dark:text-white">{{
+                                translation?.CLIENTAPPV2_CONNECTION_PRESSTESTCONNECTIONBUTTON }}</li>
+                            <li class="text-sm mt-1.5 dark:text-white">{{
+                                translation?.CLIENTAPPV2_CONNECTION_INSERTEDCREDENTIALSARECORRECT }}</li>
+                            <li class="text-sm mt-1.5 dark:text-white">{{
+                                translation?.CLIENTAPPV2_CONNECTION_PRESSTHESAVEBUTTON }}</li>
+                        </div>
+                    </ul>
+                </div>
+
+                <div class=" flex">
+                    <div class="ml-auto flex mr-14 space-x-3">
+                        <div>
+                            <button
+                                class="mt-6 mb-4 bg-white border p-1.5 pl-3 pr-3 rounded-lg flex items-center sm:mt-2"
+                                (click)="Back()">{{ translation?.CLIENTAPPV2_CONNECTION_BACK }}
+                            </button>
+                        </div>
+
+                        <div>
+                            <button style="background-color: #29CCB1;"
+                                class="mt-6 mb-4 bg-white border p-1.5 pl-3 pr-3 rounded-lg flex items-center text-white sm:mt-2">
+                                {{ translation?.CLIENTAPPV2_CONNECTION_AUTHORIZE }}
+                            </button>
+                        </div>
+
+                        <div>
+                            <button
+                                class="mt-6 mb-4 bg-white border p-1.5 pl-3 pr-3 rounded-lg flex items-center text-white sm:mt-2"
+                                style="background-color: #29CCB1;">{{ translation?.CLIENTAPPV2_CONNECTION_SAVECONNECTION
+                                }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

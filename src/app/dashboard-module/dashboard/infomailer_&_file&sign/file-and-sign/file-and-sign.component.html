@@ -1,0 +1,90 @@
+<div class="p-2">
+  <div class="flex p-1.5">
+    <div>
+    <img src="../../../../assets/dashboard/book.png" class="dark:dark:invert">
+    </div>
+    <h1 class="font-medium text-sm ml-2  dark:text-white"><strong>{{
+        translation?.CLIENTAPPV2_DASHBOARD_FILE_AND_SIGN }}</strong></h1>
+    <button class="viewbtn ml-auto rounded-xl text-sm dark:bg-black dark:text-white">{{
+      translation?.CLIENTAPPV2_DASHBOARD_VIEWALL }}</button>
+  </div>
+
+  <div class="bg-gray-100 p-0.5 w-fit rounded-lg dark:bg-transparent">
+    <div class="button-group dark:bg-slate-900">
+      <button [ngClass]="{'active': activeButton === 1}" (click)="setActive(1)"
+        class="buttonbtn rounded-lg lg:text-xs  dark:bg-black dark:text-white">{{
+        translation?.CLIENTAPPV2_DASHBOARD_RECENTLYRECEIVEDDOCUMENTS }}</button>
+      <button [ngClass]="{'active': activeButton === 2}" (click)="setActive(2)"
+        class="buttonbtn rounded-lg lg:text-xs  dark:bg-black dark:text-white">{{
+        translation?.CLIENTAPPV2_DASHBOARD_RECENTLYSENTDOCUMENTS }}</button>
+    </div>
+  </div>
+
+  <div class="table-container p-1.5 pt-2 xl:mt-2 ">
+    <table id="tre" class="sm:w-20 md:w-full xl:w-full">
+      <thead class="dark:bg-black">
+        <tr class="bg-gray-100  dark:bg-neutral-700">
+          <th class="text-start dark:text-white text-sm">{{ translation?.CLIENTAPPV2_DASHBOARD_MESSAGE }}</th>
+          <th class="text-start dark:text-white text-sm">{{ translation?.CLIENTAPPV2_DASHBOARD_COMPANY }}</th>
+          <th *ngIf="activeButton == 1" class="text-start dark:text-white text-sm">{{ translation?.CLIENTAPPV2_DASHBOARD_FROM }}
+          </th>
+          <th *ngIf="activeButton == 2" class="text-start dark:text-white text-sm">To</th>
+          <th class="text-start dark:text-white text-sm">{{ translation?.CLIENTAPPV2_DASHBOARD_DATE }}</th>
+          <th class="text-start dark:text-white text-sm">{{ translation?.CLIENTAPPV2_DASHBOARD_STATUS }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let message of recievedDocumentsData; let i = index">
+          <tr *ngIf="activeButton == 1" [@rowAnimation]>
+            <td>
+              <div class="xl:mb-1 lg:mb-0">
+                <label class="text-sm dark:text-white">{{ message.content }}</label><br />
+              </div>
+            </td>
+            <td>
+              <label class="text-sm dark:text-white">{{ message.department }}</label><br />
+            </td>
+            <td>
+              <label class="text-xs dark:text-white">{{ message.startDate }}</label><br />
+            </td>
+            <td>
+              <label class="text-xs dark:text-white">{{ message.endDate }}</label><br />
+            </td>
+            <td>
+              <label class="labeltd pr-2 pl-2 rounded-lg mr-1 text-xs p-0.5 font-medium tracking-wider"
+                [ngStyle]="getStatusStyle(message.status)">
+                {{ message.status }}
+              </label>
+            </td>
+          </tr>
+        </ng-container>
+
+        <ng-container *ngFor="let message of sentDocumentsData; let i = index">
+          <tr *ngIf="activeButton == 2" [@rowAnimation]>
+            <td>
+              <div class="xl:mb-1 lg:mb-0">
+                <label class="text-sm dark:text-white">{{ message.content }}</label><br />
+              </div>
+            </td>
+            <td>
+              <label class="text-sm dark:text-white">{{ message.department }}</label><br />
+            </td>
+            <td>
+              <label class="text-xs dark:text-white">{{ message.startDate }}</label><br />
+            </td>
+            <td>
+              <label class="text-xs dark:text-white">{{ message.endDate }}</label><br />
+            </td>
+            <td>
+              <label class="labeltd pr-2 pl-2 rounded-lg mr-1 text-xs p-0.5 font-medium tracking-wider"
+                [ngStyle]="getStatusStyle(message.status)">
+                {{ message.status }}
+              </label>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+  </div>
+</div>

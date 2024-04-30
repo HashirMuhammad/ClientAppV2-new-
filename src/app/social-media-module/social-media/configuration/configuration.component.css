@@ -1,0 +1,90 @@
+/* 
+.switch1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 15px;
+    transition: background-color 0.3s;
+}
+
+.switch1::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #fff;
+    top: 1px;
+    left: 1px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+#toggleSwitch1 {
+    display: none;
+}
+
+#toggleSwitch1:checked+.switch1 {
+    background-color: #FFEDED; */
+/* Change color when switched on */
+/* } */
+
+/* #toggleSwitch1:checked+.switch1::before {
+    transform: translateX(20px);
+    /* Move the knob to the right when switched on */
+/* background-color: #CC0000;
+} */
+
+
+@media screen and (max-width: 730px) {
+
+    .sercli {
+        padding-left: 10px;
+    }
+
+    .blockdiv {
+        display: block;
+        padding: 10px;
+    }
+}
+
+/* Updated code to match the color scheme of the second snippet */
+.toggle-bg {
+    position: relative;
+    width: 2.75rem;
+    height: 1.5rem;
+    background-color: #ccc;
+    /* Background color similar to the second code snippet */
+    border: 2px solid #ccc;
+    /* Border color similar to the second code snippet */
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.toggle-bg:before {
+    content: '';
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background-color: #fff;
+    /* Background color of the knob similar to the second code snippet */
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+input:checked+.toggle-bg:before {
+    transform: translateX(1.25rem);
+    /* Move the knob to the right when switched on */
+    background-color: #CC0000;
+    /* Background color of the knob when switched on similar to the second code snippet */
+}
+
+input:checked+.toggle-bg {
+    background-color: #FFEDED;
+    /* Background color when switched on similar to the second code snippet */
+    border-color: #FFEDED;
+    /* Border color when switched on similar to the second code snippet */
+}

@@ -1,0 +1,133 @@
+<div class="header-wrapper">
+  <div class="mock-Wrapper fixed bg-slate-100 dark:bg-neutral-700">
+
+  </div>
+  <div class="header md:flex lg:flex  mt-6 bg-slate-100 shadow-slate-100 dark:bg-neutral-700 dark:shadow-neutral-700">
+    <!-- routing -->
+    <div class="flex w-96">
+      <img src="../../assets/dashboard/home-icon.png" class="cursor-pointer dark:invert" (click)="home()" />
+      <img src="../assets/dashboard/route-arrow.png" alt="Image" class="w-3 h-3 mt-3 ml-0.5 dark:invert" />
+      <!-- <div [innerHTML]="routeName" class="flex text-gray-500 mt-2 ml-2"></div> -->
+      <!-- <span class="flex text-gray-500 mt-2 ml-2">{{ breadcrumbData.breadcrumb }}</span> -->
+      <app-breadcrumb class="-mt-0.5 z-0"></app-breadcrumb>
+    </div>
+
+    <!-- quick command -->
+    <div class="quicmd mr-auto ml-auto mb-1">
+      <!-- <div class="relative">
+          <input type="text" placeholder="Quick Commands" [ngModel]="quickCommadinput" (change)="callServiceForSidebar()"
+            class="px-4 py-0.5 mt-1 rounded-3xl border border-gray-300 focus:outline-none focus:border-red-500 bg-transparent" />
+          <span class="absolute right-3 top-2.5 text-xs text-gray-400">CTRL+K</span>
+        </div> -->
+      <div class="relative">
+        <input type="text" [(ngModel)]="quickCommadinput" (input)="callServiceForSidebar($event)"
+          placeholder="Quick Commands"
+          class="flex-grow py-0.5 mt-1 rounded-3xl border dark:text-white border-gray-300 focus:outline-none focus:border-red-500 bg-transparent px-4" />
+
+        <span (click)="removeQuickCommand()"
+          class="absolute right-3 top-2.5 text-xs text-gray-400 cursor-pointer">&#x2715;</span>
+
+        <ul *ngIf="quickCommadinput && filteredAreaList.length > 1"
+          class="absolute dark:border-neutral-700 mt-1 bg-white dark:bg-black  border border-gray-300 rounded-lg shadow-md k-min-w-max py-1 w-full pl-1 pr-1"
+          style="z-index: 10 !important;">
+
+          <li *ngFor="let item of filteredAreaList" (click)="navigateTo(item)"
+            class="hover:shadow drpbtn flex py-2 w-full hover:text-red-500 dark:text-white dark:border-black">
+            <!-- Customize the content based on your needs -->
+            {{ item }}
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <!-- icons -->
+    <div class="flex p-2 mr-5 ml-auto ">
+      <div class="shadow-inner flex space-x-1 border rounded-full -mt-1.5 mr-5 p-1.5" style="zoom: 0.56;">
+        <div class="shadow rounded-full p-2 mr-1.5" [class.bg-transparent]="darkmode" [class.bg-white]="!darkmode">
+          <img src="../../../assets/sun.png" class="cursor-pointer dark:invert" (click)="toggleDarkMode()" />
+        </div>
+        <div class="shadow rounded-full p-2" [class.bg-transparent]="!darkmode" [class.bg-white]="darkmode">
+          <img src="../assets/dashboard/moon.svg" class="cursor-pointer " (click)="toggleDarkMode()" />
+        </div>
+      </div>
+
+      <!-- <div class="toggle-box -mt-1 mr-1">
+        <input type="checkbox" name="checkbox1" id="toggle-box-checkbox" (click)="concole()" />
+        <label for="toggle-box-checkbox" class="toggle-box-label-left"></label>
+        <label for="toggle-box-checkbox" class="toggle-box-label"></label>
+      </div> -->
+
+      <!-- <div class="switch rotate-180 mr-7" style="zoom: 0.39;">
+        <label for="toggle" >
+          <input id="toggle" [(ngModel)]="dark"  (click)="concole()" class="toggle-switch" type="checkbox">
+          <div class="background"><div class="stars1"></div><div class="stars2"></div></div>
+          <div class="sun-moon"><div class="dots"></div></div>
+        </label>
+      </div> -->
+
+
+      <div>
+        <img src="../../assets/dashboard/notificationbing.png" class="mr-5 cursor-pointer dark:invert"
+          (click)="openPopUp(isDropdownOpennotification,'notification')" />
+      </div>
+
+
+      <div>
+        <img src="../../assets/dashboard/messages.png" class="mr-5 cursor-pointer dark:invert" />
+
+      </div>
+
+      <div>
+        <img src="../../assets/dashboard/usersquare.png" class="mr-0 cursor-pointer dark:invert"
+          (click)="openPopUp(isDropdownOpen,'usercard')" />
+      </div>
+
+      <div *ngIf="isDropdownOpen" style="top: 1.5rem; z-index: 80;"
+        class="absolute right-2  dark:border-neutral-700 bg-white border border-gray-300 flex-grow rounded-lg shadow-lg w-fit dark:bg-black">
+        <div class="w-72">
+          <div class="flex justify-center items-center mt-8 mb-3">
+            <img src="../assets/history/Avatar.png" class="rounded-full ">
+          </div>
+          <div class="flex justify-center items-center py-3 px-10">
+            <select [(ngModel)]="selectedOpt"
+              class="w-fit bg-white dark:bg-black dark:text-white border border-gray-400 rounded-lg px-8 py-0.5 mt-1 items-start"
+              style="font-size: 13px;" (change)="translationChange()">
+              <option class="text-gray-500 dark:text-white text-sm " value="1" disabled selected>Select
+              </option>
+              <option class="text-gray-500 dark:text-white text-sm " value="1">English</option>
+              <option class="text-gray-500 dark:text-white text-sm" value="2">Dutch</option>
+              <option class="text-gray-500 dark:text-white text-sm" value="3">German</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-2 mt-3 bg-gray-100   dark:bg-neutral-700 p-4 space-x-4">
+            <button
+              class="bg-white dark:bg-black dark:text-white rounded-lg p-1 text-sm flex text-center">&nbsp;&nbsp;{{
+              translation?.CLIENTAPPV2_DASHBOARD_SETTINGS }}&nbsp;<img src="../assets/setting.png"
+                class="w-4 h-4 dark:invert"></button>
+            <button class="bg-white dark:bg-black dark:text-white rounded-lg p-1 text-sm flex">&nbsp;&nbsp;{{
+              translation?.CLIENTAPPV2_DASHBOARD_LOGOUT }}&nbsp;<img src="../../assets/logout.png"
+                class="w-4 h-4 dark:invert"></button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isDropdownOpennotification" style="top: 1.5rem; z-index: 80;"
+        class="absolute right-2 dark:border-neutral-700 bg-white border border-gray-300 flex-grow rounded-lg shadow-lg w-fit dark:bg-black">
+        <div class="w-96 h-fit p-3 overflow-y-auto">
+          <div *ngFor="let noti of notification" class="space-y-1">
+            <div class="flex">
+              <div>
+                <span class="dark:text-white">{{noti.title}}</span><br />
+                <span class="text-sm text-gray-500">{{noti.date}}</span>
+              </div>
+              <div class="ml-auto mr-3">
+                <button class=" hover:text-red-500 dark:text-white">&#x2715;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

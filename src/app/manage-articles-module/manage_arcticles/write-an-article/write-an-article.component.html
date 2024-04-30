@@ -1,0 +1,56 @@
+<div class="main pb-4 flex-grow h-fit">
+    <div class="shadow bg-white  mb-5 mt-3 mr-7 rounded-2xl pb-6 dark:bg-black">
+        <label class="flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl dark:text-white dark:border-neutral-700">{{
+            translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_WRITEANARTICLE }}</label>
+        <div class="radiodiv  mt-2">
+            <div>
+                <div class="p-3">
+                    <label class="text-base font-medium text-red-500 ml-3">{{
+                        translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_ARTICLEDESCRIPTION }}.</label>
+                </div>
+
+                <!-- radio button -->
+                <div class="rd flex">
+                    <div class="shadow rd1 rounded-lg ml-5 p-4 xl:w-96" style="background-color: #F0F2F7BF;"
+                        (click)="optionSelect('1')">
+                        <div class="flex">
+                            <input type="radio" class="custom-radio" [(ngModel)]="selectedOption" value="writeArticle">
+                            <label class="ml-4 text-lg font-medium">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_WRITEANARTICLE }}</label>
+                        </div>
+
+                        <div class="flex ml-9 mt-1">
+                            <label>{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_RADIOBTN1 }}</label>
+                            <img src="../../../assets/manage_content/write_an_article.png" class="ml-6 w-12 h-12">
+                        </div>
+                    </div>
+
+                    <div class="shadow rd2 rounded-lg ml-6 p-4 xl:w-96" style="background-color: #F0F2F7BF;"
+                        (click)="optionSelect('2')">
+                        <div class="flex">
+                            <input type="radio" class="custom-radio" [(ngModel)]="selectedOption" value="generateAI">
+                            <label class="ml-4 text-lg font-medium">{{
+                                translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_GENERATEANARTICLEWITHAI }}</label>
+                        </div>
+
+                        <div class="flex ml-9 mt-1">
+                            <label>{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_RADIOBTN2 }}</label>
+                            <img src="../../../assets/manage_content/ai_article.png" class="ml-6 w-12 h-12">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex mt-10 mr-3 ">
+                    <div class="ml-auto">
+                        <button class="p-1 rounded-lg px-5 mr-5 bg-black bg-opacity-26 dark:border-white dark:text-white" style="background-color: #00000026;"
+                            (click)="onCancelClick()">{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_DISCARD }}</button>
+                        <button class="p-1 rounded-lg px-5 mr-5 text-white" style="background-color: #29CCB1;"
+                            (click)="onNextClick()">{{ translation?.CLIENTAPPV2_WRITE_AN_ARTICLE_NEXT }}</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

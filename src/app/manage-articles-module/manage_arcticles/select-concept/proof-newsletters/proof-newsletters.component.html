@@ -1,0 +1,235 @@
+<div class="shadow bodydiv rounded-2xl bg-white pb-6 flex-grow h-full dark:bg-black">
+    <div class=" mb-5 mt-3 mr-7 flex-grow">
+        <label class="flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl dark:text-white dark:border-neutral-700">{{
+            translation?.CLIENTAPPV2_SELECT_CONCEPT_PROOFNEWSLETTERS }}</label>
+    </div>
+
+    <div class="flex justify-center items-center">
+        <div class="w-fit rounded-lg mt-4 flex items-center">
+            <div class="button-group flex p-1 rounded-lg bg-gray-200  dark:bg-neutral-700">
+                <div [ngClass]="{'active': selectedOption === 'Step1'}" (click)="setActive('Step1')"
+                    class="flex-grow p-1 rounded-lg flex items-center justify-center mr-2 lg:px-8">
+                    <input type="radio" class="custom-radio" [(ngModel)]="selectedOption" value="Step1"
+                        class="inputbtn rounded-lg lg:text-xs xl:text-base">
+                    <label class="ml-2">{{ translation?.CLIENTAPPV2_SELECT_CONCEPT_STEP }} 1</label>
+                </div>
+
+                <div [ngClass]="{'active': selectedOption === 'Step2'}" (click)="setActive('Step2')"
+                    class="flex-grow p-1 rounded-lg flex items-center justify-center mr-2 lg:px-8">
+                    <input type="radio" class="custom-radio" [(ngModel)]="selectedOption" value="Step2"
+                        class="inputbtn rounded-lg lg:text-xs xl:text-base">
+                    <label class="ml-2">{{ translation?.CLIENTAPPV2_SELECT_CONCEPT_STEP }} 2</label>
+                </div>
+
+                <div [ngClass]="{'active': selectedOption === 'Step3'}" (click)="setActive('Step3')"
+                    class="flex-grow p-1 rounded-lg flex items-center justify-center mr-2 lg:px-8">
+                    <input type="radio" class="custom-radio" [(ngModel)]="selectedOption" value="Step3"
+                        class="inputbtn rounded-lg lg:text-xs xl:text-base">
+                    <label class="ml-2">{{ translation?.CLIENTAPPV2_SELECT_CONCEPT_STEP }} 3</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- step 1 div  -->
+    <div *ngIf="selectedOption === 'Step1'" class="flex justify-center items-center mt-4 ">
+        <div class="step1div flex bg-gray-100 space-x-5 pl-4 pr-4 rounded-t-xl  dark:bg-neutral-700">
+            <!-- Include List -->
+            <div class="list-container border-r pl-4 pr-4 ">
+                <div class="flex justify-center items-center pb-1.5 xl:px-36 rounded-b-full"
+                    style="background-color: #14CC8F;">
+                    <h2 class="texth2 text-white">{{ translation?.CLIENTAPPV2_SELECT_CONCEPT_INCLUDE }}</h2>
+                </div>
+
+                <ul class="mt-4">
+                    <li *ngFor="let article of includeList" (click)="moveToExcludeList(article)"
+                        class=" shadow bg-white border border-gray-300 rounded-xl p-2 mb-3 w-full dark:bg-black dark:border-neutral-700">
+                        <div class="imgdiv flex">
+                            <div class="detailsdiv">
+                                <img src="{{article.imgUrl}}" class="mr-2">
+                            </div>
+                            <!-- <img src="../../../../assets/history/Avatar.png" alt=""> -->
+                            <div>
+                                <label class="texth2 dark:text-white">{{ article.arcticles }}</label><br />
+                                <span class="texth3 text-gray-500 text-xs">Informanagement (System Article)</span>
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Exclude List -->
+            <div class="list-container pl-4 pr-4">
+                <div class="flex justify-center items-center bg-red-500 pb-1.5 px-5 xl:px-36 rounded-b-full">
+                    <h2 class="texth2 text-white">{{ translation?.CLIENTAPPV2_SELECT_CONCEPT_EXCLUDE }}</h2>
+                </div>
+                <ul class="mt-4">
+                    <li *ngFor="let article of excludeList" (click)="moveToIncludeList(article)"
+                        class="bg-white border border-gray-300 rounded-xl p-2 mb-3 w-full dark:bg-black dark:border-neutral-700">
+
+                        <div class="imgdiv flex">
+                            <div>
+                                <img src="{{article.imgUrl}}" class="mr-2">
+                            </div>
+                            <!-- <img src="../../../../assets/history/Avatar.png" alt=""> -->
+                            <div>
+                                <label class="texth2 dark:text-white">{{ article.arcticles }}</label><br />
+                                <label class="texth3 text-gray-500 text-sm">Informanagement (System Article)</label>
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <!-- step 2 div  -->
+    <div *ngIf="selectedOption === 'Step2'" class="flex justify-center items-center mt-4">
+        <div class="tablediv">
+            <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                    <thead class="">
+                        <tr class="bg-gray-400  dark:bg-neutral-700">
+                            <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs">
+                                <div class="flex dark:text-white">
+                                    {{ translation?.CLIENTAPPV2_SELECT_CONCEPT_PROFILE }}
+                                </div>
+                            </th>
+                            <!-- Use *ngFor to loop through ProfileId and display the profile IDs -->
+                            <th *ngFor="let profId of ProfileId"
+                                class="text-start xl:text-sm lg:text-sm font-medium sm:text-xs">
+                                <div
+                                    class="flex shadow bg-white rounded-md px-1 justify-center items-center dark:text-white dark:bg-black">
+                                    {{ profId.profileid }}
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!-- row1 -->
+                        <tr *ngFor="let client of Articles">
+                            <td class="ava flex">
+                                <img src="../../../../assets/history/Avatar.png">
+                                <div class="ml-2 mr-2 lg:mt-4">
+                                    <label class=" dark:text-white">{{ client.arcticles }}</label>
+                                </div>
+                            </td>
+                            <!-- Loop through ProfileId to generate checkboxes for each profile -->
+                            <td *ngFor="let profId of ProfileId" class="">
+                                <input type="checkbox" class="border-gray-400 dark:bg-black" size="medium" kendoCheckBox
+                                    #medium [id]="'checkbox_' + client.articleId + '_' + profId.profileid"
+                                    (change)="onCheckboxChange(client.articleId, profId.profileid)" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- step 3 div  -->
+    <div *ngIf="selectedOption === 'Step3'" class="flex justify-center items-center">
+        <div class="tablediv w-fit">
+            <div class="table-containerStep3 xl:p-3 sm:pt-3 flex-grow mt-4">
+                <table id="tre" class="table-containerStep3 lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                    <thead class="">
+                        <tr class="bg-gray-100   dark:bg-neutral-700">
+                            <th class="text-start items-start lg:text-sm font-semibold sm:text-xs dark:text-white ">{{
+                                translation?.CLIENTAPPV2_SELECT_CONCEPT_PROOFNEWSLETTERSTEP3ID }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs  dark:text-white">{{
+                                translation?.CLIENTAPPV2_SELECT_CONCEPT_NAME }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                translation?.CLIENTAPPV2_SELECT_CONCEPT_EMAILADDRESS }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                translation?.CLIENTAPPV2_SELECT_CONCEPT_COMPANYNAME }}</th>
+                            <!-- Use *ngFor to loop through ProfileId and display the profile IDs -->
+                            <th *ngFor="let profId of ProfileId | slice:0:6 "
+                                class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs">
+                                <div
+                                    class="flex shadow bg-white rounded-md px-1 justify-center items-center dark:bg-black  dark:text-white">
+                                    {{ profId.profileid }}
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- row1 -->
+                        <tr *ngFor="let client of paginatedData | slice:0:10">
+                            <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.clientId }}</td>
+                            <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.Name }}</td>
+                            <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.EmailAddress }}</td>
+                            <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.CompanyName }}</td>
+                            <!-- Loop through ProfileId to generate checkboxes for each profile -->
+                            <td *ngFor="let profId of ProfileId | slice:0:6 " class="">
+                                <input type="checkbox" class="border-gray-400 dark:bg-black" size="medium" kendoCheckBox
+                                    #medium [id]="'checkbox_' + client.clientId + '_' + profId.profileid"
+                                    (change)="onCheckboxChange(client.clientId, profId.profileid)" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+
+            <!-- pagination of table -->
+            <div class="pagination flex justify-between border-t p-2 flex-grow">
+
+                <div class="pagination-info">
+                    <span class="text-sm dark:text-white">
+                        <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                        {{ calculateMaxValue() }}
+                        <span class="text-sm text-gray-400">
+                            OF
+                            {{ totalItems }}
+                        </span>
+                    </span>
+                </div>
+
+                <div class="pagination-controls flex">
+                    <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                        class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                        [ngClass]="{'disabled-button': currentPage === 1}">
+                        < </button>
+
+
+                            <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                                <ng-container *ngFor="let page of getPages() | slice:0:4">
+                                    <button [disabled]="currentPage === page" (click)="currentPage = page"
+                                        [class.pagibtn]="currentPage == page"
+                                        class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page
+                                        }}</button>
+                                </ng-container>
+                            </div>
+
+                            <button [disabled]="currentPage * itemsPerPage >= totalItems"
+                                (click)="currentPage = currentPage + 1"
+                                class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                                [ngClass]="{'disabled-button': currentPage * itemsPerPage >= totalItems}">
+                                >
+                            </button>
+                            <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+                </div>
+
+                <div class="pagination-jump">
+                    <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_SELECT_CONCEPT_JUMPTO }} &nbsp;
+                    </span>
+                    <input type="number" [(ngModel)]="currentPage" min="1" max="{{ totalPages }}"
+                        class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+                    <button (click)="jumpToPage()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

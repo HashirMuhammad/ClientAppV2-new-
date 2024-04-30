@@ -1,0 +1,208 @@
+<div class="bodydiv pb-4 flex-grow">
+    <div class="shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black">
+        <label class="flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl dark:text-white dark:border-neutral-700">{{
+            translation?.CLIENTAPPV2_MANAGE_ARTICLE_MANAGEARTICLES }}</label>
+        <!-- Search options -->
+        <div class=" shadow rounded-lg m-3 p-5 ml-5 mr-5 mt-5 flex-grow bg-gray-100 dark:bg-neutral-700">
+            <div class="lg:flex xl:grid xl:grid-cols-4 lg:flex-row mt-3 xl:space-x-3">
+                <div class="flex-grow lg:mr-12 xl:mr-0 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_MANAGE_ARTICLE_SEARCH }}</label><br />
+                    <select [(ngModel)]="searchInput"
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                        <option class="text-gray-500" value="" disabled selected>{{
+                            translation?.CLIENTAPPV2_MANAGE_ARTICLE_SELECT }}</option>
+                        <option value="search">Male</option>
+                        <option value="filter">Female</option>
+                    </select>
+                    <div class="flex ml-auto justify-end items-end">
+                        <label class="text-xs tracking-wider dark:text-white">{{
+                            translation?.CLIENTAPPV2_MANAGE_ARTICLE_SEARCHINGINIDTITLECONTENTSOURCE }}
+                        </label>
+                    </div>
+                </div>
+
+                <div class="agencybtn flex-grow lg:mr-12 xl:mr-0 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_MANAGE_ARTICLE_AGENCY }}</label><br />
+                    <select [(ngModel)]="agencyInput"
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                        <option class="text-gray-500" value="" disabled selected>{{
+                            translation?.CLIENTAPPV2_MANAGE_ARTICLE_SELECT }}</option>
+                        <option value="search">Male</option>
+                        <option value="filter">Female</option>
+                    </select>
+                </div>
+
+                <div class="ml-1 mt-7 pr-4 lg:mr-12 xl:mr-0 flex">
+                    <input [(ngModel)]="dateInput" type="checkbox" class="ml-auto border-gray-400 mr-2 dark:bg-black"
+                        size="large" kendoCheckBox #large />
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_CHOOSEADATE }}</label>
+                </div>
+
+                <div class="flex-grow  mt-4">
+                    <kendo-datepicker [disabled]="!dateInput" [value]="valuedate"
+                        class="p-1.5 rounded-xl bg-transparent bg-white dark:bg-black dark:text-white dark:border-white"></kendo-datepicker>
+                </div>
+            </div>
+            <div class="btndiv flex ml-auto justify-end items-end">
+                <button class="border border-gray-300 bg-white rounded-lg p-1.5 pl-3 pr-3 mr-4 sm:mt-2"
+                    (click)="clear()">{{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_CLEAR }}</button>
+
+                <button class="bg-white border p-1.5 pl-3 pr-3 mr-0 rounded-lg flex items-center text-white sm:mt-2"
+                    style="background-color: #29CCB1;">
+                    {{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_SEARCH }}
+                    <img src="../../../../assets/manage_content/search.png" class="ml-3">
+                </button>
+            </div>
+        </div>
+
+        <div class="p-4">
+            <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                    <thead class="">
+                        <tr class="bg-gray-400  dark:bg-neutral-700">
+                            <th class="text-start justify-start">
+                                <input type="checkbox" class="border-gray-400 dark:bg-black" size="large" kendoCheckBox (change)="toggleSelectAll()"
+                                    [(ngModel)]="selectAll" />
+                            </th>
+                            <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs">
+                                <div class="flex dark:text-white">
+                                    {{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_IMAGE }}
+                                </div>
+                            </th>
+                            <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs ">
+                                <div class="flex dark:text-white">
+                                    {{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_TITLE }}
+                                </div>
+                            </th>
+                            <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs">
+                                <div class="flex dark:text-white">
+                                    {{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_PUBLISHEDDATE }}
+                                </div>
+                            </th>
+                            <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs">
+                                <div class="flex dark:text-white">
+                                    {{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_NEWSFEED }}
+                                </div>
+                            </th>
+                            <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs">
+                                <div class="flex dark:text-white">
+                                    {{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_TYPE }}
+                                </div>
+                            </th>
+                            <th class="text-start"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- row1 -->
+                        <tr *ngFor="let client of paginatedData">
+                            <td>
+                                <input type="checkbox" class="border-gray-400 dark:bg-black "
+                                    [(ngModel)]="client.selected" size="large" kendoCheckBox checked #large />
+                            </td>
+                            <td>
+                                <div class="flex p-1">
+                                    <!-- <span class="avatar pt-1 mr-3 font-medium sm:mr-1 sm:text-xs" [style.background-color]="avaColorservice(client.surname.charAt(0) )">{{ client.surname.charAt(0) }}</span> -->
+                                    <img src="../../../../assets/history/Avatar.png" class="pt-1">
+                                </div>
+                            </td>
+                            <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.arcticles }}</td>
+                            <td class="lg:text-sm sm:text-xs dark:text-white ">{{ client.published_date }}</td>
+                            <td class="lg:text-sm sm:text-xs dark:text-white ">
+                                <span [class.bg-red]="client.newsfeed === 'no'" [class.bg-green]="client.newsfeed === 'yes'">{{ client.newsfeed }}</span></td>
+                            <td class="lg:text-sm sm:text-xs dark:text-white ">
+                                <label [ngStyle]="getStatusStyle(client.type)" class="font-medium text-sm">{{ client.type |
+                                    uppercase }}</label></td>
+                            <td>
+                                <div>
+                                    <img src="../../../assets/manage_clients/table_buton.png"
+                                        class="cursor-pointer sm:mr-0 sm:w-5 sm:h-5 dark:invert"
+                                        (click)="togglePanelVisibility(client.clientId)">
+                                </div>
+
+                                <div *ngIf="panel && (client.clientId == panelid)"
+                                    class="imgpanel dark:border-neutral-700 absolute bg-white border border-gray-300 k-min-w-max mt-0 py-2 md:right-16 xl:right-20 sm:right-8 2xl:right- rounded-lg shadow-lg pl-2 pr-2 dark:bg-black">
+                                    <button (click)="handleViewArticleClick(client.clientId)"
+                                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                        <div>
+                                            <img src="../../../../assets/manage_content/view_art.png"
+                                                class=" mr-1.5 dark:invert">
+                                        </div>
+                                        {{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_VIEWARTICLE }}
+                                    </button>
+                                    <button (click)="handleEditClick(client.clientId)"
+                                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                        <img src="../../../assets/manage_clients/edit.png" class="mr-1.5 dark:invert">
+                                        {{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_EDIT }}
+                                    </button>
+                                    <button (click)="handleEditWithAIClick(client.clientId)"
+                                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                        <div> <img src="../../../../assets/manage_content/edit-2.png"
+                                                class="mr-1.5 dark:invert"></div>
+                                        {{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_EDITWITHAI }}
+                                    </button>
+                                    <button (click)="handleDeleteClick(client.clientId)"
+                                        class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                        <img src="../../../../assets/manage_content/del.png" class="mr-1.5 dark:invert">
+                                        {{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_DELETE }}</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+
+            <!-- pagination of table -->
+            <div class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+                <div class="pagination-info">
+                    <span class="text-sm dark:text-white">
+                        <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                        {{ calculateMaxValue() }}
+                        <span class="text-sm text-gray-400">
+                            OF
+                            {{ totalItems }}
+                        </span>
+                    </span>
+                </div>
+
+                <div class="pagination-controls flex">
+                    <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                        class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                        [ngClass]="{'disabled-button': currentPage === 1}">
+                        < </button>
+
+
+                            <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                                <ng-container *ngFor="let page of getPages() | slice:0:4">
+                                    <button [disabled]="currentPage === page" (click)="currentPage = page"
+                                        [class.pagibtn]="currentPage == page"
+                                        class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page
+                                        }}</button>
+                                </ng-container>
+                            </div>
+
+                            <button [disabled]="currentPage * itemsPerPage >= totalItems"
+                                (click)="currentPage = currentPage + 1"
+                                class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                                [ngClass]="{'disabled-button': currentPage * itemsPerPage >= totalItems}">
+                                >
+                            </button>
+                            <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+                </div>
+
+                <div class="pagination-jump">
+                    <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_MANAGE_ARTICLE_JUMPTO }}&nbsp;
+                    </span>
+                    <input type="number" [(ngModel)]="currentPage" min="1" max="{{ totalPages }}"
+                        class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+                    <button (click)="jumpToPage()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

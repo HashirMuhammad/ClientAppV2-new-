@@ -1,0 +1,137 @@
+.filter {
+  text-overflow: ellipsis;
+  /* will make [...] at the end */
+  width: 10rem;
+  /* change to your preferences */
+  word-wrap: break-word;
+  display: inline-block;
+  overflow: hidden;
+  /* older browsers */
+}
+
+
+@media screen and (max-width: 730px) {
+  .sercli {
+    padding-left: 17px;
+  }
+
+  .fltrlbl {
+    margin-left: -10px;
+  }
+
+  .chkbox {
+    margin-top: 10px;
+    font-size: medium;
+  }
+
+  .chkboxall {
+    margin-top: -4px;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    padding-top: 10px;
+    font-size: small;
+    overflow-x: auto;
+  }
+
+  .table-container td img {
+    width: 200%;
+    height: 200%;
+  }
+
+  .input {
+    display: flex;
+  }
+
+  .search {
+    flex: 1;
+    margin-bottom: 8px;
+    width: 100%;
+  }
+
+  .value {
+    margin-bottom: 10px;
+    margin-left: -0px;
+  }
+
+  .my-input {
+    width: 100%;
+  }
+
+  .action {
+    margin-left: -2px;
+  }
+
+  .value input {
+    padding-right: 12px;
+  }
+
+  .imgpanel {
+    right: 2rem;
+    height: fit-content;
+    width: fit-content;
+  }
+
+  .imgpanelimg {
+    height: 15px !important;
+    width: 15px !important;
+  }
+
+  .drpbtn {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: black;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    align-self: start;
+    width: fit-content;
+    padding: auto;
+  }
+
+  .pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pagination-controls button {
+    font-size: 14px;
+    /* Adjust the font size as needed */
+  }
+
+  .pagination-jump input {
+    margin-top: 4px;
+    width: 50px;
+    /* Adjust the width as needed */
+    margin-right: 0;
+    /* Remove margin */
+  }
+
+  .avatar {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    /* Adjust line height for vertical centering */
+  }
+
+  .verifiedimg {
+    height: 15px;
+    width: 25px;
+  }
+
+  .btndiv {
+    display: block;
+  }
+
+  .filterbtn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}

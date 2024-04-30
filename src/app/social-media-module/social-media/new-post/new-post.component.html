@@ -1,0 +1,196 @@
+<div class="sercli pb-4 flex-grow h-full">
+    <div class=" shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black">
+
+        <div class="headerdiv flex border-b border-gray-300 dark:border-neutral-700">
+            <label class="flex  pt-6 pb-5 pl-6 text-2xl dark:text-white">{{
+                translation?.CLIENTAPPV2_SOCIAL_MEDIA_NEWPOST }}</label>
+        </div>
+
+        <div class="lg:flex pb-5">
+            <div class="flex-grow pl-4">
+                <div class="flex-grow mr-7 mb-4 lg:mb-0 mt-5">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_TITLE }}</label><br />
+                    <input [(ngModel)]="titleInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-300 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow mr-7 mb-4 lg:mb-0 mt-5">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_POSTIMAGE }}</label><br />
+                    <div class="bg-slate-50 flex-grow dark:bg-black">
+                        <div class="drop-zone flex-grow" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+                            <p class="text-sm text-gray-500 mt-6">JPG, PNG, GIF, WEBP</p>
+                            <p class="text-sm text-gray-500 mt-6">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_MAXFILESIZE
+                                }}: 3mb</p>
+                            <input [(ngModel)]="file" id="fileInput" type="file" (change)="onFileSelected($event)"
+                                accept="image/*" [disabled]="uploading" class="mt-6 mb-3 dark:bg-black dark:text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-grow mr-7 mb-4 lg:mb-0 mt-5">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_DESCRIPTION }}</label><br />
+                    <input [(ngModel)]="descriptionInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-300 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow mr-7 mb-4 lg:mb-0 mt-5">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_LINK }}</label>
+                    <label class="text-gray-300 text-sm ml-3">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_LINKISREQUIREDIFYOUADDANIMAGEARTICLE }}</label><br />
+                    <input [(ngModel)]="linkInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-300 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+            </div>
+
+            <div class="flex-grow pl-4">
+                <div class="flex-grow mr-7 mb-4 lg:mb-0 mt-5">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_HASHTAGS }}</label><br />
+                    <input [(ngModel)]="hashtagInput" type="text" placeholder="#default"
+                        class="w-full bg-white border border-gray-300 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <!-- social media switchs -->
+                <div class="flex-grow mr-7 mb-4 lg:mb-0 mt-5">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_SOCIALMEDIA }}</label><br />
+
+                    <div class="flex mt-4">
+                        <div class="flex">
+                            <img src="../../../assets/social-media/linkdien.png" class="mr-3 dark:invert">
+                            <label class="text-gray-500">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_LINKEDIN }}</label>
+                        </div>
+
+                        <div class="ml-auto mr-12">
+                            <div class="switch-container">
+                                <kendo-switch size="small" class="scale-75 ml-auto" onLabel="&nbsp;" offLabel="&nbsp;"
+                                    [(ngModel)]="linkedinSwitch"></kendo-switch>
+                                <!-- <input [(ngModel)]="linkedinSwitch" type="checkbox" id="toggleSwitch1" class="hidden">
+                                <label for="toggleSwitch1" class="switch1"></label> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex mt-5">
+                        <div class="flex">
+                            <img src="../../../assets/social-media/facebook.png" class="mr-3 dark:invert">
+                            <label class="text-gray-500">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_FACEBOOK }}</label>
+                        </div>
+
+                        <div class="ml-auto mr-12">
+                            <div class="switch-container">
+                                <kendo-switch size="small" class="scale-75 ml-auto" onLabel="&nbsp;" offLabel="&nbsp;"
+                                    [(ngModel)]="fbSwitch"></kendo-switch>
+                                <!-- <input [(ngModel)]="fbSwitch" type="checkbox" id="toggleSwitch2" class="hidden">
+                                <label for="toggleSwitch2" class="switch2"></label> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex mt-5">
+                        <div class="flex">
+                            <img src="../../../assets/social-media/instagram.png" class="mr-3 dark:invert">
+                            <label class="text-gray-500">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_INSTAGRAM }}</label>
+                        </div>
+
+                        <div class="ml-auto mr-12">
+                            <div class="switch-container">
+                                <kendo-switch size="small" class="scale-75 ml-auto" onLabel="&nbsp;" offLabel="&nbsp;"
+                                    [(ngModel)]="instaSwitch"></kendo-switch>
+
+                                <!-- <input [(ngModel)]="instaSwitch" type="checkbox" id="toggleSwitch3" class="hidden">
+                                <label for="toggleSwitch3" class="switch3"></label> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex mt-5">
+                        <div class="flex">
+                            <img src="../../../assets/social-media/twitter.png" class="mr-3 dark:invert">
+                            <label class="text-gray-500">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_TWITTER }}</label>
+                        </div>
+
+                        <div class="ml-auto">
+                            <button class="border border-gray-300 text-base rounded-lg px-3 py-0.5 dark:text-white">{{
+                                translation?.CLIENTAPPV2_SOCIAL_MEDIA_CONNECT }}</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex-grow mr-7 mb-4 lg:mb-0 mt-5">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_PUBLISHDATETIME }}</label><br />
+
+                    <div class="flex rounded-lg mt-4">
+                        <div class="button-group flex-grow flex p-1 rounded-lg bg-gray-100  dark:bg-neutral-700">
+                            <div [ngClass]="{'active': selectedOption === 'schedule'}"
+                                class="flex-grow p-1 rounded-lg flex items-center justify-center">
+                                <input type="radio" class="custom-radio" (click)="setActive('schedule')"
+                                    [(ngModel)]="selectedOption" value="schedule"
+                                    class="inputbtn rounded-lg lg:text-xs xl:text-base">
+                                <label class="ml-2 dark:text-gray-500">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SCHEDULE
+                                    }}</label>
+                            </div>
+
+                            <div [ngClass]="{'active': selectedOption === 'post_now'}"
+                                class="flex-grow p-1 rounded-lg flex items-center justify-center">
+                                <input type="radio" (click)="setActive('post_now')" class="custom-radio"
+                                    [(ngModel)]="selectedOption" value="post_now"
+                                    class="inputbtn rounded-lg lg:text-xs xl:text-base">
+                                <label class="ml-2 dark:text-gray-500">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_POSTNOW
+                                    }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="flex space-x-3 mt-5">
+                        <div class="flex-grow">
+                            <kendo-datepicker [value]="valuedate" [disabled]="selectedOption === 'post_now'"
+                                class="p-1.5 rounded-xl dark:bg-black dark:text-white dark:border-white"></kendo-datepicker>
+                        </div>
+
+                        <div class="flex-grow">
+                            <kendo-timepicker [value]="valuetime" [disabled]="selectedOption === 'post_now'"
+                                class="p-1.5 rounded-xl dark:border-white dark:bg-black dark:text-white"></kendo-timepicker>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex-grow mr-7 mb-4 lg:mb-0 mt-5">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_CATEGORY }}</label><br />
+                    <select [(ngModel)]="categoryInput"
+                        class="w-full bg-white border border-gray-300 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                        <option class="text-gray-500" value="" disabled selected>{{
+                            translation?.CLIENTAPPV2_SOCIAL_MEDIA_ALL }}</option>
+                        <option value="search">opt1</option>
+                        <option value="filter">opt2</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-grow mr-7 mb-4 lg:mb-0 mt-5">
+                    <button class="pl-4 pr-4 p-2 rounded-lg mr-4 sm:mt-2" style="background-color: #F0F2F7;"
+                        (click)="discard()">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_DISCARD }}</button>
+
+                    <div class="flex ml-auto">
+                        <button
+                            class="border border-gray-300  rounded-lg p-1.5 pl-3 pr-3 mr-4 sm:mt-2 dark:text-white">{{
+                            translation?.CLIENTAPPV2_SOCIAL_MEDIA_PREVIEW }}</button>
+
+                        <button (click)="Save()"
+                            class="bg-white border p-1.5 pl-3 pr-3 mr-0 rounded-lg flex items-center text-white sm:mt-2"
+                            style="background-color: #29CCB1;">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SAVE }}</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

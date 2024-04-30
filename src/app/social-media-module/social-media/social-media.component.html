@@ -1,0 +1,654 @@
+<div class="sercli pb-4 flex-grow h-full">
+  <div class=" shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black" >
+
+    <div class="headerdiv flex border-b border-gray-300 dark:border-neutral-700">
+      <div>
+        <label class="flex  pt-6 pb-5 pl-6 text-2xl dark:text-white">{{
+          translation?.CLIENTAPPV2_SOCIAL_MEDIA_SOCIALMEDIA }}</label>
+      </div>
+
+      <div class="ml-auto  pt-6 pb-5 pl-6 mr-4">
+        <div class="headerbtn flex">
+          <div class="mr-3">
+            <button class="flex border border-gray-300 rounded-lg px-4 py-1 text-base dark:text-white"
+              (click)="routToSettings()">
+              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SETTINGS }}
+              <img src="../../assets/setting.png" (click)="routToSettings()" class="w-6 h-6 ml-2 mr-2 dark:invert">
+            </button>
+          </div>
+
+          <div class="mr-3">
+            <button class="flex border border-gray-300 rounded-lg px-4 py-1 text-base dark:text-white"
+              (click)="routToConfig()">
+              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_CONFIGURATION }}
+              <img src="../../assets/social-media/setting-3.png" (click)="routToConfig()" class="ml-2 mr-2 dark:invert">
+            </button>
+          </div>
+
+          <div class="mr-3">
+            <button class="flex rounded-lg px-4 py-1 text-white text-base" (click)="routToNewPost()"
+              style="background-color: #29CCB1; border-color: #29CCB1;">
+              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_ADDNEWPOST }}
+              <img src="../../assets/social-media/user-square.png" (click)="routToNewPost()" class="ml-2">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="xl:flex lg:flex flex-grow">
+      <!-- buttons -->
+      <div class="flex-col ">
+        <div class="mt-2">
+          <button class="btn flex pl-2 py-2 w-full dark:text-white" (click)="clientTableToogle()"
+            [class.activecli]="clientTable">
+            <img src="../../assets/social-media/signpost.png" class="mr-4 dark:invert"
+              [class.activecliimg]="clientTable" (click)="clientTableToogle()">
+            {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_LATEST }}
+          </button>
+        </div>
+
+        <div>
+          <button class="btn flex pl-2 py-2 w-full dark:text-white" [class.activeemp]="empTable" (click)="empToogle()">
+            <img src="../../assets/social-media/timer.png" [class.activeempimg]="empTable" class="mr-4 dark:invert"
+              (click)="empToogle()">
+            {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_PENDING }}
+          </button>
+        </div>
+
+        <div>
+          <button class="btn flex pl-2 py-2 w-full dark:text-white" [class.activeart]="arcticleTable"
+            (click)="arcticleToogle()">
+            <img src="../../assets/social-media/danger.png" [class.activeimgart]="arcticleTable"
+              class="mr-4 dark:invert" (click)="arcticleToogle()">
+            {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_POSTERROR }}
+          </button>
+        </div>
+
+        <!-- search input  -->
+        <div class="mx-4 mt-3">
+          <div class="relative">
+            <input type="text" placeholder="KEYWORDS"
+              class="my-input border py-1 pl-2 border-gray-300 rounded-md pr-8 dark:bg-black dark:text-white">
+            <img src="../../../assets/history/search.png" alt=""
+              class="absolute top-1/2 right-5 transform -translate-y-1/2 cursor-pointer dark:invert">
+          </div>
+        </div>
+
+
+
+        <!-- filters -->
+        <!-- <div *ngIf="filters"> -->
+        <div>
+          <div
+            class=" border-gray-300 2xl:border-b-transparent sm:border-b flex-col flex-grow lg:border-b-transparent pl-4">
+
+            <div class="flex pl-4 pr-4 pt-4 pb-2 flex-grow">
+              <label class="fltrlbl pr-52 ml-4 sm:text-sm sm:ml-2.5 sm:pr-0 lg:-ml-3 lg:text-base xl:text-lg"
+                style="color: #999999;">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_FILTERS }}</label>
+            </div>
+            <!-- filter div -->
+            <div class="md:flex lg:flex-col">
+              <!-- filter  -->
+              <div class="chkbox flex pt-6 pb-2 sm:pt-1 sm:pb-1">
+                <input type="radio" class="chkbx1 " size="none" id="chkbx1" name="chkbx1" (click)="toggleChecked(0)"
+                  [checked]="isChecked[0]" />
+
+                <h6 class="ml-4"><label class=" sm:text-sm sm:text-center lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_ALL }}</label>
+                </h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1 xl:ml-0 md:ml-0">
+                <input type="radio" class="chkbx2" size="none" id="chkbx2" name="chkbx2" (click)="toggleChecked(1)"
+                  [checked]="isChecked[1]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_CAMPAGINS }}</label></h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2  sm:pt-1 sm:pb-1">
+                <input type="radio" class="chkbx3" size="none" id="chkbx3" name="chkbx3" (click)="toggleChecked(2)"
+                  [checked]="isChecked[2]" />
+
+                <h6 class="ml-4"><label class=" sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_EVENTS }}</label></h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1 xl:ml-0 md:ml-0">
+                <input type="radio" class="chkbx4" size="none" id="chkbx4" name="chkbx4" (click)="toggleChecked(3)"
+                  [checked]="isChecked[3]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_WEEKLY }}</label></h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1">
+                <input type="radio" class="chkbx5" size="none" id="chkbx5" name="chkbx5" (click)="toggleChecked(4)"
+                  [checked]="isChecked[4]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_DAILY }}</label></h6>
+              </div>
+
+
+            </div>
+          </div>
+
+          <!-- <div *ngIf="!filters" class="">
+
+            <div class="fltr2 border-b border-gray-300 ml-3 mr-3">
+                <select class="bg-white p-2.5 pr-32 mt-2 sm:pr-24 md:pr-40 lg:pr-10 xl:pr-20 2xl:pr-32 flex-grow" style="color: #000000BF;">
+                    <option class="text-gray-500" value="" disabled selected>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                    <option value="search">Option 1</option>
+                    <option value="filter">Option 2</option>
+                  </select>
+            </div>
+
+            <div class="btnfltr ml-5">
+                <button class="bg-white border p-1.5 pl-4 pr-4 mr-0 rounded-lg flex flex-grow items-center  lg:pr-6 tracking-wider" style="color: #29CCB1; border-color: #29CCB1;">
+                    Apply Search Filters
+                </button>
+            </div>
+        </div> -->
+
+        </div>
+
+
+      </div>
+      <div class="flex-grow p-3 border-l dark:border-neutral-700">
+        <div class=" lg:flex flex-grow">
+
+
+          <!-- for table -->
+          <div class="flex-grow">
+            <div *ngIf="clientTable" class="flex-grow latesttable">
+              <div>
+                <div class="table-container xl:p-3 sm:pt-3 lg:pt-0 flex-grow ">
+                  <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                    <thead class="">
+                      <tr class="bg-gray-400  dark:bg-neutral-700">
+                        <th  class="text-start justify-start">
+                          <input type="checkbox" class="border-gray-400 dark:bg-black" size="large"
+                            [(ngModel)]="selectAll" (change)="latesttoggleSelectAll()" kendoCheckBox checked #large />
+                        </th>
+                        <th  class="text-start lg:text-sm font-semibold sm:text-xs">
+                          <div class="flex dark:text-white">
+                            {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_ID }}
+                          </div>
+                        </th>
+                        <th class="text-start lg:text-sm font-semibold sm:text-xs ">
+                          <div class="flex dark:text-white">
+                            {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_POSTTITLE }}
+                          </div>
+                        </th>
+                        <th class="text-start lg:text-sm font-semibold sm:text-xs" kendoTooltip class="top" position="top">
+                          <div class="flex font-semibold text-sm dark:text-white"  title="{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_PUBLISHEDDATE }}">
+                            {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_PUBLISHEDDATE | truncate : 14 }}
+                          </div>
+                        </th>
+                        <th class="text-start">
+                          <div class="flex space-x-2.5">
+                            <img src="../../../assets/facebook.png" class="w-8 h-8 ">
+                            <img src="../../../assets/linkedin.png" class="w-8 h-8 ">
+                            <img src="../../../assets/instagram.png" class="w-8 h-8 ">
+                            <img src="../../../assets/twitter.png" class="w-8 h-8  dark:invert">
+                            <img src="../../assets/xing.png" class=" w-8 h-8">
+                          </div>
+                        </th>
+                        <th class="text-start"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- row1 -->
+                      <tr *ngFor="let client of latestpaginatedData">
+                        <td >
+                          <input type="checkbox" class="border-gray-400 dark:bg-black " [(ngModel)]="client.selected"
+                            size="large" kendoCheckBox checked #large />
+                        </td>
+                        <td  class="lg:text-sm sm:text-xs dark:text-white">{{ client.clientId }}
+                        </td>
+                        <td>
+                          <div class="ava flex p-1">
+                            <!-- <span class="avatar pt-1 mr-3 font-medium sm:mr-1 sm:text-xs" [style.background-color]="avaColorservice(client.surname.charAt(0) )">{{ client.surname.charAt(0) }}</span> -->
+                            <img src="../../../../assets/history/Avatar.png"
+                              class="pt-1">
+                            <span class="sm:text-xs sm:mt-1.5 sm:ml-0 lg:text-sm lg:ml-2 dark:text-white">{{
+                              client.arcticles | slice:0:20 }}...</span>
+                          </div>
+                        </td>
+                        <td class="lg:text-sm sm:text-xs text-gray-400 dark:text-white">{{ client.published_date }}</td>
+                        <td >
+                          <div class="flex space-x-6">
+                            <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.facebook"
+                              size="large" kendoCheckBox #large />
+                            <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.linkedin"
+                              size="large" kendoCheckBox #large />
+                            <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.instagram"
+                              size="large" kendoCheckBox #large />
+                            <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.twitter"
+                              size="large" kendoCheckBox #large />
+                              <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.xing"
+                                size="large" kendoCheckBox #large />
+                          </div>
+                        </td>
+                        <td >
+                          <img src="../../../assets/manage_clients/table_buton.png"
+                            class="cursor-pointer sm:mr-0 sm:w-5 sm:h-5 dark:invert"
+                            (click)="latesttogglePanelVisibility(client.clientId)">
+
+                          <div *ngIf="panel && (client.clientId == panelid)"
+                            class="imgpanel dark:border-neutral-700 absolute bg-white border border-gray-300 k-min-w-max mt-0 py-2 md:right-16 xl:right-20 sm:right-8 2xl:right- rounded-lg shadow-lg pl-2 pr-2 dark:bg-black">
+                            <button (click)="latesthandleEditClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/edit.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_EDIT }}
+                            </button>
+                            <button (click)="latesthandleHistoryClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/history.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_HISTORY }}</button>
+                            <button (click)="latesthandleDataUsageClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/data_usage.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_DATAUSAGE }}&nbsp;[GDPR]</button>
+                            <button (click)="latesthandleSendPasswordClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/send_password.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SENDPASSWORD }}</button>
+                            <button (click)="latesthandleSendUsernameClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/send_username.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SENDUSERNAME }}</button>
+                            <button (click)="latesthandleDeleteClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/delete-r.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_DELETE }}</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+
+                </div>
+
+                <!-- pagination of table -->
+                <div  class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+                  <div class="pagination-info">
+                    <span class="text-sm dark:text-white">
+                      <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                      {{ latestcalculateMaxValue() }}
+                      <span class="text-sm text-gray-400">
+                        OF
+                        {{ latesttotalItems }}
+                      </span>
+                    </span>
+                  </div>
+
+                  <div class="pagination-controls flex">
+                    <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                      class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                      [ngClass]="{'disabled-button': currentPage === 1}">
+                      < </button>
+
+
+                        <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                          <ng-container *ngFor="let page of latestgetPages() | slice:0:4">
+                            <button [disabled]="currentPage === page" (click)="currentPage = page"
+                              [class.pagibtn]="currentPage == page"
+                              class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page }}</button>
+                          </ng-container>
+                        </div>
+
+                        <button [disabled]="currentPage * itemsPerPage >= latesttotalItems"
+                          (click)="currentPage = currentPage + 1"
+                          class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                          [ngClass]="{'disabled-button': currentPage * itemsPerPage >= latesttotalItems}">
+                          >
+                        </button>
+                        <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+                  </div>
+
+                  <div class="pagination-jump">
+                    <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_JUMPTO }}&nbsp; </span>
+                    <input type="number" [(ngModel)]="currentPage" min="1" max="{{ latesttotalPages }}"
+                      class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+                    <button (click)="latestjumpToPage()"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <ng-container >
+              <div *ngIf="empTable" class="flex-grow pendingtable">
+                <div>
+                  <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                    <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                      <thead class="">
+                        <tr class="bg-gray-400  dark:bg-neutral-700">
+                          <th class="text-start justify-start">
+                            <input type="checkbox" class="border-gray-400 dark:bg-black" size="large"
+                              [(ngModel)]="selectAll" (change)="pendingtoggleSelectAll()" kendoCheckBox checked
+                              #large />
+                          </th>
+                          <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">
+                            {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_ID }}
+                          </th>
+                          <th class="text-start lg:text-sm font-semibold sm:text-xs  dark:text-white">
+                            {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_POSTTITLE }}
+                          </th>
+                          <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">
+                            {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_PUBLISHEDON }}
+                          </th>
+                          <th class="text-start">
+                            <div class="flex space-x-2.5">
+                              <img src="../../../assets/facebook.png" class="w-8 h-8 ">
+                              <img src="../../../assets/linkedin.png" class="w-8 h-8 ">
+                              <img src="../../../assets/instagram.png" class="w-8 h-8 ">
+                              <img src="../../../assets/twitter.png" class="w-8 h-8  dark:invert">
+                              <img src="../../assets/xing.png" class=" w-8 h-8">
+                            </div>
+                          </th>
+                          <th class="text-start"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- row1 -->
+                        <tr *ngFor="let client of pendingpaginatedData | slice:0:10">
+                          <td>
+                            <input type="checkbox" class="border-gray-400 dark:bg-black " [(ngModel)]="client.selected"
+                              size="large" kendoCheckBox checked #large />
+                          </td>
+                          <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.clientId }}</td>
+                          <td>
+                            <div class="ava flex p-1">
+                              <!-- <span class="avatar pt-1 mr-3 font-medium sm:mr-1 sm:text-xs" [style.background-color]="avaColorservice(client.surname.charAt(0) )">{{ client.surname.charAt(0) }}</span> -->
+                              <img src="../../../../assets/history/Avatar.png" class="pt-1">
+                              <span class="sm:text-xs sm:mt-1.5 sm:ml-0 lg:text-sm lg:ml-2 dark:text-white">{{
+                                client.arcticles | slice:0:20 }}...</span>
+                            </div>
+                          </td>
+                          <td class="lg:text-sm sm:text-xs text-gray-400 dark:text-white">{{ client.published_date }}
+                          </td>
+                          <td>
+                            <div class="flex space-x-6">
+                              <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.facebook"
+                                size="large" kendoCheckBox #large />
+                              <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.linkedin"
+                                size="large" kendoCheckBox #large />
+                              <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.instagram"
+                                size="large" kendoCheckBox #large />
+                              <input type="checkbox" class="border-gray-400  dark:bg-black" [checked]="client.twitter"
+                                size="large" kendoCheckBox #large />
+                                <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.xing"
+                                size="large" kendoCheckBox #large />
+                            </div>
+                          </td>
+                          <td>
+                            <img src="../../../assets/manage_clients/table_buton.png"
+                              class="cursor-pointer sm:mr-0 sm:w-5 sm:h-5 dark:invert"
+                              (click)="pendingtogglePanelVisibility(client.clientId)">
+
+                            <div *ngIf="panel && (client.clientId == panelid)"
+                              class="imgpanel dark:border-neutral-700 absolute bg-white border border-gray-300 k-min-w-max mt-0 py-2 md:right-16 xl:right-20 sm:right-8 2xl:right- rounded-lg shadow-lg pl-2 pr-2 dark:bg-black">
+                              <button (click)="pendinghandleEditClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/edit.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_EDIT }}
+                              </button>
+                              <button (click)="pendinghandleHistoryClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/history.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_HISTORY }}</button>
+                              <button (click)="pendinghandleDataUsageClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/data_usage.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_DATAUSAGE }}&nbsp;[GDPR]</button>
+                              <button (click)="pendinghandleSendPasswordClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/send_password.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SENDPASSWORD }}</button>
+                              <button (click)="pendinghandleSendUsernameClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/send_username.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SENDUSERNAME }}</button>
+                              <button (click)="pendinghandleDeleteClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/delete-r.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_DELETE }}</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+
+
+                  </div>
+
+                  <!-- pagination of table -->
+                  <div class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+                    <div class="pagination-info">
+                      <span class="text-sm dark:text-white">
+                        <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                        {{ pendingcalculateMaxValue() }}
+                        <span class="text-sm text-gray-400">
+                          OF
+                          {{ pendingtotalItems }}
+                        </span>
+                      </span>
+                    </div>
+
+                    <div class="pagination-controls flex">
+                      <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                        class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                        [ngClass]="{'disabled-button': currentPage === 1}">
+                        < </button>
+
+
+                          <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                            <ng-container *ngFor="let page of pendinggetPages() | slice:0:4">
+                              <button [disabled]="currentPage === page" (click)="currentPage = page"
+                                [class.pagibtn]="currentPage == page"
+                                class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page }}</button>
+                            </ng-container>
+                          </div>
+
+                          <button [disabled]="currentPage * itemsPerPage >= pendingtotalItems"
+                            (click)="currentPage = currentPage + 1"
+                            class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                            [ngClass]="{'disabled-button': currentPage * itemsPerPage >= pendingtotalItems}">
+                            >
+                          </button>
+                          <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+                    </div>
+
+                    <div class="pagination-jump">
+                      <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_JUMPTO }}&nbsp;
+                      </span>
+                      <input type="number" [(ngModel)]="currentPage" min="1" max="{{ pendingtotalPages }}"
+                        class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+                      <button (click)="pendingjumpToPage()"></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+
+            <ng-container >
+              <div *ngIf="arcticleTable" class="flex-grow errortable">
+                <div>
+                  <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                    <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                      <thead class="">
+                        <tr class="bg-gray-400  dark:bg-neutral-700">
+                          <th class="text-start justify-start">
+                            <input type="checkbox" class="border-gray-400 dark:bg-black" size="large"
+                              [(ngModel)]="selectAll" (change)="posterrortoggleSelectAll()" kendoCheckBox checked
+                              #large />
+                          </th>
+                          <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">
+                            <div class="flex">
+                              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_ID }}
+                            </div>
+                          </th>
+                          <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white ">
+                            <div class="flex">
+                              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_POSTTITLE }}
+                            </div>
+                          </th>
+                          <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">
+                            <div class="flex">
+                              {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_PUBLISHEDDATE }}
+                            </div>
+                          </th>
+                          <th class="text-start">
+                            <div class="flex space-x-2.5">
+                              <img src="../../../assets/facebook.png" class="w-8 h-8">
+                              <img src="../../../assets/linkedin.png" class="w-8 h-8">
+                              <img src="../../../assets/instagram.png" class="w-8 h-8">
+                              <img src="../../../assets/twitter.png" class="w-8 h-8 dark:invert">
+                              <img src="../../assets/xing.png" class=" w-8 h-8">
+                            </div>
+                          </th>
+                          <th class="text-start"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- row1 -->
+                        <tr *ngFor="let client of posterrorpaginatedData | slice:0:10">
+                          <td>
+                            <input type="checkbox" class="border-gray-400 dark:bg-black " [(ngModel)]="client.selected"
+                              size="large" kendoCheckBox checked #large />
+                          </td>
+                          <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.clientId }}</td>
+                          <td>
+                            <div class="ava flex p-1">
+                              <!-- <span class="avatar pt-1 mr-3 font-medium sm:mr-1 sm:text-xs" [style.background-color]="avaColorservice(client.surname.charAt(0) )">{{ client.surname.charAt(0) }}</span> -->
+                              <img src="../../../../assets/history/Avatar.png" class="pt-1">
+                              <span class="sm:text-xs sm:mt-1.5 sm:ml-0 lg:text-sm lg:ml-2 dark:text-white">{{
+                                client.arcticles | slice:0:20 }}...</span>
+                            </div>
+                          </td>
+                          <td class="lg:text-sm sm:text-xs text-gray-400 dark:text-white">{{ client.published_date }}
+                          </td>
+                          <td>
+                            <div class="flex space-x-6">
+                              <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.facebook"
+                                size="large" kendoCheckBox #large />
+                              <input type="checkbox" class="border-gray-400  dark:bg-black" [checked]="client.linkedin"
+                                size="large" kendoCheckBox #large />
+                              <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.instagram"
+                                size="large" kendoCheckBox #large />
+                              <input type="checkbox" class="border-gray-400  dark:bg-black" [checked]="client.twitter"
+                                size="large" kendoCheckBox #large />
+                                <input type="checkbox" class="border-gray-400 dark:bg-black " [checked]="client.xing"
+                                size="large" kendoCheckBox #large />
+                            </div>
+                          </td>
+                          <td>
+                            <img src="../../../assets/manage_clients/table_buton.png"
+                              class="cursor-pointer sm:mr-0 sm:w-5 sm:h-5 dark:invert"
+                              (click)="posterrortogglePanelVisibility(client.clientId)">
+
+                            <div *ngIf="panel && (client.clientId == panelid)"
+                              class="imgpanel dark:border-neutral-700 absolute bg-white border border-gray-300 k-min-w-max mt-0 py-2 md:right-16 xl:right-20 sm:right-8 2xl:right- rounded-lg shadow-lg pl-2 pr-2 dark:bg-black">
+                              <button (click)="posterrorhandleEditClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/edit.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_EDIT }}
+                              </button>
+                              <button (click)="posterrorhandleHistoryClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/history.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_HISTORY }}</button>
+                              <button (click)="posterrorhandleDataUsageClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/data_usage.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_DATAUSAGE }}Usage&nbsp;[GDPR]</button>
+                              <button (click)="posterrorhandleSendPasswordClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/send_password.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SENDPASSWORD }}</button>
+                              <button (click)="posterrorhandleSendUsernameClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/send_username.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_SENDUSERNAME }}</button>
+                              <button (click)="posterrorhandleDeleteClick(client.clientId)"
+                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                <img src="../../../assets/manage_clients/delete-r.png" class="mr-1.5 dark:invert">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_DELETE }}</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+
+
+                  </div>
+
+                  <!-- pagination of table -->
+                  <div class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+                    <div class="pagination-info">
+                      <span class="text-sm dark:text-white">
+                        <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                        {{ posterrorcalculateMaxValue() }}
+                        <span class="text-sm text-gray-400">
+                          OF
+                          {{ posterrortotalItems }}
+                        </span>
+                      </span>
+                    </div>
+
+                    <div class="pagination-controls flex">
+                      <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                        class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                        [ngClass]="{'disabled-button': currentPage === 1}">
+                        < </button>
+
+
+                          <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                            <ng-container *ngFor="let page of posterrorgetPages() | slice:0:4">
+                              <button [disabled]="currentPage === page" (click)="currentPage = page"
+                                [class.pagibtn]="currentPage == page"
+                                class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page }}</button>
+                            </ng-container>
+                          </div>
+
+                          <button [disabled]="currentPage * itemsPerPage >= posterrortotalItems"
+                            (click)="currentPage = currentPage + 1"
+                            class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                            [ngClass]="{'disabled-button': currentPage * itemsPerPage >= posterrortotalItems}">
+                            >
+                          </button>
+                          <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+                    </div>
+
+                    <div class="pagination-jump">
+                      <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_JUMPTO }}&nbsp;
+                      </span>
+                      <input type="number" [(ngModel)]="currentPage" min="1" max="{{ posterrortotalPages }}"
+                        class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+                      <button (click)="posterrorjumpToPage()"></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

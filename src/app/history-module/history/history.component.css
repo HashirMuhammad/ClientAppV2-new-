@@ -1,0 +1,145 @@
+.btn:hover {
+  background-color: #FFF2F2;
+  /* Use your desired hover background color */
+  color: #cc0000;
+  /*rgb(248, 212, 212)ur desired hover text color */
+  border-left: 4px solid #CC0000;
+  /* box-shadow: 0 4px 6px rgba(251, 45, 45, 0.777); This adds a shadow */
+}
+
+.btn:hover img {
+  filter: brightness(80%) saturate(100%) invert(30%) sepia(82%) saturate(900%) hue-rotate(315deg) contrast(100%);
+}
+
+.activecli {
+  border-left: 4px solid #CC0000;
+  color: #cc0000;
+  /* Use your desired text color */
+}
+
+.activecliimg {
+  filter: brightness(80%) saturate(100%) invert(30%) sepia(82%) saturate(900%) hue-rotate(315deg) contrast(100%);
+}
+
+.activeemp {
+  border-left: 4px solid #CC0000ed;
+  color: #cc0000;
+  /* Use your desired text color */
+}
+
+.activeempimg {
+  filter: brightness(80%) saturate(100%) invert(30%) sepia(82%) saturate(900%) hue-rotate(315deg) contrast(100%);
+}
+
+.activeart {
+  border-left: 4px solid #CC0000;
+  color: #cc0000;
+  /* Use your desired text color */
+}
+
+.activeimgart {
+  filter: brightness(80%) saturate(100%) invert(30%) sepia(82%) saturate(900%) hue-rotate(315deg) contrast(100%);
+}
+
+/* Default styles for larger screens */
+.flex {
+  display: flex;
+}
+
+@media screen and (max-width: 730px) {
+  .sercli {
+    padding-left: 17px;
+  }
+
+  
+  .fltr2 {
+    border-bottom: 1px solid #ccc;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+  }
+
+  .fltr2 select {
+    width: 100%;
+    padding: 0.625rem 1.5rem 0.625rem 0.75rem;
+    margin-top: 0.5rem;
+    color: #000000BF;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: #fff;
+  }
+
+  .date-picker-container {
+    margin-top: 0.5rem;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    width: 100%;
+  }
+
+  .date {
+    width: 100%;
+    padding-right: 25px;
+  }
+
+  .btnfltr {
+    margin-left: 60px;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    padding-top: 10px;
+    font-size: small;
+    overflow-x: auto;
+  }
+
+  .table-container td img {
+    width: 200%;
+    height: 200%;
+  }
+
+  .pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pagination-controls button {
+    font-size: 14px;
+    /* Adjust the font size as needed */
+
+  }
+
+  .pagination-jump input {
+    margin-top: 4px;
+    width: 50px;
+    /* Adjust the width as needed */
+    margin-right: 0;
+    /* Remove margin */
+  }
+
+  .drpbtn {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: black;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    align-self: start;
+    width: fit-content;
+    padding: auto;
+  }
+
+  .imgpanel {
+    right: 2rem;
+    height: fit-content;
+    width: fit-content;
+  }
+
+  .imgpanelimg {
+    height: 15px !important;
+    width: 15px !important;
+  }
+
+  .date-picker {
+    width: fit-content;
+  }
+}

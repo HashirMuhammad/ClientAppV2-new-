@@ -1,0 +1,51 @@
+.inputbtn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: #f0f2f7;
+    margin-right: 5px;
+    /* Adjust margin for spacing between buttons */
+}
+
+.active {
+    background-color: #fff;
+    accent-color: #CC0000;
+}
+
+.circle .hover-effect:hover {
+    background-color: #CC0000;
+    color: white;
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    transition: all 0.3s;
+    /* Add smooth transition */
+}
+
+@media screen and (max-width: 730px) {
+    .sercli {
+        margin-left: 20px;
+    }
+
+    .blockdiv {
+        display: block;
+    }
+
+    .marginbotm10 {
+        margin-bottom: 10px;
+    }
+
+    .noml {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .search {
+        width: 16rem;
+    }
+
+}

@@ -1,0 +1,28 @@
+@media screen and (max-width: 730px) {
+    .addcli {
+        padding-left: 15px;
+        margin-top: 10px;
+    }
+
+    .printed {
+        display: flex;
+        margin-bottom: 5px;
+    }
+
+    .printed label {
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .standard {
+        width: auto;
+    }
+
+    .buttons div {
+        margin-left: 17px;
+    }
+
+    .buttons div button {
+        margin-bottom: 10px;
+    }
+}

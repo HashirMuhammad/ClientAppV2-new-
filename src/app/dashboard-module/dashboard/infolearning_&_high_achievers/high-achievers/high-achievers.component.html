@@ -1,0 +1,82 @@
+<div class=" high h-full p-3 mr-4">
+    <div class="flex lg:mb-4">
+        <div>
+        <img src="../../../../assets/dashboard/high-achiever.png" class=" dark:invert" />
+        </div>
+        <label class="font-semibold text-base ml-2  dark:text-white">{{
+            translation?.CLIENTAPPV2_DASHBOARD_HIGHACHIEVERS
+            }}</label>
+    </div>
+
+    <div class="lg:flex xl:grid xl:grid-cols-2 lg:space-x-4 2xl:h-full xl:h-full lg:h-40 mt-4">
+        <!-- tutuorial -->
+        <div class="rounded-2xl p-4 xl:w-full flex-grow" style="background-color: #a352cc">
+            <div class="flex">
+                <img src="../../../../assets/dashboard/high-ach-tut.png" class="w-5 h-5 dark:invert" />
+                <label class="sm:text-sm xl:text-base text-white dark:text-black">&nbsp;{{
+                    translation?.CLIENTAPPV2_DASHBOARD_TUTORIALS }}</label>
+            </div>
+
+            <ng-container *ngFor="let high of highAchievers">
+                
+            <div class="flex mt-1 xl:mt-2">
+                <label class="text-white 2xl:mr-20 dark:text-black">{{ translation?.CLIENTAPPV2_DASHBOARD_TOTAL
+                    }}</label>
+                <label class="sm:text-base text-white ml-auto xl:text-2xl mr-1 dark:text-black">{{ high.total }}</label>
+            </div>
+
+            <div class="flex mb-1">
+                <label class="text-white dark:text-black">{{ translation?.CLIENTAPPV2_DASHBOARD_PASSED }}</label>
+                <label class="sm:text-base text-white ml-auto xl:text-2xl mr-1 dark:text-black">{{ high.passed}}</label>
+            </div>
+        </ng-container>
+        </div>
+
+        <!-- potiential value -->
+        <div class="potientialdiv rounded-2xl p-4 xl:w-full flex-grow" style="background-color: #eb4d8a">
+            <div class="flex mb-2">
+                <img src="../../../../assets/dashboard/high-ach-pot-val.png" class="w-5 h-5 dark:invert" />
+                <label class="sm:text-sm xl:text-base text-white dark:text-black">&nbsp;{{
+                    translation?.CLIENTAPPV2_DASHBOARD_POTENTIALVALUE }}</label>
+            </div>
+
+            <ng-container *ngFor="let high of highAchievers">
+                <label class="sm:text-base text-white xl:text-2xl mr-1 dark:text-black">{{ high.potientialValue}}</label>
+            </ng-container>
+
+        </div>
+    </div>
+
+    <div class="lg:flex xl:grid xl:grid-cols-2 lg:h-full mt-4">
+        <!-- value reached -->
+        <div class="rounded-2xl p-4 lg:w-36 md:w-32 xl:w-full flex-grow" style="background-color: #f2b80c">
+            <div class="flex mb-2">
+                <img src="../../../../assets/dashboard/high-ach-value.png" class="w-5 h-5 dark:invert" />
+                <label class="sm:text-sm xl:text-base text-white dark:text-black">&nbsp;{{
+                    translation?.CLIENTAPPV2_DASHBOARD_VALUEREACHED }}</label>
+            </div>
+
+            <ng-container *ngFor="let high of highAchievers">
+                <label class="sm:text-base text-white xl:text-2xl dark:text-black">{{ high.valueReached }}</label>
+            </ng-container>
+
+            <div class="mt-1">
+                <label>&nbsp;</label>
+            </div>
+        </div>
+
+        <!-- leads -->
+
+        <div class="leadsdiv rounded-2xl lg:ml-4 p-4 xl:w-full flex-grow" style="background-color: #3399ff">
+            <div class="flex mb-2">
+                <img src="../../../../assets/dashboard/lead.png" class="w-5 h-5 dark:invert" />
+                <label class="sm:text-sm xl:text-base text-white dark:text-black">&nbsp;{{
+                    translation?.CLIENTAPPV2_DASHBOARD_LEADS }}</label>
+            </div>
+
+            <ng-container *ngFor="let high of highAchievers">
+                <label class="sm:text-base text-white xl:text-2xl mr-1 dark:text-black">{{ high.leads }}</label>
+            </ng-container>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,962 @@
+<div class=" shadow sercli flex-grow h-fit bg-white rounded-2xl pb-4 dark:bg-black mr-5">
+  <div class="mb-5 mt-3  ">
+    <div class="flex border-b border-gray-300 dark:border-neutral-700">
+      <label class="flex pt-6 pb-5 pl-6 text-2xl dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_VIEWREPORTS
+        }}</label>
+    </div>
+
+
+    <div class="p-2">
+      <div class=" ml-3">
+        <div class="blockdiv flex mt-3">
+          <div class="marginbotm10 flex">
+            <label class="mr-2 font-medium dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_LASTUPDATED }}: </label>
+            <label class=" dark:text-white">{{lastUpdated}}</label>
+          </div>
+
+          <div class="ml-auto flex mr-3">
+            <label class="mr-2 font-medium dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_EMAILSUBJECT }}:
+            </label>
+            <label class=" dark:text-white">{{emailSubject}}</label>
+          </div>
+        </div>
+
+        <!-- radio button and select concept  -->
+        <div class="blockdiv flex mt-2">
+          <div class="marginbotm10 flex">
+            <div class="mt-3">
+              <input type="radio" value="clients" [ngModel]="userType" class="inputbtn"
+                [ngClass]="{'active': userType === 'clients'}" (click)="setActive('clients')">
+              <label class="ml-2 dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_CLIENTS }}</label>
+            </div>
+
+            <div class="mt-3 ml-5">
+              <input type="radio" value="employees" class="inputbtn" [ngModel]="userType"
+                [ngClass]="{'active': userType === 'employees'}" (click)="setActive('employees')">
+              <label class="ml-2 dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_EMPLOYEES }}</label>
+            </div>
+          </div>
+
+          <div class="marginbotm10 ml-auto mr-3">
+            <select [(ngModel)]="enteredValue"
+              class="search bg-white border border-gray-400 rounded-lg p-2.5 mt-2 flex-grow w-60 dark:bg-black dark:text-white">
+              <option value="Select" disabled selected>{{ translation?.CLIENTAPPV2_REPORTS_SELECTCONCEPT }}</option>
+              <option *ngFor="let option of Category">{{ option.title }}</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mx-3 mt-2">
+        <kendo-tabstrip class="dark:invert" style="height: 68vh;">
+          <kendo-tabstrip-tab title="Overview" [selected]="OverviewTabBool">
+            <ng-template kendoTabContent>
+              <div class="dark:invert">
+                <div class="flex border-b mb-3 dark:border-neutral-700">
+                  <div class="flex ml-auto mb-3">
+                    <button class="flex dark:text-white"><img src="../../assets/reports/download.png"
+                        class="w-4 h-4 mr-1 dark:invert">
+                      {{ translation?.CLIENTAPPV2_REPORTS_DOWNLOAD }}</button>
+                    <button class="ml-2 flex dark:text-white"><img src="../../assets/reports/print.png"
+                        class="w-4 h-4 mr-1 dark:invert">{{ translation?.CLIENTAPPV2_REPORTS_PRINTALLARTICLES
+                      }}</button>
+                  </div>
+                </div>
+
+                <div class="xl:grid xl:grid-rows-2 mt-5">
+                  <div class="xl:grid xl:grid-cols-4 ">
+                    <div class="circle flex flex-col items-center" (click)="Changetab('sento')">
+                      <div class="rounded-full bg-red-200 w-20 h-20 flex items-center justify-center hover-effect">
+                        <label class="text-center text-lg font-semibold group-hover:text-white dark:text-white">{{
+                          ClientOverview.ClientSent
+                          }}</label>
+                      </div>
+                      <label class="mt-2 dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_SENT }}</label>
+                    </div>
+
+
+
+                    <div class="circle flex flex-col items-center" (click)="Changetab('Dilevered')">
+                      <div class="rounded-full bg-red-200 w-20 h-20 flex items-center justify-center hover-effect">
+                        <label class="text-center text-lg group-hover:text-white font-semibold dark:text-white">{{
+                          ClientOverview.ClientDileverd }}</label>
+                      </div>
+                      <label class="mt-2 dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_DELIVERED }}</label>
+                    </div>
+
+                    <div class="circle flex flex-col items-center" (click)="Changetab('opened')">
+                      <div class="rounded-full bg-red-200 w-20 h-20 flex items-center justify-center hover-effect">
+                        <label class="text-center text-lg group-hover:text-white font-semibold dark:text-white">{{
+                          ClientOverview.ClientOpened }}</label>
+                      </div>
+                      <label class="mt-2 dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_OPENED }}</label>
+                    </div>
+
+                    <div class="circle flex flex-col items-center" (click)="Changetab('UniqueClicks')">
+                      <div class="rounded-full bg-red-200 w-20 h-20 flex items-center justify-center hover-effect">
+                        <label class="text-center text-lg group-hover:text-white font-semibold dark:text-white">{{
+                          ClientOverview.ClientUniqueclicks }}</label>
+                      </div>
+                      <label class="mt-2 dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_UNIQUECLICKS }}</label>
+                    </div>
+
+                  </div>
+
+                  <div class="xl:grid xl:grid-cols-4 mt-5">
+                    <div class="circle flex flex-col items-center" (click)="Changetab('UniqueUserClicks')">
+                      <div class="rounded-full bg-red-200 w-20 h-20 flex items-center justify-center hover-effect">
+                        <label class="text-center text-lg group-hover:text-white font-semibold dark:text-white">{{
+                          ClientOverview.ClientUniqueUserclicks }}</label>
+                      </div>
+                      <label class="mt-2 dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_UNIQUEUSERCLICKS
+                        }}</label>
+                    </div>
+
+                    <div class="circle flex flex-col items-center" (click)="Changetab('Bounced')">
+                      <div class="rounded-full bg-red-200 w-20 h-20 flex items-center justify-center hover-effect">
+                        <label class="text-center text-lg group-hover:text-white font-semibold dark:text-white">{{
+                          ClientOverview.ClientBounced }}</label>
+                      </div>
+                      <label class="mt-2 dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_BOUNCED }}</label>
+                    </div>
+
+                    <div class="circle flex flex-col items-center" (click)="Changetab('Failed')">
+                      <div class="rounded-full bg-red-200 w-20 h-20 flex items-center justify-center hover-effect">
+                        <label class="text-center text-lg group-hover:text-white font-semibold dark:text-white">{{
+                          ClientOverview.ClientFailed }}</label>
+                      </div>
+                      <label class="mt-2 dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_FAILED }}</label>
+                    </div>
+
+                    <div class="circle flex flex-col items-center" (click)="Changetab('Unsubscribed')">
+                      <div class="rounded-full bg-red-200 w-20 h-20 flex items-center justify-center hover-effect">
+                        <label class="text-center text-lg group-hover:text-white font-semibold dark:text-white">{{
+                          ClientOverview.ClientUnsubcribed }}</label>
+                      </div>
+                      <label class="mt-2 dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_UNSUBSCRIBED }}</label>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="xl:grid xl:grid-cols-2 lg:space-x-5 mt-10">
+                  <div>
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_OPENRATE }}</label>
+                    <kendo-progressbar class="mt-1.5" [value]="ClientOverview.ClientOpenRate"></kendo-progressbar>
+                  </div>
+
+                  <div>
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_CLICKRATE }}</label>
+                    <kendo-progressbar class="mt-1.5" [value]="ClientOverview.ClientclickRate"></kendo-progressbar>
+                  </div>
+                </div>
+
+                <div class="xl:grid xl:grid-cols-2 mt-10">
+                  <div class="noml flex border-t pt-3 mr-5 dark:border-neutral-700">
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_SUCCESSFULDILEVERIES }}</label>
+                    <label
+                      class="ml-auto font-medium dark:text-white">{{ClientOverview.ClientSuccessfuldileveries}}</label>
+                  </div>
+
+                  <div class="noml flex border-t pt-3 ml-5 dark:border-neutral-700">
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_TOTALCLICKS }}</label>
+                    <label class="ml-auto font-medium dark:text-white">{{ClientOverview.ClientTotalClicks}}</label>
+                  </div>
+
+                  <div class="noml flex border-t pt-3 mr-5 dark:border-neutral-700">
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_LASTOPENED }}</label>
+                    <label class="ml-auto font-medium dark:text-white">{{ClientOverview.ClientLastOpened}}</label>
+                  </div>
+
+                  <div class="noml flex border-t pt-3 ml-5 dark:border-neutral-700">
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_LASTCLICKED }}</label>
+                    <label class="ml-auto font-medium dark:text-white">{{ClientOverview.ClientLastClicked}}</label>
+                  </div>
+
+                  <div class="noml flex border-t pt-3 mr-5 dark:border-neutral-700">
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_LASTUPDATED }}</label>
+                    <label class="ml-auto font-medium dark:text-white">{{ClientOverview.ClientLastUpdated}}</label>
+                  </div>
+                </div>
+
+                <div class="blockdiv border-t mt-10 flex dark:border-neutral-700">
+                  <div class="flex mt-3">
+                    <input type="checkbox" size="medium" kendoCheckBox class="border border-black">
+                    <label class="ml-3 dark:text-white">{{ translation?.CLIENTAPPV2_REPORTS_INCULDESELF }}</label>
+                  </div>
+
+                  <div class="ml-auto mr-3">
+                    <select [(ngModel)]="NoofReports" (ngModelChange)="generateCategories()"
+                      class="search bg-white border border-gray-400 rounded-lg p-2.5 mt-2 flex-grow w-60 dark:bg-black dark:text-white">
+                      <option value=0 disabled selected>{{ translation?.CLIENTAPPV2_REPORTS_NUMBEROFREPORTS }}</option>
+                      <option value=1>1</option>
+                      <option value=2>2</option>
+                      <option value=3>3</option>
+                      <option value=4>4</option>
+                      <option value=5>5</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="mt-10 border border-slate-300  dark:bg-neutral-700">
+                  <div class="flex bg-slate-200 ">
+                    <button class="p-5 text-base hover:bg-slate-300 dark:text-black" (click)="StatisticsToogleOn()">{{
+                      translation?.CLIENTAPPV2_REPORTS_STATISTICS }}</button>
+                    <button class="p-5 text-base hover:bg-slate-300 dark:text-black" (click)="ClickRateToogleOn()">{{
+                      translation?.CLIENTAPPV2_REPORTS_CLICKRATE }}</button>
+                  </div>
+
+                  <div class="mt-5">
+                    <div *ngIf="StatisticsToogle" class=" dark:invert">
+                      <kendo-chart>
+                        <kendo-chart-title text="Concept's Statistics"></kendo-chart-title>
+                        <kendo-chart-legend position="top" orientation="horizontal"></kendo-chart-legend>
+
+                        <kendo-chart-category-axis>
+                          <kendo-chart-category-axis-item [categories]="categories"></kendo-chart-category-axis-item>
+                        </kendo-chart-category-axis>
+
+                        <kendo-chart-value-axis>
+                          <kendo-chart-value-axis-item>
+                            <kendo-chart-value-axis-item-labels format="{0}"></kendo-chart-value-axis-item-labels>
+                          </kendo-chart-value-axis-item>
+                        </kendo-chart-value-axis>
+
+                        <kendo-chart-tooltip format="{0}"></kendo-chart-tooltip>
+
+                        <kendo-chart-series>
+                          <ng-container *ngFor="let series of NewCategory">
+                            <kendo-chart-series-item [name]="series.title" type="column" [data]="series.data">
+                            </kendo-chart-series-item>
+                          </ng-container>
+                        </kendo-chart-series>
+                      </kendo-chart>
+
+                    </div>
+
+                    <div *ngIf="ClickRateToogle" class=" dark:invert">
+                      <kendo-chart>
+                        <kendo-chart-title text="Concept's Click Rate"></kendo-chart-title>
+
+                        <kendo-chart-legend position="top" orientation="horizontal">
+                        </kendo-chart-legend>
+
+                        <kendo-chart-category-axis>
+                          <kendo-chart-category-axis-item
+                            [categories]="['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']"
+                            [title]="{ text: 'Days' }">
+                          </kendo-chart-category-axis-item>
+                        </kendo-chart-category-axis>
+
+                        <kendo-chart-value-axis>
+                          <kendo-chart-value-axis-item>
+                            <kendo-chart-value-axis-item-labels format="{0}"></kendo-chart-value-axis-item-labels>
+                          </kendo-chart-value-axis-item>
+                        </kendo-chart-value-axis>
+
+                        <kendo-chart-tooltip format="{0}"></kendo-chart-tooltip>
+
+                        <kendo-chart-series>
+                          <ng-container *ngFor="let series of NewCategoryClickRate">
+                            <kendo-chart-series-item [name]="series.title" [data]="series.data" type="line">
+                            </kendo-chart-series-item>
+                          </ng-container>
+                        </kendo-chart-series>
+                      </kendo-chart>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </ng-template>
+          </kendo-tabstrip-tab>
+
+          <kendo-tabstrip-tab title="Articles" [selected]="ArticlestabBool">
+            <ng-template kendoTabContent>
+              <div class="dark:invert">
+                <div class="blockdiv flex">
+                  <div class="marginbotm10 noml search flex w-80 ml-4">
+                    <input [(ngModel)]="SentToInput" type="text" placeholder="Enter Here..."
+                      class=" w-full bg-white border border-gray-400 rounded-l-lg p-2 mt-1 dark:bg-black dark:text-white">
+                    <button type="submit" class="bg-slate-200 px-2 mt-1 rounded-r-lg"><img
+                        src="../../assets/history/search.png"></button>
+                  </div>
+
+                  <div class="ml-auto">
+                    <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{
+                      translation?.CLIENTAPPV2_REPORTS_CLEARSEARCH }}</button>
+                    <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{
+                      translation?.CLIENTAPPV2_REPORTS_PRINTALLARTICLES }}</button>
+                    <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{ translation?.CLIENTAPPV2_REPORTS_DOWNLOAD
+                      }}</button>
+                  </div>
+                </div>
+
+                <div class="mt-5">
+                  <div>
+                    <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                      <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                        <thead class="">
+                          <tr class="bg-gray-400  dark:bg-neutral-700">
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_ARTICLEID }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_ARTICLETITLE }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_RECEIVED }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_OPENRATE }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_CALLBACKS }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_READMORE }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_INTEREST }}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- row1 -->
+                          <tr *ngFor="let article of paginatedData" (click)="handleRowClick(article.id)">
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.id }}</td>
+                            <td class="lg:text-base sm:text-xs">
+                              <div>
+                                <label class=" dark:text-white">{{ article.title }}</label><br />
+                                <label class="text-sm text-green-500">({{article.description}})</label>
+                              </div>
+                            </td>
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.receieved }}</td>
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.openRate }}%</td>
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.callBacks }}</td>
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.readMore }}</td>
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.interest }}%</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+
+
+                    </div>
+
+                    <!-- pagination of table -->
+                    <div class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+                      <div class="pagination-info">
+                        <span class="text-sm dark:text-white">
+                          <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                          {{ calculateMaxValue() }}
+                          <span class="text-sm text-gray-400">
+                            OF
+                            {{ totalItems }}
+                          </span>
+                        </span>
+                      </div>
+
+                      <div class="pagination-controls flex">
+                        <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                          class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                          [ngClass]="{'disabled-button': currentPage === 1}">
+                          < </button>
+
+
+                            <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                              <ng-container *ngFor="let page of getPages() | slice:0:4">
+                                <button [disabled]="currentPage === page" (click)="currentPage = page"
+                                  [class.pagibtn]="currentPage == page"
+                                  class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{
+                                  page }}</button>
+                              </ng-container>
+                            </div>
+
+
+                            <button [disabled]="currentPage * itemsPerPage >= totalItems"
+                              (click)="currentPage = currentPage + 1"
+                              class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                              [ngClass]="{'disabled-button': currentPage * itemsPerPage >= totalItems}">
+                              >
+                            </button>
+                            <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+                      </div>
+
+                      <div class="pagination-jump">
+                        <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_REPORTS_JUMPTO }} </span>
+                        <input type="number" [(ngModel)]="currentPage" min="1" max="{{ totalPages }}"
+                          class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+                        <button (click)="jumpToPage()"></button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </kendo-tabstrip-tab>
+
+          <kendo-tabstrip-tab title="Sent" [selected]="SenttabBool">
+            <ng-template kendoTabContent>
+              <kendo-tabstrip>
+                <kendo-tabstrip-tab title="Sent to" [selected]="SentTotabBool">
+                  <ng-template kendoTabContent>
+                    <div class="dark:invert">
+                      <div class="blockdiv flex">
+                        <div class="noml marginbotm10 search flex w-80 ml-4">
+                          <input [(ngModel)]="SentToInput" type="text" placeholder="Enter Here..."
+                            class="w-full bg-white border border-gray-400 rounded-l-lg p-2 mt-1 dark:bg-black dark:text-white">
+                          <button type="submit" class="bg-slate-200 px-2 mt-1 rounded-r-lg"><img
+                              src="../../assets/history/search.png"></button>
+                        </div>
+
+                        <button class="noml marginbotm10 ml-5 mr-3 p-2 border rounded-lg bg-slate-200">{{
+                          translation?.CLIENTAPPV2_REPORTS_CLEARSEARCH }}</button>
+
+                        <div class="ml-auto">
+                          <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{
+                            translation?.CLIENTAPPV2_REPORTS_DOWNLOAD }}</button>
+                        </div>
+
+                      </div>
+                      <div class=" mt-5">
+                        <div>
+                          <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                            <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                              <thead class="">
+                                <tr class="bg-gray-400  dark:bg-neutral-700">
+                                  <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                    translation?.CLIENTAPPV2_REPORTS_EMAILADDRESS }}</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <!-- row1 -->
+                                <tr *ngFor="let article of paginatedSendToData" (click)="handleRowClick(article.id)">
+                                  <td class="lg:text-base sm:text-xs dark:text-white">{{ article.email }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </kendo-tabstrip-tab>
+
+                <kendo-tabstrip-tab title="Delivered" [selected]="DileveredtabBool">
+                  <ng-template kendoTabContent>
+                    <div class=" dark:invert">
+                      <div class="blockdiv flex">
+                        <div class="noml marginbotm10 search flex w-80 ml-4">
+                          <input [(ngModel)]="DileveredInput" type="text" placeholder="Enter Here..."
+                            class="w-full bg-white border border-gray-400 rounded-l-lg p-2 mt-1 dark:bg-black dark:text-white">
+                          <button type="submit" class="bg-slate-200 px-2 mt-1 rounded-r-lg"><img
+                              src="../../assets/history/search.png"></button>
+                        </div>
+
+                        <button class="noml marginbotm10 ml-5 mr-3 p-2 border rounded-lg bg-slate-200">{{
+                          translation?.CLIENTAPPV2_REPORTS_CLEARSEARCH }}</button>
+
+                        <div class="ml-auto">
+                          <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{
+                            translation?.CLIENTAPPV2_REPORTS_DOWNLOAD }}</button>
+                        </div>
+
+                      </div>
+                      <div class="mt-5">
+                        <div>
+                          <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                            <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                              <thead class="">
+                                <tr class="bg-gray-400  dark:bg-neutral-700">
+                                  <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                    translation?.CLIENTAPPV2_REPORTS_EMAILADDRESS }}</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <!-- row1 -->
+                                <tr *ngFor="let article of paginatedDileveredData" (click)="handleRowClick(article.id)">
+                                  <td class="lg:text-base sm:text-xs dark:text-white">{{ article.email }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </kendo-tabstrip-tab>
+
+                <kendo-tabstrip-tab title="Opened" [selected]="OpenedtabBool">
+                  <ng-template kendoTabContent>
+                    <div class=" dark:invert">
+                      <div class="blockdiv flex">
+                        <div class="noml marginbotm10 search flex w-80 ml-4">
+                          <input [(ngModel)]="OpenedInput" type="text" placeholder="Enter Here..."
+                            class="w-full bg-white border border-gray-400 rounded-l-lg p-2 mt-1 dark:bg-black dark:text-white">
+                          <button type="submit" class="bg-slate-200 px-2 mt-1 rounded-r-lg"><img
+                              src="../../assets/history/search.png"></button>
+                        </div>
+
+                        <button class="noml marginbotm10 ml-5 mr-3 p-2 border rounded-lg bg-slate-200">{{
+                          translation?.CLIENTAPPV2_REPORTS_CLEARSEARCH }}</button>
+
+                        <div class="ml-auto">
+                          <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{
+                            translation?.CLIENTAPPV2_REPORTS_DOWNLOAD }}</button>
+                        </div>
+
+                      </div>
+                      <div class="mt-5">
+                        <div>
+                          <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                            <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                              <thead class="">
+                                <tr class="bg-gray-400  dark:bg-neutral-700">
+                                  <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                    translation?.CLIENTAPPV2_REPORTS_EMAILADDRESS }}</th>
+                                  <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                    translation?.CLIENTAPPV2_REPORTS_LASTOPENED }}</th>
+                                  <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                    translation?.CLIENTAPPV2_REPORTS_COUNT }}</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <!-- row1 -->
+                                <tr *ngFor="let article of paginatedOpenedData" (click)="handleRowClick(article.id)">
+                                  <td class="lg:text-base sm:text-xs dark:text-white">{{ article.email }}</td>
+                                  <td class="lg:text-base sm:text-xs dark:text-white">{{ article.lastOpened }}</td>
+                                  <td class="lg:text-base sm:text-xs dark:text-white">{{ article.count }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </kendo-tabstrip-tab>
+              </kendo-tabstrip>
+            </ng-template>
+          </kendo-tabstrip-tab>
+
+
+          <kendo-tabstrip-tab title="Clicks" [selected]="ClickstabBool">
+            <ng-template kendoTabContent>
+              <div>
+                <kendo-tabstrip>
+                  <kendo-tabstrip-tab title="Unique clicks" [selected]="UniqueClicktabBool">
+                    <ng-template kendoTabContent>
+                      <div class=" dark:invert">
+                        <div class="blockdiv flex">
+                          <div class="noml marginbotm10 search flex w-80 ml-4">
+                            <input [(ngModel)]="UniqueClicksInput" type="text" placeholder="Enter Here..."
+                              class="w-full bg-white border border-gray-400 rounded-l-lg p-2 mt-1 dark:bg-black dark:text-white">
+                            <button type="submit" class="bg-slate-200 px-2 mt-1 rounded-r-lg"><img
+                                src="../../assets/history/search.png"></button>
+                          </div>
+
+                          <button class="noml marginbotm10 ml-5 mr-3 p-2 border rounded-lg bg-slate-200">{{
+                            translation?.CLIENTAPPV2_REPORTS_CLEARSEARCH }}</button>
+
+                          <div class="ml-auto">
+                            <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{
+                              translation?.CLIENTAPPV2_REPORTS_DOWNLOAD }}</button>
+                          </div>
+
+                        </div>
+                        <div class="mt-5">
+                          <div>
+                            <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                              <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                                <thead class="">
+                                  <tr class="bg-gray-400  dark:bg-neutral-700">
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_ARTICLETITLE }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_EMAILADDRESS }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_LASTCLICKED }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_COUNT }}</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- row1 -->
+                                  <tr *ngFor="let article of paginatedUniqueClicksData"
+                                    (click)="handleRowClick(article.id)">
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.articleTitle }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.email }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.lastClicked }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.count }}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </kendo-tabstrip-tab>
+
+                  <kendo-tabstrip-tab title="Unique User clicks" [selected]="UniqueUserclicktabBool">
+                    <ng-template kendoTabContent>
+                      <div class=" dark:invert">
+                        <div class="blockdiv flex">
+                          <div class="noml marginbotm10 search flex w-80 ml-4">
+                            <input [(ngModel)]="UniqueUserClicksInput" type="text" placeholder="Enter Here..."
+                              class="w-full bg-white border border-gray-400 rounded-l-lg p-2 mt-1 dark:bg-black dark:text-white">
+                            <button type="submit" class="bg-slate-200 px-2 mt-1 rounded-r-lg"><img
+                                src="../../assets/history/search.png"></button>
+                          </div>
+
+                          <button class="noml marginbotm10 ml-5 mr-3 p-2 border rounded-lg bg-slate-200">{{
+                            translation?.CLIENTAPPV2_REPORTS_CLEARSEARCH }}</button>
+
+                          <div class="ml-auto">
+                            <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{
+                              translation?.CLIENTAPPV2_REPORTS_DOWNLOAD }}</button>
+                          </div>
+
+                        </div>
+                        <div class="mt-5">
+                          <div>
+                            <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                              <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                                <thead class="">
+                                  <tr class="bg-gray-400  dark:bg-neutral-700">
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_EMAILADDRESS }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_LASTCLICKED }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_COUNT }}</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- row1 -->
+                                  <tr *ngFor="let article of paginatedUniqueUserClicksData"
+                                    (click)="handleRowClick(article.id)">
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.email }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.lastClicked }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.count }}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </kendo-tabstrip-tab>
+                </kendo-tabstrip>
+              </div>
+            </ng-template>
+          </kendo-tabstrip-tab>
+
+          <kendo-tabstrip-tab title="status" [selected]="StatustabBool">
+            <ng-template kendoTabContent>
+              <div>
+                <kendo-tabstrip>
+                  <kendo-tabstrip-tab title="Bounced" [selected]="BouncedtabBool">
+                    <ng-template kendoTabContent>
+                      <div class=" dark:invert">
+                        <div class="mt-5">
+                          <div class="xl:grid xl:grid-cols-4">
+                            <div class="marginbotm10 flex flex-col items-center">
+                              <div>
+                                <label class="bg-green-400 px-3 py-2 rounded-lg text-white">{{
+                                  BouncesHeaderData.totalBounces }}</label>
+                              </div>
+                              <label class="mt-3 text-green-400">{{ translation?.CLIENTAPPV2_REPORTS_TOTALBOUNCES
+                                }}</label>
+                            </div>
+
+                            <div class="marginbotm10 flex flex-col items-center">
+                              <div>
+                                <label class="bg-yellow-400 px-3 py-2 rounded-lg text-white">{{
+                                  BouncesHeaderData.SoftBounces }}</label>
+                              </div>
+                              <label class="mt-3 text-yellow-400">{{ translation?.CLIENTAPPV2_REPORTS_SOFTBOUNCES
+                                }}</label>
+                            </div>
+
+                            <div class="marginbotm10 flex flex-col items-center">
+                              <div>
+                                <label class="bg-red-400 px-3 py-2 rounded-lg text-white">{{
+                                  BouncesHeaderData.HardBounces}}</label>
+                              </div>
+                              <label class="mt-3 text-red-400">{{ translation?.CLIENTAPPV2_REPORTS_HARDBOUNCES
+                                }}</label>
+                            </div>
+
+                            <div class="marginbotm10 flex flex-col items-center">
+                              <div>
+                                <label class="bg-red-400 px-3 py-2 rounded-lg text-white">{{ BouncesHeaderData.Others
+                                  }}</label>
+                              </div>
+                              <label class="mt-3 text-red-400">{{ translation?.CLIENTAPPV2_REPORTS_OTHERS }}</label>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="blockdiv flex mt-8">
+                          <div class="noml marginbotm10 search flex w-80 ml-4">
+                            <input [(ngModel)]="BouncedInput" type="text" placeholder="Enter Here..."
+                              class="w-full bg-white border border-gray-400 rounded-l-lg p-2 mt-1 dark:bg-black dark:text-white">
+                            <button type="submit" class="bg-slate-200 px-2 mt-1 rounded-r-lg"><img
+                                src="../../assets/history/search.png"></button>
+                          </div>
+
+                          <button class="noml marginbotm10 ml-5 mr-3 p-2 border rounded-lg bg-slate-200">{{
+                            translation?.CLIENTAPPV2_REPORTS_CLEARSEARCH }}</button>
+
+                          <div class="ml-auto">
+                            <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{
+                              translation?.CLIENTAPPV2_REPORTS_DOWNLOAD }}</button>
+                          </div>
+
+                        </div>
+                        <div class="mt-5">
+                          <div>
+                            <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                              <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                                <thead class="">
+                                  <tr class="bg-gray-400  dark:bg-neutral-700">
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_EMAILADDRESS }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_EMAILSUBJECT }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_TYPE }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_DESCRIPTION }}</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- row1 -->
+                                  <tr *ngFor="let article of paginatedBouncedData" (click)="handleRowClick(article.id)">
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.email }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.Subject }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.type }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.Description }}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </kendo-tabstrip-tab>
+
+                  <kendo-tabstrip-tab title="Unopened" [selected]="UnopenedtabBool">
+                    <ng-template kendoTabContent>
+                      <div class=" dark:invert">
+                        <div class="blockdiv flex">
+                          <div class="noml marginbotm10 search flex w-80 ml-4">
+                            <input [(ngModel)]="UnopenedInput" type="text" placeholder="Enter Here..."
+                              class="w-full bg-white border border-gray-400 rounded-l-lg p-2 mt-1 dark:bg-black dark:text-white">
+                            <button type="submit" class="bg-slate-200 px-2 mt-1 rounded-r-lg"><img
+                                src="../../assets/history/search.png"></button>
+                          </div>
+
+                          <button class="noml marginbotm10 ml-5 mr-3 p-2 border rounded-lg bg-slate-200">{{
+                            translation?.CLIENTAPPV2_REPORTS_CLEARSEARCH }}</button>
+
+                          <div class="ml-auto">
+                            <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{
+                              translation?.CLIENTAPPV2_REPORTS_DOWNLOAD }}</button>
+                          </div>
+
+                        </div>
+                        <div class="mt-5">
+                          <div>
+                            <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                              <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                                <thead class="">
+                                  <tr class="bg-gray-400  dark:bg-neutral-700">
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                      translation?.CLIENTAPPV2_REPORTS_EMAILADDRESS }}</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- row1 -->
+                                  <tr *ngFor="let article of paginatedUnopenedData"
+                                    (click)="handleRowClick(article.id)">
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.email }}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </kendo-tabstrip-tab>
+                </kendo-tabstrip>
+              </div>
+            </ng-template>
+          </kendo-tabstrip-tab>
+
+          <kendo-tabstrip-tab title="Failed" [selected]="FailedtabBool">
+            <ng-template kendoTabContent>
+              <div class=" dark:invert">
+                <div class="blockdiv flex">
+                  <div class="noml marginbotm10 search flex w-80 ml-4">
+                    <input [(ngModel)]="FailedInput" type="text" placeholder="Enter Here..."
+                      class="w-full bg-white border border-gray-400 rounded-l-lg p-2 mt-1 dark:bg-black dark:text-white">
+                    <button type="submit" class="bg-slate-200 px-2 mt-1 rounded-r-lg"><img
+                        src="../../assets/history/search.png"></button>
+                  </div>
+
+                  <button class="noml marginbotm10 ml-5 mr-3 p-2 border rounded-lg bg-slate-200">{{
+                    translation?.CLIENTAPPV2_REPORTS_CLEARSEARCH }}</button>
+
+                  <div class="ml-auto">
+                    <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{ translation?.CLIENTAPPV2_REPORTS_DOWNLOAD
+                      }}</button>
+                  </div>
+
+                </div>
+                <div class="mt-5">
+                  <div>
+                    <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                      <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                        <thead class="">
+                          <tr class="bg-gray-400  dark:bg-neutral-700">
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_EMAILADDRESS }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_MESSAGE }}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- row1 -->
+                          <tr *ngFor="let article of paginatedFailedData" (click)="handleRowClick(article.id)">
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.email }}</td>
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.message }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </kendo-tabstrip-tab>
+
+          <kendo-tabstrip-tab title="Unsubscribed" [selected]="UnsubscribedtabBool">
+            <ng-template kendoTabContent>
+              <div class=" dark:invert">
+                <div class="blockdiv flex">
+                  <div class="noml marginbotm10 search flex w-80 ml-4">
+                    <input [(ngModel)]="UnsubscribedInput" type="text" placeholder="Enter Here..."
+                      class="w-full bg-white border border-gray-400 rounded-l-lg p-2 mt-1 dark:bg-black dark:text-white">
+                    <button type="submit" class="bg-slate-200 px-2 mt-1 rounded-r-lg"><img
+                        src="../../assets/history/search.png"></button>
+                  </div>
+
+                  <button class="noml marginbotm10 ml-5 mr-3 p-2 border rounded-lg bg-slate-200">{{
+                    translation?.CLIENTAPPV2_REPORTS_CLEARSEARCH }}</button>
+
+                  <div class="ml-auto">
+                    <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{ translation?.CLIENTAPPV2_REPORTS_DOWNLOAD
+                      }}</button>
+                  </div>
+
+                </div>
+                <div class="mt-5">
+                  <div>
+                    <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                      <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                        <thead class="">
+                          <tr class="bg-gray-400  dark:bg-neutral-700">
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_EMAILADDRESS }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_UNSUBSCRIBEDDATE }}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- row1 -->
+                          <tr *ngFor="let article of paginatedUnsubscribedData" (click)="handleRowClick(article.id)">
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.email }}</td>
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.date }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </kendo-tabstrip-tab>
+
+          <kendo-tabstrip-tab title="Call Back" [selected]="CallBacktabBool">
+            <ng-template kendoTabContent>
+              <div class=" dark:invert">
+                <div class="blockdiv flex">
+                  <div class="noml marginbotm10 search flex w-80 ml-4">
+                    <input [(ngModel)]="CallBackInput" type="text" placeholder="Enter Here..."
+                      class="w-full bg-white border border-gray-400 rounded-l-lg p-2 mt-1 dark:bg-black dark:text-white">
+                    <button type="submit" class="bg-slate-200 px-2 mt-1 rounded-r-lg"><img
+                        src="../../assets/history/search.png"></button>
+                  </div>
+
+                  <button class="noml marginbotm10 ml-5 mr-3 p-2 border rounded-lg bg-slate-200">{{
+                    translation?.CLIENTAPPV2_REPORTS_CLEARSEARCH }}</button>
+
+                  <div class="ml-auto">
+                    <button class="mr-3 p-2 border rounded-lg bg-slate-200">{{ translation?.CLIENTAPPV2_REPORTS_DOWNLOAD
+                      }}</button>
+                  </div>
+
+                </div>
+                <div class="mt-5">
+                  <div>
+                    <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                      <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                        <thead class="">
+                          <tr class="bg-gray-400  dark:bg-neutral-700">
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_ARTICLETITLE }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_FIRSTNAME }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_SURNAME }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_EMAILADDRESS }}</th>
+                            <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                              translation?.CLIENTAPPV2_REPORTS_DATE }}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- row1 -->
+                          <tr *ngFor="let article of paginatedCallBackData" (click)="handleRowClick(article.id)">
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.articleTitle }}</td>
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.firstName }}</td>
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.surName }}</td>
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.email }}</td>
+                            <td class="lg:text-base sm:text-xs dark:text-white">{{ article.date }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </kendo-tabstrip-tab>
+        </kendo-tabstrip>
+      </div>
+    </div>
+  </div>
+</div>

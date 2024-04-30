@@ -1,0 +1,37 @@
+li {
+    list-style-type: disc;
+}
+
+.search {
+    padding-right: 66rem;
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 730px) {
+    .sercli {
+        margin-left: 20px;
+    }
+
+    .search {
+        padding-right: 190px;
+        overflow-y: auto;
+    }
+
+    .authenticationinputdiv {
+        display: block;
+        margin-right: 20px;
+    }
+
+    .list {
+        margin-right: 20px;
+        width: fit-content;
+        word-break: break-all;
+    }
+}
+
+@media screen and (min-width: 1537px) and (max-width: 2137px) {
+    .search {
+        padding-right: 90rem;
+        overflow-y: auto;
+    }
+}

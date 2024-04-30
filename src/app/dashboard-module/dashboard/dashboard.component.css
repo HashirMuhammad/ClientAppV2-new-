@@ -1,0 +1,191 @@
+/* Base styles for all screen sizes */
+/* Add this CSS in your component's styles or global styles */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+
+  75% {
+    transform: translateX(-5px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+gridster-item{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.gridstarHeight{
+  height: 84vh;
+}
+
+
+
+/* ::ng-deep is for dom that is not loaded the property will loaded (higher prioty) */
+/* .card div gridster-item{
+  max-height: 12rem ;
+} */
+
+.graph1 {
+  z-index: 99;
+}
+
+.graph2 {
+  z-index: 99;
+}
+
+.info {
+  z-index: 99;
+}
+
+.file {
+  z-index: 99;
+}
+
+.learn {
+  z-index: 99;
+}
+
+.high {
+  z-index: 99;
+}
+
+svg {
+  width: 20px;
+  height: fit-content;
+  margin-left: 8px;
+}
+
+/* Add any additional global styles here */
+
+@media screen and (max-width: 640px) {
+  /* Styles for screens less than or equal to 640px wide */
+
+  /* Adjust specific styles for smaller screens here */
+}
+
+@media screen and (min-width: 641px) and (max-width: 768px) {
+
+  /* Styles for screens between 641px and 768px wide */
+  .app-file {
+    width: 365px;
+  }
+
+  /* Adjust specific styles for medium-sized screens here */
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Styles for screens between 769px and 1024px wide */
+
+  /* Adjust specific styles for larger screens here */
+}
+
+@media screen and (min-width: 914px) and (max-width: 1023px) {
+  .main {
+    zoom: 0.7;
+  }
+
+  .gridstarHeight{
+    height: 125vh;
+  }
+}
+
+@media screen and (min-width: 1290px) and (max-width: 1350px) {
+  .g1 {
+    height: 220px;
+  }
+
+  .g2 {
+    height: 220px;
+  }
+
+  .latest {
+    zoom: 95%;
+  }
+
+  .articles {
+    zoom: 85%;
+  }
+}
+
+@media screen and (max-width: 730px) {
+
+  /* Styles for small screens go here */
+  body {
+    font-size: 10px;
+    /* Adjust font size for mobile */
+    /* Other mobile styles... */
+  }
+
+  .card {
+    flex: none;
+    flex-direction: column;
+  }
+
+  .subscriber,
+  .employees,
+  .clients {
+    margin-left: 15px;
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  .printNewsletter,
+  .emailNewsletter,
+  .unsub {
+    margin-left: 15px;
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  .graph1,
+  .graph2 {
+    margin-left: 15px;
+    width: 95%;
+    height: 30%;
+    margin-bottom: 10px;
+  }
+
+  .g1,
+  .g2 {
+    height: fit-content;
+    padding-bottom: 10px;
+  }
+
+  .info,
+  .file,
+  .learn,
+  .high,
+  .latest,
+  .dataImport {
+    border-radius: 20px;
+    margin-left: 15px;
+    height: 40%;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 1550px) {
+  /* .g1,
+  .g2 {
+    height: 350px;
+  } */
+
+  .main {
+    zoom: 1.25;
+  }
+}

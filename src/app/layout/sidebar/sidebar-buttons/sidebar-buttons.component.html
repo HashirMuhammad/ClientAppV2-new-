@@ -1,0 +1,170 @@
+<!-- dashboard -->
+<button class="sm:text-sm lg:text-base button text-left flex items-center dark:text-white" (click)="routToDash()"
+    [class.active]="dashboard">
+    <img src="../../assets/sidebar/home2.png" (click)="routToDash()" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+        [class.activeimg]="dashboard">{{ translation?.CLIENTAPPV2_DASHBOARD_DASHBOARD }}
+</button>
+
+<!-- ManageUsers -->
+<button class="sm:text-sm lg:text-base button text-left flex items-center dark:text-white" (click)="showManageUsersButtonList()"
+    [class.active]="showManageUsersMore">
+    <img src="../../assets/sidebar/mu-b.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mu mr-4 dark:invert"
+        [class.activeimg]="showManageUsersMore">{{ translation?.CLIENTAPPV2_DASHBOARD_MANAGEUSERS }}
+</button>
+
+<div *ngIf="showManageUsersMore === true" class="box inner-shadow show  bg-gray-100 dark:bg-neutral-700 shadow pt-2" >
+    <button class="sm:text-sm  button text-left flex items-center dark:text-white" (click)="routToSearchClients()"
+        [class.active]="searchClients">
+        <img src="../../assets/sidebar/user/search-user-b.png" (click)="routToSearchClients()"
+            class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert" [class.activeimg]="searchClients">
+        {{ translation?.CLIENTAPPV2_DASHBOARD_SEARCHCLIENTS }}
+    </button>
+
+    <button class="sm:text-sm  button text-left flex items-center dark:text-white" (click)="routToAddClient()"
+        [class.active]="addClients">
+        <img src="../../assets/sidebar/user/add-user.png" (click)="routToAddClient()"
+            class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert" [class.activeimg]="addClients">
+        {{ translation?.CLIENTAPPV2_DASHBOARD_ADDCLIENTS }}
+    </button>
+
+    <button class="sm:text-sm  button text-left flex items-center dark:text-white" (click)="routToSearchEmp()"
+        [class.active]="searchEmployees">
+        <img src="../../assets/sidebar/user/search-employye.png" (click)="routToSearchEmp()"
+            class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert" [class.activeimg]="searchEmployees">
+        {{ translation?.CLIENTAPPV2_DASHBOARD_SEARCHEMPLOYEES }}
+    </button>
+
+    <button class="sm:text-sm  button text-left flex items-center dark:text-white" (click)="routToAddemployee()"
+        [class.active]="addEmployees">
+        <img src="../../assets/sidebar/user/add-employees.png" (click)="routToAddemployee()"
+            class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert" [class.activeimg]="addEmployees">
+        {{ translation?.CLIENTAPPV2_DASHBOARD_ADDEMPLOYEES }}
+    </button>
+
+    <button class="sm:text-sm  button text-left flex items-center dark:text-white" (click)="routToUnSubUsers()"
+        [class.active]="unsubUsers">
+        <img src="../../assets/sidebar/user/unsub.png" (click)="routToUnSubUsers()"
+            class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert" [class.activeimg]="unsubUsers">
+        {{ translation?.CLIENTAPPV2_DASHBOARD_UNSUBCRIBEDUSERS }}
+    </button>
+
+    <button class="sm:text-sm  button text-left flex items-center dark:text-white" (click)="routToUDataImport()"
+        [class.active]="dataImport">
+        <img src="../../assets/sidebar/user/data-imp.png" (click)="routToUDataImport()"
+            class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert" [class.activeimg]="dataImport">
+        {{ translation?.CLIENTAPPV2_DASHBOARD_DATAIMPORT }}
+    </button>
+
+    <button class="sm:text-sm  button text-left flex items-center dark:text-white" (click)="routToProfileSettings()"
+        [class.active]="profileSettings">
+        <img src="../../../assets/setting.png" (click)="routToProfileSettings()"
+            class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert" [class.activeimg]="profileSettings">
+        {{ translation?.CLIENTAPPV2_DASHBOARD_PROFILESETTINGS }}
+    </button>
+</div>
+
+<!-- ManageContent -->
+<button class="sm:text-sm lg:text-base button  text-left flex items-center dark:text-white" (click)="showManageContentButtonList()"
+    [class.activecontent]="showManageContentMore">
+    <img src="../../assets/sidebar/mc-b.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+        [class.activecontentimg]="showManageContentMore">
+    {{ translation?.CLIENTAPPV2_DASHBOARD_MANAGECONTENT }}
+</button>
+
+<div *ngIf="showManageContentMore === true" class="box inner-shadow bg-gray-100 dark:bg-neutral-700 shadow pt-2 ">
+    <button class="sm:text-sm  button text-left flex items-center dark:text-white" (click)="routToWriteAnArticle()"
+        [class.active]="writeAnArticle">
+        <img src="../../assets/sidebar/content/write-b.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+            (click)="routToWriteAnArticle()" [class.activeimg]="writeAnArticle">
+        {{ translation?.CLIENTAPPV2_DASHBOARD_WRITEANARTICLE }}
+    </button>
+
+    <button class="sm:text-sm  button text-left flex items-center dark:text-white" (click)="routToManageArticle()"
+        [class.active]="manageAnArticle">
+        <img src="../../assets/sidebar/content/man-b.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+            (click)="routToManageArticle()" [class.activeimg]="manageAnArticle">
+        {{ translation?.CLIENTAPPV2_DASHBOARD_MANAGEARTICLES }}
+    </button>
+
+    <button class="sm:text-sm  button text-left flex items-center dark:text-white" (click)="routToSearchArticle()"
+        [class.active]="searchArticle">
+        <img src="../../assets/sidebar/content/ser-b4.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+            (click)="routToSearchArticle()" [class.activeimg]="searchArticle">
+        {{ translation?.CLIENTAPPV2_DASHBOARD_SEARCHARTICLES }}
+    </button>
+
+    <button class="sm:text-sm  button text-left flex items-center dark:text-white" (click)="routToProofNewsletters()"
+        [class.active]="proofNewsletter">
+        <img src="../../assets/sidebar/content/proof-b.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+            (click)="routToProofNewsletters()" [class.activeimg]="proofNewsletter">
+        {{ translation?.CLIENTAPPV2_DASHBOARD_PROOFNEWSLETTER }}
+    </button>
+</div>
+
+<!-- history -->
+<button class="sm:text-sm lg:text-base button text-left flex items-center dark:text-white" (click)="routToHistory()"
+    [class.active]="history">
+    <img src="../../assets/sidebar/history.png" (click)="routToHistory()"
+        class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert" [class.activeimg]="history">
+    {{ translation?.CLIENTAPPV2_DASHBOARD_HISTORY }}
+</button>
+
+<button class="sm:text-sm lg:text-base button text-left flex items-center dark:text-white" (click)="routToSocial()"
+    [class.active]="socialMedia">
+    <img src="../../assets/sidebar/social.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+        (click)="routToSocial()" [class.activeimg]="socialMedia">
+    {{ translation?.CLIENTAPPV2_DASHBOARD_SOCIALMEDIA }}
+</button>
+
+<button class="sm:text-sm lg:text-base button text-left flex items-center dark:text-white" (click)="routToReports()"
+    [class.active]="reports">
+    <img src="../../assets/sidebar/reports.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+        (click)="routToReports()" [class.activeimg]="reports">
+    {{ translation?.CLIENTAPPV2_DASHBOARD_REPORTS }}
+</button>
+
+<button class="sm:text-sm lg:text-base button text-left flex items-center dark:text-white" (click)="routToConnection()"
+    [class.active]="connection">
+    <img src="../../assets/sidebar/share.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+        (click)="routToConnection()" [class.activeimg]="connection">
+    {{ translation?.CLIENTAPPV2_DASHBOARD_CONNECTIONS }}
+</button>
+
+<button class="sm:text-sm lg:text-base button text-left flex items-center dark:text-white" [class.active]="infomailer">
+    <img src="../../assets/sidebar/mailer.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+        [class.activeimg]="infomailer">
+    {{ translation?.CLIENTAPPV2_DASHBOARD_INFOMAILER }}
+</button>
+
+<button class="sm:text-sm lg:text-base button text-left flex items-center dark:text-white" [class.active]="fileAndsign">
+    <img src="../../assets/sidebar/file.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+        [class.activeimg]="fileAndsign">
+    {{ translation?.CLIENTAPPV2_DASHBOARD_FILE_AND_SIGN }}
+</button>
+
+<button class="sm:text-sm lg:text-base button text-left flex items-center dark:text-white" [class.active]="infolearning">
+    <img src="../../assets/sidebar/learn.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+        [class.activeimg]="infolearning">
+    {{ translation?.CLIENTAPPV2_DASHBOARD_INFOLEARNING }}
+</button>
+
+<button class="sm:text-sm lg:text-base button text-left flex items-center dark:text-white" [class.active]="infoWizers">
+    <img src="../../assets/sidebar/wijzer.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+        [class.activeimg]="infoWizers">
+    {{ translation?.CLIENTAPPV2_DASHBOARD_INFOWIJZERS }}
+</button>
+
+
+
+<!-- <button class="sm:text-sm lg:text-base button text-left flex items-center"
+[class.active]="dashboard">
+    <img src="../../assets/sidebar/reports.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+    [class.activeimg]="dashboard">
+    Reports
+</button> -->
+
+<button class="sm:text-sm lg:text-base button text-left flex items-center" [class.active]="reportAProblem">
+    <img src="../../assets/sidebar/bug.png" class="sm:mr-2 w-5 h-5 lg:mr-4  mr-4 dark:invert"
+        [class.activeimg]="reportAProblem">
+    {{ translation?.CLIENTAPPV2_DASHBOARD_REPORTAPROBLEM }}
+</button>

@@ -1,0 +1,77 @@
+.btn:hover {
+  background-color: #cc000026;
+  /* Use your desired hover background color */
+  color: #cc0000;
+  /*rgb(248, 212, 212)ur desired hover text color */
+  border-left: 4px solid #CC0000;
+  /* box-shadow: 0 4px 6px rgba(251, 45, 45, 0.777); This adds a shadow */
+}
+
+.btn:hover img {
+  filter: brightness(80%) saturate(100%) invert(30%) sepia(82%) saturate(900%) hue-rotate(315deg) contrast(100%);
+}
+
+.activecli {
+  border-left: 4px solid #CC0000;
+  color: #cc0000;
+  /* Use your desired text color */
+}
+
+.activecliimg {
+  filter: brightness(80%) saturate(100%) invert(30%) sepia(82%) saturate(900%) hue-rotate(315deg) contrast(100%);
+}
+
+.activeemp {
+  border-left: 4px solid #CC0000;
+  color: #cc0000;
+  /* Use your desired text color */
+}
+
+.activeempimg {
+  filter: brightness(80%) saturate(100%) invert(30%) sepia(82%) saturate(900%) hue-rotate(315deg) contrast(100%);
+}
+
+.activeart {
+  border-left: 4px solid #CC0000;
+  color: #cc0000;
+  /* Use your desired text color */
+}
+
+.activeimgart {
+  filter: brightness(80%) saturate(100%) invert(30%) sepia(82%) saturate(900%) hue-rotate(315deg) contrast(100%);
+}
+
+.noBorder-containerdashboard {
+  border: transparent;
+}
+
+
+@media screen and (max-width: 730px) {
+
+  .sercli {
+    padding-left: 15px;
+  }
+
+  .headerdiv,
+  .headerbtn,
+  .ava {
+    display: block;
+  }
+
+  .headerbtn div {
+    margin-bottom: 10px;
+  }
+
+  .latesttable,
+  .pendingtable,
+  .errortable {
+    overflow-y: auto;
+  }
+
+  .imgpanel {
+    right: 2rem;
+    height: fit-content;
+    width: fit-content;
+  }
+
+}

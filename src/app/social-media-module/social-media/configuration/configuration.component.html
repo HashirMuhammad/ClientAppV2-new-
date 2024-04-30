@@ -1,0 +1,332 @@
+<div class="sercli pb-4 flex-grow h-full">
+    <div class=" mb-5 mt-3 mr-7 rounded-3xl">
+        <label class="headerdiv flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl tracking-wider dark:text-white">{{
+            translation?.CLIENTAPPV2_SOCIAL_MEDIA_CONFIGURATION }}</label>
+        <div class="flex justify-center items-center p-4">
+            <div class="">
+                <label class="mt-5 text-lg dark:text-white">{{
+                    translation?.CLIENTAPPV2_SOCIAL_MEDIA_CONFIGURATIONDETAILS }}</label>
+
+                <div class="mt-5">
+                    <label class="text-gray-500 text-sm dark:text-white">{{
+                        translation?.CLIENTAPPV2_SOCIAL_MEDIA_FACEBOOKLOGOUT }}.</label>
+                </div>
+
+                <!-- linkedin  -->
+                <div class=" mt-5 border border-gray-400 rounded-lg" [ngClass]="{'bg-gray-200': limkedinshowDiv}">
+                    <div class="flex " (click)="toggleAdditionalDivlinkedin()">
+                        <div class="flex ml-3">
+                            <img src="../../../assets/social-media/linkdien.png"
+                                class="w-fit h-fit mr-3 border-t-4 pt-3 pb-3" style="border-color: #0088cc" />
+                            <label class=" mt-4" style="color: #0088cc;">{{
+                                translation?.CLIENTAPPV2_SOCIAL_MEDIA_LINKEDIN }}</label>
+                        </div>
+
+                        <div class="ml-auto">
+                            <!-- <label class="text-gray-500 text-sm mr-3">Expiry: {{ date }}</label> -->
+                            <button class="border rounded-lg py-1 px-3 mt-2 mr-3"
+                                style="border-color: #0088cc; color: #0088cc;">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_AUTHORIZELINKEDIN }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div *ngIf="limkedinshowDiv">
+                        <div *ngFor="let record of records; let i = index"
+                            class="blockdiv flex p-2 border-t border-slate-300" [class.mt-4]="i !== 0">
+                            <div class="blockdiv flex mt-1">
+                                <div class="mt-2">
+                                    <img [src]="record.avatar" class="w-fit h-fit" />
+                                </div>
+                                <div class="ml-3 mt-2">
+                                    <label>{{ record.label }}</label><br />
+                                    <label class="text-gray-500 text-sm">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_EXPIRY
+                                        }}:&nbsp;{{ record.date }}</label><br />
+
+                                    <kendo-switch class="scale-75 ml-auto" size="small" class="scale-75"
+                                        onLabel="&nbsp;" offLabel="&nbsp;"
+                                        [(ngModel)]="record.isChecked"></kendo-switch>
+
+                                    <!-- <div class="switch-container">
+                                        <input [(ngModel)]="record.isChecked" type="checkbox" id="toggleSwitch1" class="hidden">
+                                        <label for="toggleSwitch1" class="switch1"></label>
+                                    </div> -->
+
+                                    <!-- <label  class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" [id]="'toggle-' + record.id" class="sr-only" [(ngModel)]="record.isChecked">
+                                        <div class="toggle-bg  border-2  rounded-full"></div>
+                                      </label> -->
+
+                                </div>
+                            </div>
+
+                            <div class="flex-grow ml-5 mt-2">
+                                <div *ngFor="let page of record.page;"
+                                    class="inline-flex w-fit border border-slate-200 bg-slate-200 rounded-lg py-1 m-1">
+                                    <div class="flex px-1 border-l-2 border-black">
+                                        <span class="mr-2 text-sm ">{{page.pagename}}</span>
+                                        <kendo-switch class="scale-75 ml-auto" onLabel="&nbsp;" offLabel="&nbsp;"
+                                            [(ngModel)]="page.pageChecked"></kendo-switch>
+                                    </div>
+                                    <!-- <div class="flex px-1 border-l-2 border-black" >
+                                        <span class="mr-2 text-sm ">{{page.pagename}}</span>
+
+                                    <label class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" [id]="'toggle-' + page.id" class="sr-only" [(ngModel)]="page.pageChecked">
+                                        <span class="toggle-bg  border-2 rounded-full"></span>
+                                      </label>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <div class="flex ml-auto mr-5 mt-4">
+                                <div class="ml-auto mr-4">
+                                    <div class="">
+                                        <button class="border border-slate-300 px-2 py-1 rounded-lg text-white text-sm"
+                                            style="background-color: #0088cc">{{
+                                            translation?.CLIENTAPPV2_SOCIAL_MEDIA_REAUTHORIZE }}</button>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button
+                                            class="border border-slate-300 px-2 py-1 rounded-lg bg-slate-200 text-sm">{{
+                                            translation?.CLIENTAPPV2_SOCIAL_MEDIA_UNAUTHORIZE }}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- fb  -->
+                <div class="mt-5 border border-gray-400 rounded-lg " [ngClass]="{'bg-gray-200': fbshowDiv}">
+                    <div class="flex" (click)="toggleAdditionalDivfb()">
+                        <div class="flex ml-3">
+                            <img src="../../../assets/social-media/facebook.png"
+                                class="w-fit h-fit mr-3 border-t-4 pt-3 pb-3" style="border-color: #3d5499" />
+                            <label class=" mt-4" style="color: #3d5499;">Facebook</label>
+                        </div>
+
+                        <div class="ml-auto">
+                            <!-- <label class="text-gray-500 text-sm mr-3">Expiry: {{ date }}</label> -->
+                            <button class="border rounded-lg py-1 px-2 mt-2 mr-3"
+                                style="border-color: #3d5499; color: #3d5499;">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_AUTHORIZEFACEBOOK }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div *ngIf="fbshowDiv">
+                        <div *ngFor="let record of records; let i = index"
+                            class="blockdiv flex p-2 border-t border-slate-300" [class.mt-4]="i !== 0">
+                            <div class="blockdiv flex mt-1">
+                                <div class="mt-2">
+                                    <img [src]="record.avatar" class="w-fit h-fit" />
+                                </div>
+                                <div class="ml-3 mt-2">
+                                    <label>{{ record.label }}</label><br />
+                                    <label class="text-gray-500 text-sm">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_EXPIRY
+                                        }}:&nbsp;{{ record.date }}</label><br />
+                                    <kendo-switch size="small" class="scale-75" onLabel="&nbsp;" offLabel="&nbsp;"
+                                        [(ngModel)]="record.isChecked"></kendo-switch>
+                                    <!-- <label  class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" [id]="'toggle-' + record.id" class="sr-only" [(ngModel)]="record.isChecked">
+                                        <div class="toggle-bg  border-2  rounded-full"></div>
+                                      </label> -->
+                                </div>
+                            </div>
+
+                            <div class="flex-grow ml-5 mt-2">
+                                <div *ngFor="let page of record.page;"
+                                    class="inline-flex w-fit border bg-slate-200 border-slate-200 rounded-lg py-1 m-1">
+                                    <div class="flex px-1 border-l-2 border-black">
+                                        <span class="mr-2 text-sm">{{page.pagename}}</span>
+                                        <kendo-switch size="small" class="scale-75 ml-auto" onLabel="&nbsp;"
+                                            offLabel="&nbsp;" [(ngModel)]="page.pageChecked"></kendo-switch>
+                                    </div>
+                                    <!-- <div class="flex px-1 border-l-2 border-black" >
+                                        <span class="mr-2 text-sm ">{{page.pagename}}</span>
+
+                                    <label class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" [id]="'toggle-' + page.id" class="sr-only" [(ngModel)]="page.pageChecked">
+                                        <span class="toggle-bg  border-2 rounded-full"></span>
+                                      </label>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <div class="flex ml-auto mr-5 mt-4">
+                                <div class="ml-auto mr-4">
+                                    <div class="">
+                                        <button class="border border-slate-300 px-2 py-1 rounded-lg text-white text-sm"
+                                            style="background-color: #3d5499">{{
+                                            translation?.CLIENTAPPV2_SOCIAL_MEDIA_REAUTHORIZE }}</button>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button
+                                            class="border border-slate-300 px-2 py-1 rounded-lg bg-slate-200 text-sm">{{
+                                            translation?.CLIENTAPPV2_SOCIAL_MEDIA_UNAUTHORIZE }}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- instagram  -->
+                <div class="mt-5 border border-gray-400 rounded-lg" [ngClass]="{'bg-gray-200': instashowDiv}">
+                    <div class="flex " (click)="toggleAdditionalDivinsta()">
+                        <div class="flex ml-3">
+                            <img src="../../../assets/social-media/instagram.png"
+                                class="w-fit h-fit mr-3 border-t-4 pt-3 pb-3" style="border-color: #9629cc" />
+                            <label class=" mt-4" style="color: #9629cc">Instagram</label>
+                        </div>
+
+                        <div class="ml-auto">
+                            <!-- <label class="text-gray-500 text-sm mr-3">Expiry: {{ date }}</label> -->
+                            <button class="border rounded-lg py-1 px-2 mt-2 mr-3"
+                                style="border-color: #9629cc; color: #9629cc;">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_AUTHORIZEINSTAGRAM }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div *ngIf="instashowDiv">
+                        <div *ngFor="let record of records; let i = index"
+                            class="blockdiv flex p-2 border-t border-slate-300" [class.mt-4]="i !== 0">
+                            <div class="blockdiv flex mt-1">
+                                <div class="mt-2">
+                                    <img [src]="record.avatar" class="w-fit h-fit" />
+                                </div>
+                                <div class="ml-3 mt-2">
+                                    <label>{{ record.label }}</label><br />
+                                    <label class="text-gray-500 text-sm">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_EXPIRY
+                                        }}:&nbsp;{{ record.date }}</label><br />
+                                    <kendo-switch size="small" class="scale-75" onLabel="&nbsp;" offLabel="&nbsp;"
+                                        [(ngModel)]="record.isChecked"></kendo-switch>
+                                    <!-- <label  class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" [id]="'toggle-' + record.id" class="sr-only" [(ngModel)]="record.isChecked">
+                                        <div class="toggle-bg  border-2  rounded-full"></div>
+                                      </label> -->
+                                </div>
+                            </div>
+
+                            <div class="flex-grow ml-5 mt-2">
+                                <div *ngFor="let page of record.page;"
+                                    class="inline-flex w-fit border bg-slate-200 border-slate-200 rounded-lg py-1 m-1">
+                                    <div class="flex px-1 border-l-2 border-black">
+                                        <span class="mr-2 text-sm">{{page.pagename}}</span>
+                                        <kendo-switch size="small" class="scale-75 ml-auto" onLabel="&nbsp;"
+                                            offLabel="&nbsp;" [(ngModel)]="page.pageChecked"></kendo-switch>
+                                    </div>
+                                    <!-- <div class="flex px-1 border-l-2 border-black" >
+                                        <span class="mr-2 text-sm ">{{page.pagename}}</span>
+
+                                    <label class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" [id]="'toggle-' + page.id" class="sr-only" [(ngModel)]="page.pageChecked">
+                                        <span class="toggle-bg  border-2 rounded-full"></span>
+                                      </label>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <div class="flex ml-auto mr-2 mt-4">
+                                <div class="ml-auto mr-4">
+                                    <div class="">
+                                        <button class="border border-slate-300 px-2 py-1 rounded-lg text-white text-sm"
+                                            style="background-color: #9629cc">{{
+                                            translation?.CLIENTAPPV2_SOCIAL_MEDIA_REAUTHORIZE }}</button>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button
+                                            class="border border-slate-300 px-2 py-1 rounded-lg bg-slate-200 text-sm">{{
+                                            translation?.CLIENTAPPV2_SOCIAL_MEDIA_UNAUTHORIZE }}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- twitter  -->
+                <div class=" mt-5 border border-gray-400 rounded-lg" [ngClass]="{'bg-gray-200': twittershowDiv}">
+                    <div class="flex" (click)="toggleAdditionalDivtwitter()">
+                        <div class="flex ml-3">
+                            <img src="../../../assets/social-media/twitter.png"
+                                class="w-fit h-fit mr-3 border-t-4 pt-3 pb-3" style="border-color: black" />
+                            <label class="text-black mt-4">Twitter</label>
+                        </div>
+
+                        <div class="ml-auto">
+                            <label></label>
+                            <button class="border border-black rounded-lg py-1 px-5 mt-2 mr-3">
+                                {{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_AUTHORIZETWITTER }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div *ngIf="twittershowDiv">
+                        <div *ngFor="let record of records; let i = index"
+                            class="blockdiv flex p-2 border-t border-slate-300" [class.mt-4]="i !== 0">
+                            <div class="blockdiv flex mt-1">
+                                <div class="mt-2">
+                                    <img [src]="record.avatar" class="w-fit h-fit" />
+                                </div>
+                                <div class="ml-3 mt-2">
+                                    <label>{{ record.label }}</label><br />
+                                    <label class="text-gray-500 text-sm">{{ translation?.CLIENTAPPV2_SOCIAL_MEDIA_EXPIRY
+                                        }}:&nbsp;{{ record.date }}</label><br />
+                                    <kendo-switch size="small" class="scale-75" onLabel="&nbsp;" offLabel="&nbsp;"
+                                        [(ngModel)]="record.isChecked"></kendo-switch>
+                                    <!-- <label  class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" [id]="'toggle-' + record.id" class="sr-only" [(ngModel)]="record.isChecked">
+                                        <div class="toggle-bg  border-2  rounded-full"></div>
+                                      </label> -->
+                                </div>
+                            </div>
+
+                            <div class="flex-grow ml-5 mt-2">
+                                <div *ngFor="let page of record.page;"
+                                    class="inline-flex w-fit border bg-slate-200 border-slate-200 rounded-lg py-1 m-1">
+                                    <div class="flex px-1 border-l-2 border-black">
+                                        <span class="mr-2 text-sm">{{page.pagename}}</span>
+                                        <kendo-switch size="small" class="scale-75 ml-auto" onLabel="&nbsp;"
+                                            offLabel="&nbsp;" [(ngModel)]="page.pageChecked"></kendo-switch>
+                                    </div>
+                                    <!-- <div class="flex px-1 border-l-2 border-black" >
+                                        <span class="mr-2 text-sm ">{{page.pagename}}</span>
+
+                                    <label class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" [id]="'toggle-' + page.id" class="sr-only" [(ngModel)]="page.pageChecked">
+                                        <span class="toggle-bg  border-2 rounded-full"></span>
+                                      </label>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <div class="flex ml-auto mr-2 mt-4">
+                                <div class="ml-auto mr-4">
+                                    <div class="">
+                                        <button
+                                            class="border bg-black border-slate-300 px-2 py-1 rounded-lg text-white text-sm">{{
+                                            translation?.CLIENTAPPV2_SOCIAL_MEDIA_REAUTHORIZE }}</button>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button
+                                            class="border border-slate-300 px-2 py-1 rounded-lg bg-slate-200 text-sm">{{
+                                            translation?.CLIENTAPPV2_SOCIAL_MEDIA_UNAUTHORIZE }}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

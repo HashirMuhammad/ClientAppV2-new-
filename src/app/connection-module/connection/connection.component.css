@@ -1,0 +1,103 @@
+.avatar {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: black;
+  text-align: center;
+  font-size: 16px;
+  line-height: 22px;
+  /* Adjust line height for vertical centering */
+}
+
+/* sorting filter ------------------------------------ */
+.activeidimg {
+  filter: brightness(80%) saturate(100%) invert(30%) sepia(82%) saturate(900%) hue-rotate(315deg) contrast(100%);
+}
+
+@media screen and (max-width: 730px) {
+  .divheader {
+    width: 150px;
+  }
+
+  .addConbtn {
+    margin-bottom: 5px;
+  }
+
+  .sercli {
+    padding-left: 17px;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    padding-top: 10px;
+    font-size: small;
+    overflow-x: auto;
+  }
+
+  .table-container td img {
+    width: 200%;
+    height: 200%;
+  }
+
+  .imgpanel {
+    right: 2rem;
+    height: fit-content;
+    width: fit-content;
+  }
+
+  .ava.flex {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ava.flex img {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+
+  .ava.flex span {
+    font-size: 14px;
+    /* Adjust the font size as needed for mobile */
+  }
+
+  .drpbtn {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: black;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    align-self: start;
+    width: fit-content;
+    padding: auto;
+  }
+
+  .pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pagination-controls button {
+    font-size: 14px;
+    /* Adjust the font size as needed */
+  }
+
+  .pagination-jump input {
+    margin-top: 4px;
+    width: 50px;
+    /* Adjust the width as needed */
+    margin-right: 0;
+    /* Remove margin */
+  }
+
+  .butnheader {
+    display: block;
+    margin-right: 0px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}

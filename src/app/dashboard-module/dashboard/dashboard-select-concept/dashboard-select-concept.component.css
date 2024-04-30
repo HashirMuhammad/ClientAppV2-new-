@@ -1,0 +1,16 @@
+@media screen and (max-width: 730px) {
+    .sercli {
+      padding: 6px;
+    }
+  
+    .table-container {
+      border-collapse: collapse;
+      padding-top: 10px;
+      font-size: small;
+      overflow-x: auto;
+    }
+  
+    .table-container td label {
+      font-size: small;
+    }
+  }

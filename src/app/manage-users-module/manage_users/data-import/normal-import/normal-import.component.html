@@ -1,0 +1,553 @@
+<div class="sercli pb-4 flex-grow h-full">
+    <div class="shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black">
+        <label class="flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl dark:text-white dark:border-neutral-700">{{
+            translation?.CLIENTAPPV2_DATA_IMPORT_DATAIMPORTSTEPS }}</label>
+        <div>
+            <div class="flex items-center justify-center mt-5">
+                <kendo-stepper #stepper [steps]="steps" [linear]="false" stepType="full" [style.width.px]="1000"
+                    [style.marginBottom.px]="50" (currentStepChange)="changeStep($event)" [(currentStep)]="currentStep"
+                    class=" dark:bg-black dark:text-white">
+                </kendo-stepper>
+            </div>
+
+            <div *ngIf="currentStep == 0" class="px-6 mt-5 pb-6">
+                <div class="">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_DATA_IMPORT_UPLOADFILE }}</label><br />
+                    <div>
+                        <kendo-upload [saveUrl]="uploadSaveUrl" [restrictions]="myRestrictions" [autoUpload]="false"
+                            [batch]="false" [multiple]="false" [saveUrl]="uploadSaveUrl" [removeUrl]="uploadRemoveUrl"
+                            (upload)="onUpload($event)" (error)="onError($event)" [actionsLayout]="'start'"
+                            class=" dark:bg-black">
+                        </kendo-upload>
+                    </div>
+                </div>
+
+                <div class="flex-grow mb-4 mt-5 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_DATA_IMPORT_EMAILADDRESS }}</label><br />
+                    <input [(ngModel)]="emailAddressInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                </div>
+
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_SPLITTER }}</label><br />
+                            <select [(ngModel)]="SplitterInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_SELECT }}</option>
+                                <option class=" dark:text-white" value="Semicolon">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_SEMICOLON }}</option>
+                                <option class=" dark:text-white" value="Comma">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_COMMA }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_TYPE }}</label><br />
+                            <select [(ngModel)]="TypeInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_SELECT }}</option>
+                                <option class=" dark:text-white" value="Client">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_CLIENT }}</option>
+                                <option class=" dark:text-white" value="Employee">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_EMPLOYEE }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex mt-5">
+                    <button class="bg-white border p-1.5 pl-5 pr-5 mr-0 rounded-lg flex items-center text-white ml-auto"
+                        style="background-color: #29CCB1;" (click)="next()">
+                        {{ translation?.CLIENTAPPV2_DATA_IMPORT_NEXT }}
+                    </button>
+                </div>
+            </div>
+
+            <div *ngIf="currentStep == 1" class="px-6 mt-5 pb-6">
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_MODE }}</label><br />
+                            <select [(ngModel)]="ModeInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_SELECT }}</option>
+                                <option class=" dark:text-white" value="Add new data only">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_ADDNEWDATAONLY }}</option>
+                                <option class=" dark:text-white" value="Update existing data only">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_UPDATEEXISTINGDATAONLY }}</option>
+                                <option class=" dark:text-white" value="Add new and update existing data">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_ADDNEWANDUPDATEEXISTINGDATA }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_REFERENCEFIELD }}</label><br />
+                            <select [(ngModel)]="ReferenceFieldInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_SELECT }}</option>
+                                <option class=" dark:text-white" value="Client number">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_CLIENTNUMBER }}</option>
+                                <option class=" dark:text-white" value="Email Address">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_EMAILADDRESS }}</option>
+                                <option class=" dark:text-white" value="House No. and Postcode">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_HOUSENOANDPOSTCODE }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 space-y-3">
+                    <div class="flex items-start">
+                        <input [(ngModel)]="registeredUsersInput" value="registeredUsers" type="checkbox"
+                            class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                        <label class="text-base dark:text-white">{{
+                            translation?.CLIENTAPPV2_DATA_IMPORT_IGNOREUSERSREGISTEREDVIATHEWEBSITE }}</label>
+                    </div>
+
+                    <div class="flex items-start">
+                        <input [(ngModel)]="deleteUsersInput" value="deleteUsers" type="checkbox"
+                            class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                        <label class="text-base dark:text-white">{{
+                            translation?.CLIENTAPPV2_DATA_IMPORT_DELETEUSERSNOTINCURRENTFILE }}</label>
+                    </div>
+
+                    <div class="flex items-start">
+                        <input [(ngModel)]="appendCommaInput" value="appendComma" type="checkbox"
+                            class="border-gray-400 mr-4 dark:bg-black" size="large" kendoCheckBox #large />
+                        <label class="text-base dark:text-white">{{
+                            translation?.CLIENTAPPV2_DATA_IMPORT_APPENDCOMMATOCUSTOMGREETINGS }}</label>
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <kendo-multiselect [checkboxes]="true" [autoClose]="false" [data]="listItems" [(ngModel)]="value"
+                        class="p-1.5 rounded-lg border-gray-400 dark:bg-black dark:text-white"></kendo-multiselect>
+                </div>
+
+                <div class="flex mt-5">
+                    <button class="bg-white border p-1.5 pl-5 pr-5 mr-0 rounded-lg flex items-center text-white ml-auto"
+                        style="background-color: #29CCB1;" (click)="next()">
+                        {{ translation?.CLIENTAPPV2_DATA_IMPORT_NEXT }}
+                    </button>
+                </div>
+            </div>
+
+            <div *ngIf="currentStep == 2" class="px-6 mt-5 pb-6">
+                <div class="border-t border-slate-200 pb-2 dark:border-neutral-700"></div>
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_CLIENTNUMBER }}</label><br />
+                            <select [(ngModel)]="ClientNumberInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_COMPANYNAME }}</label><br />
+                            <select [(ngModel)]="CompanyNameInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option class=" dark:text-white" value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option class=" dark:text-white" value="(set all to empty)">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY }}</option>
+                                <option class=" dark:text-white" value="Name,Email">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_TITLE }}</label><br />
+                            <select [(ngModel)]="TitleInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option class=" dark:text-white" value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option class=" dark:text-white" value="(set all to empty)">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY }}</option>
+                                <option class=" dark:text-white" value="Name,Email">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_INITIALS }}</label><br />
+                            <select [(ngModel)]="InitialsInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option class=" dark:text-white" value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option class=" dark:text-white" value="(set all to empty)">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY }}</option>
+                                <option class=" dark:text-white" value="Name,Email">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_SURNAME }}</label><br />
+                            <select [(ngModel)]="SurnameInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option class=" dark:text-white" value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option class=" dark:text-white" value="Name,Email">{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_EMAILADDRESS }}</label><br />
+                            <select [(ngModel)]="EmailAddressSelectInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_CUSTOMGREETINGS }}</label><br />
+                            <select [(ngModel)]="CustomGreetingsInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_GENDER }}</label><br />
+                            <select [(ngModel)]="GenderInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==== -->
+                <div class="border-t border-slate-200 pb-2 mt-12 dark:border-neutral-700"></div>
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_ADDRESS }}1</label><br />
+                            <select [(ngModel)]="Address1Input"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_ADDRESS }}2</label><br />
+                            <select [(ngModel)]="Address2Input"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_ADDRESS }}3</label><br />
+                            <select [(ngModel)]="Address3Input"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_ADDRESS }}4</label><br />
+                            <select [(ngModel)]="Address4Input"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_CITY }}</label><br />
+                            <select [(ngModel)]="CityInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_COUNTRY }}</label><br />
+                            <select [(ngModel)]="CountryInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_POSTCODE }}</label><br />
+                            <select [(ngModel)]="PostcodeInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+
+                <!-- ==== -->
+                <div class="border-t border-slate-200 pb-2 mt-12 dark:border-neutral-700"></div>
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_PROFILE }}</label><br />
+                            <select [(ngModel)]="ProfileInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_BIKCODE }}</label><br />
+                            <select [(ngModel)]="BIKCodeInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_EMAILNEWSLETTER }}</label><br />
+                            <select [(ngModel)]="HaveEmailNewsletterInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="female">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOYES }}</option>
+                                <option value="female">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTONO }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_NAVISONCODE }}</label><br />
+                            <select [(ngModel)]="NavisonCodeInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_PRINTEDNEWSLETTER }}</label><br />
+                            <select [(ngModel)]="PrintedNewsletterInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="female">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOYES }}</option>
+                                <option value="female">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTONO }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ====  -->
+                <div class="border-t border-slate-200 pb-2 mt-4 dark:border-neutral-700"></div>
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_USERNAME }}</label><br />
+                            <select [(ngModel)]="UserNameInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_PASSWORD }}</label><br />
+                            <select [(ngModel)]="PasswordInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==== -->
+                <div class="border-t border-slate-200 pb-2 mt-12 dark:border-neutral-700"></div>
+                <div class="xl:grid xl:grid-cols-2 mt-5">
+                    <div>
+                        <div class="flex-grow lg:mr-7 lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_ACCOUNTMANAGER }}</label><br />
+                            <select [(ngModel)]="AccountManagerInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex-grow lg:mb-0">
+                            <label class="text-base font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_DATA_IMPORT_TAGS }}</label><br />
+                            <select [(ngModel)]="TagsInput"
+                                class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                                <option value="-(do not update column)-" selected>{{
+                                    translation?.CLIENTAPPV2_DATA_IMPORT_DONOTUPDATECOLUMN }}</option>
+                                <option value="(set all to empty)">{{ translation?.CLIENTAPPV2_DATA_IMPORT_SETALLTOEMPTY
+                                    }}</option>
+                                <option value="Name,Email">{{ translation?.CLIENTAPPV2_DATA_IMPORT_NAMEEMAIL }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-200 pb-2 mt-12 dark:border-neutral-700"></div>
+                <div class="mt-5 flex">
+                    <div class="ml-auto flex">
+                        <button class="pl-4 pr-4 p-2 rounded-lg mr-4 sm:mt-2" style="background-color: #F0F2F7;">
+                            {{ translation?.CLIENTAPPV2_DATA_IMPORT_BACK }}</button>
+
+                        <button
+                            class="border bg-red-500 text-white border-gray-300  rounded-lg p-1.5 pl-3 pr-3 mr-4 sm:mt-2">{{
+                            translation?.CLIENTAPPV2_DATA_IMPORT_RESET }}</button>
+
+                        <button
+                            class="bg-white border p-1.5 pl-3 pr-3 mr-0 rounded-lg flex items-center text-white sm:mt-2"
+                            style="background-color: #29CCB1;">{{ translation?.CLIENTAPPV2_DATA_IMPORT_ANALYSEIMPORT
+                            }}</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

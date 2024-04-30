@@ -1,0 +1,378 @@
+<div class="sercli pb-4 flex-grow h-full">
+    <div class="shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black">
+
+        <label class="flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl dark:text-white dark:border-neutral-700">{{
+            translation?.CLIENTAPPV2_SEARCHCLIENTS_HISTORY }}</label>
+
+        <div class="xl:flex lg:flex flex-grow">
+
+            <!-- filters -->
+            <div *ngIf="selectedFiltersToogle"
+                class=" border-gray-300 2xl:border-b-transparent sm:border-b  lg:border-b-transparent pl-4">
+
+                <div class="flex pl-4 pr-4 pt-4 pb-2 flex-grow">
+                    <label class="fltrlbl ml-4 sm:text-sm sm:ml-2.5 sm:pr-0 lg:-ml-3 lg:text-base xl:text-lg"
+                        style="color: #999999;">{{ translation?.CLIENTAPPV2_SEARCHCLIENTS_FILTERS }}</label>
+                    <img src="../../../assets/manage_clients/filter.png" class="ml-auto w-5 h-5 sm:w-4 sm:h-4">
+                </div>
+
+                <!-- Display applied filters -->
+                <div class="xl:w-52">
+                    <div *ngFor="let filter of selectedFilters; let i = index" class="applied-filter flex mb-1.5">
+                        <div>
+                            <button class="border-2 border-slate-800 py-0 px-1 rounded-full text-xs"
+                                (click)="removeFilter(i)">&#10003;</button>
+
+                        </div>
+                        <div class="ml-4">
+                            <p class=" text-sm filter dark:text-white">{{ filter.option }}=({{ filter.value }})</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="flex-grow p-3">
+                <div class=" lg:flex flex-grow">
+
+                    <div class="ml-3 mt-2">
+
+                    </div>
+                    <div class="input sm:flex md:pl-3 lg:pl-0 xl:pl-0">
+                        <!-- search input -->
+                        <div class="search">
+                            <label class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                                translation?.CLIENTAPPV2_SEARCHCLIENTS_SEARCH }}</label><br />
+
+                            <select [(ngModel)]="selectedOption" (ngModelChange)="selectedOptionchange()"
+                                class="search bg-white border border-gray-400 rounded-lg p-2.5 pr-24 mt-2 sm:pr-24 md:pr-40 lg:pr-16  flex-grow dark:bg-black dark:text-white"
+                                style=" overflow-y: auto;">
+                                <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                                    translation?.CLIENTAPPV2_SEARCHCLIENTS_SELECT }}</option>
+                                <option class=" dark:text-white" *ngFor="let option of searchoptions"
+                                    [value]="option.value">{{
+                                    option.title }}</option>
+                            </select>
+                        </div>
+
+                        <!-- value input -->
+                        <div class="value ml-5 flex-grow">
+
+                            <div
+                                *ngIf="selectedOption === '' || selectedOption === 'ArticletID' || selectedOption === 'Number' || selectedOption === 'Title' ">
+                                <label class="2xl:text-base xl:text-sm lg:text-sm font-medium"
+                                    style="color: #CC0000;">{{ translation?.CLIENTAPPV2_SEARCHCLIENTS_VALUE
+                                    }}</label><br />
+                                <input [(ngModel)]="enteredValue" type="text" placeholder="Enter Here..."
+                                    class="my-input bg-white border border-gray-400 rounded-lg p-2 pr-10 lg:pr-0 xl:pr-3  mt-2 flex-grow dark:bg-black dark:text-white">
+                            </div>
+
+                            <div
+                                *ngIf="selectedOption == 'Concept' || selectedOption == 'Category' || selectedOption == 'Character' || selectedOption == 'Subject' || selectedOption == 'Agency' || selectedOption == 'Qualification' || selectedOption == 'SendDate'">
+
+                                <label *ngIf="selectedOption == 'Concept'"
+                                    class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                                    translation?.CLIENTAPPV2_SEARCHCLIENTS_CONCEPT }}</label>
+                                <label *ngIf="selectedOption == 'Category'"
+                                    class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                                    translation?.CLIENTAPPV2_SEARCHCLIENTS_CATEGORY }}</label>
+                                <label *ngIf="selectedOption == 'Character'"
+                                    class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                                    translation?.CLIENTAPPV2_SEARCHCLIENTS_CHARACTER }}</label>
+                                <label *ngIf="selectedOption == 'Subject'"
+                                    class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                                    translation?.CLIENTAPPV2_SEARCHCLIENTS_SUBJECT }}</label>
+                                <label *ngIf="selectedOption == 'Agency'"
+                                    class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                                    translation?.CLIENTAPPV2_SEARCHCLIENTS_AGENCY }}</label>
+                                <label *ngIf="selectedOption == 'Qualification'"
+                                    class="2xl:text-base xl:text-sm lg:text-sm font-medium" style="color: #CC0000;">{{
+                                    translation?.CLIENTAPPV2_SEARCHCLIENTS_QUALIFICATION }}</label>
+
+                                <div *ngIf="selectedOption == 'Concept'">
+                                    <select [(ngModel)]="enteredValue"
+                                        class="search bg-white border border-gray-400 rounded-lg p-2.5 mt-2 flex-grow w-52 dark:bg-black dark:text-white"
+                                        style=" overflow-y: auto;">
+                                        <option class=" dark:text-white" value="" disabled selected>{{
+                                            translation?.CLIENTAPPV2_SEARCHCLIENTS_SELECT }}</option>
+                                        <option class=" dark:text-white" *ngFor="let value of ConceptValue"
+                                            [value]="value.title">{{
+                                            value.title }}</option>
+                                    </select>
+                                </div>
+
+                                <div *ngIf="selectedOption == 'Category'">
+                                    <select [(ngModel)]="enteredValue"
+                                        class="search bg-white border border-gray-400 rounded-lg p-2.5 mt-2 flex-grow w-52 dark:bg-black dark:text-white"
+                                        style=" overflow-y: auto;">
+                                        <option class=" dark:text-white" value="" disabled selected>{{
+                                            translation?.CLIENTAPPV2_SEARCHCLIENTS_SELECT }}</option>
+                                        <option class=" dark:text-white" *ngFor="let value of CategoryValue"
+                                            [value]="value.title">{{
+                                            value.title }}</option>
+                                    </select>
+                                </div>
+
+                                <div *ngIf="selectedOption == 'Character'">
+                                    <select [(ngModel)]="enteredValue"
+                                        class="search bg-white border border-gray-400 rounded-lg p-2.5 mt-2 flex-grow w-52 dark:bg-black dark:text-white"
+                                        style=" overflow-y: auto;">
+                                        <option class=" dark:text-white" value="" disabled selected>{{
+                                            translation?.CLIENTAPPV2_SEARCHCLIENTS_SELECT }}</option>
+                                        <option class=" dark:text-white" *ngFor="let value of CharacterValue"
+                                            [value]="value.title">{{
+                                            value.title }}</option>
+                                    </select>
+                                </div>
+
+                                <div *ngIf="selectedOption == 'Subject'">
+                                    <select [(ngModel)]="enteredValue"
+                                        class="search bg-white border border-gray-400 rounded-lg p-2.5 mt-2 flex-grow w-52 dark:bg-black dark:text-white"
+                                        style=" overflow-y: auto;">
+                                        <option class=" dark:text-white" value="" disabled selected>{{
+                                            translation?.CLIENTAPPV2_SEARCHCLIENTS_SELECT }}</option>
+                                        <option class=" dark:text-white" *ngFor="let value of SubjectValue"
+                                            [value]="value.title">{{
+                                            value.title }}</option>
+                                    </select>
+                                </div>
+
+                                <div *ngIf="selectedOption == 'Agency'">
+                                    <select [(ngModel)]="enteredValue"
+                                        class="search bg-white border border-gray-400 rounded-lg p-2.5 mt-2 flex-grow w-52 dark:bg-black dark:text-white"
+                                        style=" overflow-y: auto;">
+                                        <option class=" dark:text-white" value="" disabled selected>{{
+                                            translation?.CLIENTAPPV2_SEARCHCLIENTS_SELECT }}</option>
+                                        <option class=" dark:text-white" *ngFor="let value of AgencyValue"
+                                            [value]="value.title">{{
+                                            value.title }}</option>
+                                    </select>
+                                </div>
+
+                                <div *ngIf="selectedOption == 'Qualification'">
+                                    <select [(ngModel)]="enteredValue"
+                                        class="search bg-white border border-gray-400 rounded-lg p-2.5 mt-2 flex-grow w-52 dark:bg-black dark:text-white"
+                                        style=" overflow-y: auto;">
+                                        <option class=" dark:text-white" value="" disabled selected>{{
+                                            translation?.CLIENTAPPV2_SEARCHCLIENTS_SELECT }}</option>
+                                        <option class=" dark:text-white" *ngFor="let value of QualificationValue"
+                                            [value]="value.title">{{
+                                            value.title }}</option>
+                                    </select>
+                                </div>
+
+
+                                <div *ngIf="selectedOption == 'SendDate'" class="flex gap-2 mt-2">
+                                    <div>
+                                        <label class="2xl:text-base xl:text-sm lg:text-sm font-medium"
+                                            style="color: #CC0000;">{{ translation?.CLIENTAPPV2_SEARCHCLIENTS_DATEFROM
+                                            }}</label><br />
+                                        <kendo-datepicker placeholder="Choose a date ..." [size]="'small'"
+                                            [value]="DateAddedto"
+                                            class="p-2.5 rounded-lg dark:bg-black dark:text-white dark:border-white">
+                                        </kendo-datepicker>
+
+                                    </div>
+                                    <div>
+                                        <label class="2xl:text-base xl:text-sm lg:text-sm font-medium"
+                                            style="color: #CC0000;">{{ translation?.CLIENTAPPV2_SEARCHCLIENTS_DATETO
+                                            }}</label><br />
+                                        <kendo-datepicker placeholder="Choose a date ..." [size]="'small'"
+                                            [value]="DateAddedfrom"
+                                            class="p-2.5 rounded-lg dark:bg-black dark:text-white dark:border-white">
+                                        </kendo-datepicker>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- buttons -->
+                    <div
+                        class="buttons xl:py-8 xl:pl-8 xl:pr-3 md:ml-auto flex k-ml-auto sm:pt-3 md:pt-3 md:pl-3 ml-auto">
+                        <div class="btndiv md:ml-auto items-end flex flex-grow">
+                            <div class="md:mr-80 xl:mr-0 lg:mr-0  flex-grow">
+                                <button class="pl-4 pr-4 p-2 rounded-lg mr-4" style="background-color: #F0F2F7;"
+                                    (click)="clear()">
+                                    {{ translation?.CLIENTAPPV2_SEARCHCLIENTS_CLEAR }}
+                                </button>
+                            </div>
+
+                            <div class="md:mr-80 xl:mr-0 lg:mr-0  flex-grow">
+                                <button class="pl-4 pr-4 p-2 rounded-lg mr-4" style="background-color: #F0F2F7;"
+                                    (click)="back()">
+                                    {{ translation?.CLIENTAPPV2_SEARCHCLIENTS_BACK }}
+                                </button>
+                            </div>
+
+                            <div
+                                class="addfiltr inline-block md:ml-3 xl:ml-0 lg:ml-0 xl:mr-3 md:mr-3 sm:mr-3 flex-grow">
+                                <button
+                                    class="bg-white border p-1.5 pl-3 pr-3 mr-0 rounded-lg flex flex-grow items-center  lg:pr-6 dark:bg-black"
+                                    style="color: #29CCB1; border-color: #29CCB1;" (click)="addFilter()">
+                                    {{ translation?.CLIENTAPPV2_SEARCHCLIENTS_ADDFILTERS }}
+                                    <img src="../../../assets/manage_clients/filter -blue.png"
+                                        class="ml-auto w-5 h-5 mr-2 lg:ml-3 lg:mr-0">
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- table -->
+                <div>
+                    <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                        <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                            <thead class="">
+                                <tr class="bg-gray-400  dark:bg-neutral-700">
+                                    <th *ngIf="usertoogle"
+                                        class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                        translation?.CLIENTAPPV2_SEARCHCLIENTS_CLIENTNO }}</th>
+                                    <th *ngIf="!usertoogle"
+                                        class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                        translation?.CLIENTAPPV2_SEARCHCLIENTS_EMPLOYEENO }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                        translation?.CLIENTAPPV2_SEARCHCLIENTS_SURNAME }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                        translation?.CLIENTAPPV2_SEARCHCLIENTS_FIRSTNAME }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                        translation?.CLIENTAPPV2_SEARCHCLIENTS_COMPANYNAME }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                        translation?.CLIENTAPPV2_SEARCHCLIENTS_EMAILADDRESS }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                        translation?.CLIENTAPPV2_SEARCHCLIENTS_VERIFIED }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- row1 -->
+                                <tr *ngFor="let client of USER_DATA">
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ client.id }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ client.surname }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ client.firstName }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ client.companyName }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ client.emailAddress }}</td>
+                                    <td>
+                                        <div class="verifedimg">
+                                            <img *ngIf="client.verfied == 'yes'"
+                                                src="../../../assets/manage_clients/verified-removebg-preview.png"
+                                                class=" w-5 h-5">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <!-- table -->
+                <div class="mt-8">
+                    <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                        <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                            <thead class="">
+                                <tr class="bg-gray-400  dark:bg-neutral-700">
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                        translation?.CLIENTAPPV2_SEARCHCLIENTS_ARTICLEID }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                        translation?.CLIENTAPPV2_SEARCHCLIENTS_SENDDATE }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                        translation?.CLIENTAPPV2_SEARCHCLIENTS_ARTICLETITLE }}</th>
+                                    <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                        translation?.CLIENTAPPV2_SEARCHCLIENTS_CATEGORY }}</th>
+                                    <th class="text-start"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- row1 -->
+                                <tr *ngFor="let article of paginatedData">
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.id }}</td>
+                                    <td class="lg:text-base sm:text-xs">
+                                        <div>
+                                            <label class=" dark:text-white">{{ article.sendDate }}</label><br />
+                                            <label class="text-sm text-slate-500">{{ article.concept }}</label>
+                                        </div>
+                                    </td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.title }}</td>
+                                    <td class="lg:text-base sm:text-xs dark:text-white">{{ article.category }}</td>
+                                    <td>
+                                        <div class="">
+                                            <img src="../../../assets/manage_clients/table_buton.png"
+                                                class=" cursor-pointer sm:mr-0 sm:w-5 sm:h-5 dark:invert"
+                                                (click)="togglePanelVisibility(article.id)">
+                                        </div>
+
+                                        <div *ngIf="panel && (article.id == panelid)"
+                                            class="imgpanel dark:border-neutral-700 absolute bg-white border border-gray-300 k-min-w-max mt-0 py-2 md:right-16 xl:right-20 sm:right-8 2xl:right- rounded-lg shadow-lg pl-2 pr-2 dark:bg-black">
+                                            <button (click)="handleEditClick(article.id)"
+                                                class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                                <img src="../../../assets/manage_clients/edit.png"
+                                                    class="imgpanelimg mr-1.5 dark:invert">
+                                                {{ translation?.CLIENTAPPV2_SEARCHCLIENTS_VIEWARTICLE }}
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <!-- pagination of table -->
+                <div class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+                    <div class="pagination-info">
+                        <span class="text-sm dark:text-white">
+                            <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                            {{ calculateMaxValue() }}
+                            <span class="text-sm text-gray-400">
+                                OF
+                                {{ totalItems }}
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="pagination-controls flex">
+                        <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                            class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                            [ngClass]="{'disabled-button': currentPage === 1}">
+                            < </button>
+
+
+                                <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                                    <ng-container *ngFor="let page of getPages() | slice:0:4">
+                                        <button [disabled]="currentPage === page" (click)="currentPage = page"
+                                            [class.pagibtn]="currentPage == page"
+                                            class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page
+                                            }}</button>
+                                    </ng-container>
+                                </div>
+
+
+                                <button [disabled]="currentPage * itemsPerPage >= totalItems"
+                                    (click)="currentPage = currentPage + 1"
+                                    class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                                    [ngClass]="{'disabled-button': currentPage * itemsPerPage >= totalItems}">
+                                    >
+                                </button>
+                                <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+                    </div>
+
+                    <div class="pagination-jump">
+                        <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_SEARCHCLIENTS_JUMPTO }} </span>
+                        <input type="number" [(ngModel)]="currentPage" min="1" max="{{ totalPages }}"
+                            class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+                        <button (click)="jumpToPage()"></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

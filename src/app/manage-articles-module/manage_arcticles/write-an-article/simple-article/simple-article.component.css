@@ -1,0 +1,82 @@
+.drop-zone {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.progress {
+  width: 100%;
+  height: 10px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 4px;
+  background-color: #29CCB1;
+}
+
+.editor {
+  height: 400px;
+}
+
+@media screen and (max-width: 730px) {
+  .bodydiv {
+    margin-left: 20px;
+  }
+
+  .inputdiv {
+    display: block;
+  }
+
+  .titlediv {
+    margin-bottom: 10px;
+  }
+
+
+  .drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 310px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 50px;
+  }
+
+  .textareadiv {
+    display: block;
+    padding-right: 20px;
+  }
+
+  .imgdiv {
+    width: 310px;
+  }
+
+  .img2div {
+    margin-left: 0px;
+    width: 330px;
+  }
+
+  .progress {
+    width: 320px;
+    height: 10px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+
+  .editor {
+    height: 300px;
+    width: 305px;
+    margin-bottom: 40px;
+  }
+
+  .btndiv {
+    margin-right: 0px;
+  }
+}

@@ -1,0 +1,5 @@
+<ul class="breadcrumb flex dark:invert">
+  <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item font-medium text-sm ml-2  dark:text-white">
+    <a [routerLink]="[breadcrumb.url]">{{ breadcrumb.displayName }}</a>
+  </li>
+</ul>

@@ -1,0 +1,13 @@
+@media screen and (max-width: 730px) {
+    .blok{
+        display: block;
+    }
+
+    .subscriber{
+        margin-bottom: 10px;
+    }
+
+    .addcli{
+        margin-left: 20px;
+    }
+}

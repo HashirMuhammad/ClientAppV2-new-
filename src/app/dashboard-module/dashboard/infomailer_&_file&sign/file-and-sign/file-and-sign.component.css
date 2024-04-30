@@ -1,0 +1,61 @@
+.button-group {
+  display: flex;
+  border: transparent;
+}
+
+.buttonbtn {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border: transparent;
+}
+
+.buttonbtn.active {
+  background-color: #fff;
+  color: #cc0000;
+}
+
+.darkactive {
+  background-color: black;
+  color: #cc0000;
+}
+
+.viewbtn {
+  border: 1px solid rgb(203, 203, 203);
+  padding: 2px 5px 2px 5px;
+}
+
+@media screen and (max-width: 730px) {
+  button {
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: #f0f2f7;
+    font-size: small;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: small;
+    overflow-x: auto;
+  }
+
+  .labeltd {
+    font-size: smaller;
+  }
+}
+
+/* @media screen and (min-width: 1550px) {
+
+  .table-container th {
+    padding: 15px;
+  }
+
+.table-container td {
+  height: 4rem;
+  border-top: 1px solid #F0F2F7;
+}
+} */

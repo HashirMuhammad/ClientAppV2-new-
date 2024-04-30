@@ -1,0 +1,163 @@
+<div class="addcli pb-4 flex-grow h-full">
+    <div class="shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black">
+        <label class="flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl dark:text-white dark:border-neutral-700">{{
+            translation?.CLIENTAPPV2_ADD_EMPLOYEES_ADDEMPLOYEE }}</label>
+        <!-- Personal Information -->
+        <div class=" shadow rounded-lg m-3 p-5 ml-5 mr-5 mt-5 flex-grow bg-gray-100  dark:bg-neutral-700">
+            <label class="text-base font-semibold tracking-wider dark:text-white">{{
+                translation?.CLIENTAPPV2_ADD_EMPLOYEES_PERSONALINFORMATION }}</label>
+            <div class="lg:grid lg:grid-cols-4 sm:flex sm:flex-col mt-3">
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_EMPLOYEEID }}</label><br />
+                    <input [(ngModel)]="employeeIdInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_TITLE }}</label><br />
+                    <input [(ngModel)]="titleInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_FIRSTNAME }}</label><br />
+                    <input [(ngModel)]="firstnameInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_SURNAME }}</label><br />
+                    <input [(ngModel)]="surnameInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+            </div>
+
+            <div class="lg:grid lg:grid-cols-4 sm:flex sm:flex-col mt-3">
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_CUSTOMGREETINGS }}</label><br />
+                    <input [(ngModel)]="customGreetingInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_EMAILADDRESS }}</label><br />
+                    <input [(ngModel)]="emailInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                </div>
+
+                <div class="flex-grow lg:mr-7 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_GENDER }}</label><br />
+                    <select [(ngModel)]="genderInput"
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                        <option class="text-gray-500" value="" disabled selected>{{
+                            translation?.CLIENTAPPV2_ADD_EMPLOYEES_SELECT }}</option>
+                        <option class=" dark:text-white" value="search">{{ translation?.CLIENTAPPV2_ADD_EMPLOYEES_MALE
+                            }}</option>
+                        <option class=" dark:text-white" value="filter">{{ translation?.CLIENTAPPV2_ADD_EMPLOYEES_FEMALE
+                            }}</option>
+                    </select>
+                </div>
+
+                <div class="flex-grow lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">&nbsp;</label><br />
+                    <input type="text" class="w-full bg-transparent p-2" disabled>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Profiling -->
+        <div class=" shadow rounded-lg m-3 p-5 ml-5 mr-5 mt-5 flex-grow bg-gray-100  dark:bg-neutral-700">
+            <label class="text-base font-semibold tracking-wider dark:text-white">{{ translation?.CLIENTAPPV2_ADD_EMPLOYEES_PROFILING
+                }}</label>
+            <div class="lg:grid lg:grid-cols-4 sm:flex sm:flex-col mt-3">
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_USERNAME }}</label><br />
+                    <input [(ngModel)]="userNameInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_QUALIFICATION }}</label><br />
+                    <select [(ngModel)]="qualificationInput"
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                        <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                            translation?.CLIENTAPPV2_ADD_EMPLOYEES_SELECT }}</option>
+                        <option class=" dark:text-white" *ngFor="let value of Qualification" [value]="value.value">{{
+                            value.title }}</option>
+                    </select>
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_PERMISSIONS }}</label><br />
+                    <input [(ngModel)]="permissionInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                </div>
+
+                <div class="ml-1 mt-7 pr-4 flex-grow">
+                    <input [(ngModel)]="emailNewsletterInput" type="checkbox" class="border-gray-400 mr-2 dark:bg-black"
+                        size="large" kendoCheckBox #large />
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_ADD_EMPLOYEES_EMAILNEWSLETTER }}</label>
+                </div>
+            </div>
+
+            <div class="lg:grid lg:grid-cols-4 sm:flex sm:flex-col mt-3 ">
+
+                <div class=" printed flex-grow ml-0 mr-0 mt-7 ">
+                    <input [(ngModel)]="printedNewsletterInput" type="checkbox"
+                        class="border-gray-400 mr-2 dark:bg-black" size="large" kendoCheckBox #large />
+                    <label class=" dark:text-white">{{ translation?.CLIENTAPPV2_ADD_EMPLOYEES_PRINTEDNEWSLETTER
+                        }}</label>
+                </div>
+
+                <div class="standard flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_STANDARDPROFILE }}</label><br />
+                    <select [(ngModel)]="standardprofileInput"
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white">
+                        <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                            translation?.CLIENTAPPV2_ADD_EMPLOYEES_SELECT }}</option>
+                        <option class=" dark:text-white" *ngFor="let value of EmployeeProfile" [value]="value.value">{{
+                            value.title }}</option>
+                    </select>
+                </div>
+
+                <div class="flex-grow lg:mr-7 mb-4 lg:mb-0">
+                    <label class="text-base font-medium" style="color: #CC0000;">{{
+                        translation?.CLIENTAPPV2_ADD_EMPLOYEES_TAGS }}</label><br />
+                    <input [(ngModel)]="tagsInput" type="text" placeholder="Enter Here..."
+                        class="w-full bg-white border border-gray-400 rounded-lg p-2 mt-1 dark:bg-black dark:text-white" />
+                </div>
+            </div>
+
+        </div>
+
+        <!-- buttons -->
+        <div class="buttons flex">
+            <div class="flex flex-col lg:flex-row  mt-5 mr-5 mb-7 ml-auto">
+                <button class="pl-4 pr-4 p-2 rounded-lg mr-4 sm:mt-2" style="background-color: #F0F2F7;"
+                    (click)="cancel()">{{ translation?.CLIENTAPPV2_ADD_EMPLOYEES_CANCEL }}</button>
+
+                <button class="border border-gray-300  rounded-lg p-1.5 pl-3 pr-3 mr-4 sm:mt-2 dark:text-white">{{
+                    translation?.CLIENTAPPV2_ADD_EMPLOYEES_SAVEANDMORE }}</button>
+
+                <button class="bg-white border p-1.5 pl-3 pr-3 mr-0 rounded-lg flex items-center text-white sm:mt-2"
+                    style="background-color: #29CCB1;">{{ translation?.CLIENTAPPV2_ADD_EMPLOYEES_SAVEANDFINISH
+                    }}</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

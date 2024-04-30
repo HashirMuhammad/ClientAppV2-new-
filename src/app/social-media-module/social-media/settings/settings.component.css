@@ -1,0 +1,18 @@
+@media screen and (max-width: 730px) {
+    .sercli {
+        margin-left: 20px;
+    }
+
+    .griddiv {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .blockdiv {
+        display: block;
+    }
+
+    .search {
+        width: 310px;
+    }
+}

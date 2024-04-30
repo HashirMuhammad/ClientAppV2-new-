@@ -1,0 +1,926 @@
+<div *ngIf="!isMobile" class="main pb-4 ">
+  <div class="flex mb-1">
+    <div *ngIf="isEditMode" (click)="toggleEditoffMode()"
+      class="border-b block px-6 py-2 text-gray-700 hover:bg-gray-100 dark:text-white  dark:hover:bg-black">
+      <button (click)="toggleEditoffMode()" class="flex hover:stroke-red-500 hover:fill-red-500 hover:text-red-500">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 30 30">
+          <path
+            d="M 26.980469 5.9902344 A 1.0001 1.0001 0 0 0 26.292969 6.2929688 L 11 21.585938 L 4.7070312 15.292969 A 1.0001 1.0001 0 1 0 3.2929688 16.707031 L 10.292969 23.707031 A 1.0001 1.0001 0 0 0 11.707031 23.707031 L 27.707031 7.7070312 A 1.0001 1.0001 0 0 0 26.980469 5.9902344 z">
+          </path>
+        </svg> -->
+        <label class="dark:text-white hover:text-red-500 ml-2 text-sm">&#10003; {{
+          translation?.CLIENTAPPV2_DASHBOARD_DONE }}</label>
+      </button>
+    </div>
+    <div *ngIf="isEditMode" (click)="reset()"
+      class="border-b block px-6 py-2 text-gray-700 hover:bg-gray-100 dark:text-white  dark:hover:bg-black ">
+      <button (click)="reset()" class="flex hover:stroke-red-500 hover:fill-red-500 hover:text-red-500">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M9.504 5.468C10.281 5.17 11.12 5 12 5c3.859 0 7 3.14 7 7 0 .88-.17 1.72-.468 2.496l1.514 1.514C20.651 14.801 21 13.442 21 12c0-4.962-4.037-9-9-9-1.24 0-2.418.258-3.492.715L9.504 5.468zM14.496 18.532C13.719 18.83 12.88 19 12 19c-3.859 0-7-3.14-7-7 0-.88.17-1.72.468-2.496L3.954 7.99C3.349 9.199 3 10.558 3 12c0 4.962 4.037 9 9 9 1.276 0 2.486-.273 3.586-.755L14.496 18.532z">
+          </path>
+          <path d="M16 20L12 24 12 16zM8 4L12 0 12 8z"></path>
+        </svg> -->
+        <label class="dark:text-white ml-2 text-sm">&#x21bb; {{ translation?.CLIENTAPPV2_DASHBOARD_RESET
+          }}</label>
+      </button>
+    </div>
+    <div *ngIf="isEditMode"
+      class="relative px-6 py-2 text-gray-700 hover:bg-gray-100 dark:text-white  dark:hover:bg-black">
+
+      <button class="dark:text-white flex hover:stroke-red-500 hover:fill-red-500 hover:text-red-500 cursor-pointer"
+        (click)="openPopUp(isDropdownOpen,'add')">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M12,2C6.477,2,2,6.477,2,12s4.477,10,10,10s10-4.477,10-10S17.523,2,12,2z M17,13h-4v4h-2v-4H7v-2h4V7h2v4h4V13z">
+          </path>
+        </svg> -->
+        <label class="dark:text-white mr-1 text-sm">&#10011; {{ translation?.CLIENTAPPV2_DASHBOARD_ADD }}</label>
+      </button>
+
+      <!-- add drop down  -->
+      <div *ngIf="isDropdownOpen"
+        class="imgpanel dark:border-neutral-700 absolute bg-white dark:bg-black border border-gray-300 k-min-w-max mt-0 py-2 rounded-lg shadow-lg pl-2 pr-2 overflow-y-auto"
+        style="z-index: 80; height: 35rem;">
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <p class=" dark:text-white text-sm">{{ translation?.CLIENTAPPV2_DASHBOARD_ADDCOMPONENTS }}:</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="SubcriberCardtoogle" #small
+            (click)="SubcriberCardtooglefunc()" />
+          <img src="../../assets/dashboard/g1.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="SubcriberCardtooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_SUBSCRIBERSCARD }}</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="EmployeeCardtoogle" #small
+            (click)="EmployeeCardtooglefunc()" />
+          <img src="../../assets/dashboard/g1.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="EmployeeCardtooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_EMPLOYEESCARD }}</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="ClientCardtoogle" #small
+            (click)="ClientCardtooglefunc()" />
+          <img src="../../assets/dashboard/g1.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="ClientCardtooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_CLIENTSCARD
+            }}</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="printedNewsletterCardtoogle"
+            #small (click)="printedNewsletterCardtooglefunc()" />
+          <img src="../../assets/dashboard/g1.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="printedNewsletterCardtooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_PRINTEDNEWSLETTERCARD }}</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="EmailNewsletterCardtoogle"
+            #small (click)="EmailNewsletterCardtooglefunc()" />
+          <img src="../../assets/dashboard/g1.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="EmailNewsletterCardtooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_EMAILNEWSLETTERCARD }}</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="UnsubscriberCardtoogle" #small
+            (click)="UnsubscriberCardtooglefunc()" />
+          <img src="../../assets/dashboard/g1.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="UnsubscriberCardtooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_UNSUBCRIBERSCARD }}</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="graph1toogle" #small
+            (click)="graph1tooglefunc()" />
+          <img src="../../assets/dashboard/g1.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="graph1tooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_CLIENTSGRAPH }}
+          </p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="graph2toogle" #small
+            (click)="graph2tooglefunc()" />
+          <img src="../../assets/dashboard/g2.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="graph2tooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_EMPLOYEESGRAPH
+            }}</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="infotoogle" #small
+            (click)="infotooglefunc()" />
+          <img src="../../assets/dashboard/infomailer.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="infotooglefunc()" class=" dark:text-white text-sm">InfoMailer</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="filetoogle" #small
+            (click)="filetooglefunc()" />
+          <img src="../../assets/dashboard/book.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="filetooglefunc()" class=" dark:text-white text-sm">File & Sign</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="learntoogle" #small
+            (click)="learntooglefunc()" />
+          <img src="../../assets/dashboard/infolearning.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="learntooglefunc()" class=" dark:text-white text-sm">Infolearning</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="hightoogle" #small
+            (click)="hightooglefunc()" />
+          <img src="../../assets/dashboard/high-achiever.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="hightooglefunc()" class=" dark:text-white text-sm">High Achievers</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="recentSocialtoogle" #small
+            (click)="recentSocialtooglefunc()" />
+          <img src="../../assets/sidebar/social.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="recentSocialtooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_UPCOMINGPOSTS }}</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="dataImporttoogle" #small
+            (click)="dataImporttooglefunc()" />
+          <img src="../../assets/sidebar/user/data-imp.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="dataImporttooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_DATAIMPORT
+            }}</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="configurationtoogle" #small
+            (click)="configurationtooglefunc()" />
+          <img src="../../assets/social-media/setting-3.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="configurationtooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_CONFIGURATION }}</p>
+        </div>
+        <div class="hover:shadow drpbtn flex py-2 w-full dark:border-black">
+          <input class="mt-1 mr-2" type="checkbox" size="medium" kendoCheckBox [ngModel]="selectConcepttoogle" #small
+            (click)="concepttooglefunc()" />
+          <img src="../../assets/sidebar/content/proof-b.png" class="imgpanelimg mr-1.5 dark:invert">
+          <p (click)="concepttooglefunc()" class=" dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_SELECTCONCEPT
+            }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ml-auto mr-6 mt-2 flex">
+      <div class="flex">
+        <button (click)="openPopUp(editModeOn,'edit')"><label class="dark:text-white text-sm">{{
+            translation?.CLIENTAPPV2_DASHBOARD_CONFIGURATION }}</label></button>
+        <img src="../../assets/dashboard/three-dots.png" class="dark:invert" (click)="openPopUp(editModeOn,'edit')">
+      </div>
+      <div *ngIf="editModeOn"
+        class="absolute dark:border-neutral-700 bg-white border rounded-lg right-6 px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:bg-black"
+        style="margin-top: 23px; z-index: 80;">
+        <div (click)="toggleEditMode()" class="dark:text-white flex hover:fill-red-500 hover:text-red-500">
+          <!-- <svg class=" " xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M 18.414062 2 C 18.158188 2 17.902031 2.0974687 17.707031 2.2929688 L 16 4 L 20 8 L 21.707031 6.2929688 C 22.098031 5.9019687 22.098031 5.2689063 21.707031 4.8789062 L 19.121094 2.2929688 C 18.925594 2.0974687 18.669937 2 18.414062 2 z M 14.5 5.5 L 3 17 L 3 21 L 7 21 L 18.5 9.5 L 14.5 5.5 z">
+            </path>
+          </svg> -->
+          <p class=" dark:text-white ml-2 text-sm">&#9998; {{
+            translation?.CLIENTAPPV2_DASHBOARD_EDIT }}</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- ======================================================================= -->
+  <div class="gridstarHeight">
+    <gridster [options]="options" (click)="propertyFalse()" class=" pb-4 bg-transparent "
+      [ngClass]="{'bg-gray-500': isEditMode, 'bg-transparent': !isEditMode}">
+      <div class="card lg:flex xl:flex 2xl:flex lg:h-fit xl:h-fit 2xl:h-fit" [class.shake]="isEditMode">
+
+        <ng-container *ngIf="SubcriberCardtoogle">
+          <gridster-item [item]="item" *ngFor="let item of subscribercard"
+            (itemChange)="onsubcriberCardItemChange($event)" class="subscriber bg-white p-2 rounded-lg dark:bg-black">
+            <div (click)="SubcriberCardtooglefunc()"
+              class="cursor-pointer absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center"
+              *ngIf="isEditMode">
+              <button (click)="SubcriberCardtooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <div class="flex h-full">
+              <div class="grid grid-row-3 flex-grow w-full h-full">
+                <div class="flex p-2">
+                  <h1 class="text-4xl font-medium dark:text-white">{{ subcribers }}</h1>
+                  <img src="../../assets/dashboard/cards/sub-icon.png" class="ml-auto lg:w-5 lg:h-5 xl:w-8 xl:h-8" />
+                </div>
+                <div>
+                  <h1 class="2xl:mt-4  ml-2 text-lg xl:text-lg dark:text-white">{{
+                    translation?.CLIENTAPPV2_DASHBOARD_SUBSCRIBERS }}</h1>
+                </div>
+                <div kendoTooltip class="top" position="top" class="flex">
+                  <button (click)="routeToClient()" title="{{ translation?.CLIENTAPPV2_DASHBOARD_CLIENTS }}"
+                    class="pr-2 pl-2  rounded-lg ml-1 mr-1 xl:text-xs p-0.5 mt-1 2xl:text-sm"
+                    style="background-color: #d7fff8; color: #29ccb1">
+                    {{ translation?.CLIENTAPPV2_DASHBOARD_CLIENTS | truncate : 7 }}
+                  </button>
+                  <label class="text-slate-400 mt-2 text-xs">|</label>
+                  <button (click)="routeToEmployee()" title="{{ translation?.CLIENTAPPV2_DASHBOARD_EMPLOYEES }}"
+                    class="pr-2 pl-2 rounded-lg ml-1 mr-1 xl:text-xs p-0.5 lg:mt-1.5 sm:mt-0 2xl:text-sm"
+                    style="background-color: #d7fff8; color: #29ccb1">
+                    {{ translation?.CLIENTAPPV2_DASHBOARD_EMPLOYEES | truncate : 9 }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </gridster-item>
+        </ng-container>
+
+        <ng-container *ngIf="EmployeeCardtoogle">
+          <gridster-item [item]="item" *ngFor="let item of employeecard" (itemChange)="onEmployeeCardItemChange($event)"
+            class="employees bg-white p-2 rounded-lg dark:bg-black">
+            <div (click)="EmployeeCardtooglefunc()"
+              class="cursor-pointer absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center"
+              *ngIf="isEditMode">
+              <button (click)="EmployeeCardtooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <div class="flex h-full">
+              <div class="grid grid-row-3 flex-grow w-full h-full">
+                <div class="flex p-2 ">
+                  <h1 class="text-4xl font-medium  dark:text-white">{{ employees }}</h1>
+                  <img src="../../assets/dashboard/cards/emp.png" class="ml-auto lg:w-5 lg:h-5 xl:w-8 xl:h-8" />
+                </div>
+                <div>
+                  <h1 class="2xl:mt-4  ml-2 text-lg xl:text-lg dark:text-white">{{
+                    translation?.CLIENTAPPV2_DASHBOARD_EMPLOYEES
+                    }}</h1>
+                </div>
+                <div kendoTooltip class="top" position="top">
+                  <button (click)="routeToEmployee()" title="{{ translation?.CLIENTAPPV2_DASHBOARD_ADDNEW }}"
+                    class="pr-2 pl-2 rounded-lg ml-1 mr-1 xl:text-xs p-0.5 lg:mt-1.5 sm:mt-0 2xl:text-sm"
+                    style="background-color: #f3ebf7; color: #a352cc">
+                    {{ translation?.CLIENTAPPV2_DASHBOARD_ADDNEW }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </gridster-item>
+        </ng-container>
+
+        <ng-container *ngIf="ClientCardtoogle">
+          <gridster-item [item]="item" *ngFor="let item of clientcard" (itemChange)="onClientCardItemChange($event)"
+            class="clients bg-white p-2 rounded-lg dark:bg-black">
+            <div (click)="ClientCardtooglefunc()"
+              class="cursor-pointer absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center"
+              *ngIf="isEditMode">
+              <button (click)="ClientCardtooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <div class="flex h-full">
+              <div class="grid grid-row-3 flex-grow w-full h-full">
+                <div class="flex p-2">
+                  <h1 class="text-4xl font-medium dark:text-white">{{ clients }}</h1>
+                  <img src="../../assets/dashboard/cards/cli.png" class="ml-auto lg:w-5 lg:h-5 xl:w-8 xl:h-8" />
+                </div>
+                <h1 class="2xl:mt-4  ml-2 text-lg xl:text-lg dark:text-white">{{
+                  translation?.CLIENTAPPV2_DASHBOARD_CLIENTS }}</h1>
+                <div kendoTooltip class="top" position="top">
+                  <button (click)="routeToClient()" class="pr-2 pl-2 rounded-lg ml-1 mr-1 text-xs p-0.5 mt-1 xl:text-sm"
+                    title="{{ translation?.CLIENTAPPV2_DASHBOARD_CLIENTS }}"
+                    style="background-color: #ebf5ff; color: #3399ff">
+                    {{ translation?.CLIENTAPPV2_DASHBOARD_CLIENTS }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </gridster-item>
+        </ng-container>
+
+        <ng-container *ngIf="printedNewsletterCardtoogle">
+          <gridster-item [item]="item" *ngFor="let item of printedNewslettercard"
+            (itemChange)="onPrintedNewsletterCardItemChange($event)"
+            class="printNewsletter bg-white p-2 rounded-lg dark:bg-black">
+            <div (click)="printedNewsletterCardtooglefunc()"
+              class="cursor-pointer absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center"
+              *ngIf="isEditMode">
+              <button (click)="printedNewsletterCardtooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <div class="flex h-full">
+              <div class="grid grid-row-2 flex-grow w-full h-full">
+                <div class="flex p-2">
+                  <h1 class="text-4xl font-medium dark:text-white">{{ printNewsletter }}</h1>
+                  <img src="../../assets/dashboard/cards/printer.png" class="ml-auto lg:w-5 lg:h-5 xl:w-8 xl:h-8" />
+                </div>
+                <div kendoTooltip class="top" position="top">
+                  <h1 class="2xl:mt-4  ml-2 text-lg xl:text-lg dark:text-white"
+                    title="{{ translation?.CLIENTAPPV2_DASHBOARD_SUBCRIBEDTOPRINTEDNEWSLETTER }}">{{
+                    translation?.CLIENTAPPV2_DASHBOARD_SUBCRIBEDTOPRINTEDNEWSLETTER | truncate : 31 }}</h1>
+                </div>
+              </div>
+            </div>
+          </gridster-item>
+        </ng-container>
+
+        <ng-container *ngIf="EmailNewsletterCardtoogle">
+          <gridster-item [item]="item" *ngFor="let item of emailNewslettercard"
+            (itemChange)="onEmailNewsletterCardItemChange($event)"
+            class="emailNewsletter bg-white p-2 rounded-lg dark:bg-black">
+            <div (click)="EmailNewsletterCardtooglefunc()"
+              class="cursor-pointer absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center"
+              *ngIf="isEditMode">
+              <button (click)="EmailNewsletterCardtooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <div class="flex h-full">
+              <div class="grid grid-row-2 flex-grow w-full h-full">
+                <div class="flex p-2">
+                  <h1 class="text-4xl font-medium dark:text-white">{{ emailNewsletter }}</h1>
+                  <img src="../../assets/dashboard/cards/sms-star.png" class="ml-auto lg:w-5 lg:h-5 xl:w-8 xl:h-8" />
+                </div>
+                <h1 class="2xl:mt-4  ml-2 text-lg xl:text-lg dark:text-white">{{
+                  translation?.CLIENTAPPV2_DASHBOARD_SUBCRIBEDTOEMAILNEWSLETTER }}</h1>
+              </div>
+            </div>
+
+          </gridster-item>
+        </ng-container>
+
+        <ng-container *ngIf="UnsubscriberCardtoogle">
+          <gridster-item [item]="item" *ngFor="let item of unsubscribercard" (itemChange)="console($event)"
+            class="unsub bg-white p-2 rounded-lg dark:bg-black">
+            <div (click)="UnsubscriberCardtooglefunc()"
+              class="cursor-pointer absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center"
+              *ngIf="isEditMode">
+              <button (click)="UnsubscriberCardtooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <div class="flex h-full">
+              <div class="grid grid-row-3 flex-grow w-full h-full">
+                <div class="flex p-2">
+                  <h1 class="text-4xl font-medium dark:text-white">{{ unsub }}</h1>
+                  <img src="../../assets/dashboard/cards/unsub.png" class="ml-auto lg:w-5 lg:h-5 xl:w-8 xl:h-8" />
+                </div>
+                <h1 class="2xl:mt-4  ml-2 text-lg xl:text-lg dark:text-white">{{
+                  translation?.CLIENTAPPV2_DASHBOARD_UNSUBCRIBERS
+                  }}</h1>
+                <div kendoTooltip class="top" position="top">
+                  <button (click)="routeToUnSubscribers()" title="{{ translation?.CLIENTAPPV2_DASHBOARD_VIEWLIST }}"
+                    class="pr-2 pl-2 rounded-lg ml-1 mr-1 xl:text-xs p-0.5 lg:mt-1.5 sm:mt-0 2xl:text-sm"
+                    style="background-color: #fff6d7; color: #f2b80c">
+                    {{ translation?.CLIENTAPPV2_DASHBOARD_VIEWLIST }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </gridster-item>
+        </ng-container>
+      </div>
+
+      <!-- graphs -->
+      <ng-container *ngIf="graph1toogle">
+        <gridster-item (itemChange)="ongraph1ItemChange($event)" [item]="item" *ngFor="let item of graph1"
+          class="graph1 sm:mb-5 sm:p-3 bg-white lg:mb-4 lg:h-fit lg:flex-grow rounded-lg h-96 dark:bg-black">
+          <div [class.shake]="isEditMode" class="h-full grid grid-row-3">
+            <div (click)="graph1tooglefunc()"
+              class="cursor-pointer absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center"
+              *ngIf="isEditMode">
+              <button (click)="graph1tooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <div class="flex p-1.5">
+              <div>
+                <img src="../../assets/dashboard/g1.png" class=" dark:invert">
+              </div>
+              <h1 class="font-medium text-sm ml-2 mt-0.5  dark:text-white"><strong>{{
+                  translation?.CLIENTAPPV2_DASHBOARD_LASTNEWSLETTERSTATISTICS_CLIENTS }}</strong></h1>
+              <select class="ml-auto h-8 mr-2 pl-2 pr-2 border rounded-xl text-sm dark:bg-black dark:text-white"
+                [(ngModel)]="selectedMonth" (change)="console(selectedMonth)">
+                <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+                  translation?.CLIENTAPPV2_DASHBOARD_MONTHLY }}
+                </option>
+                <option class=" dark:text-white" *ngFor="let month of months; let i = index" [value]="i + 1">{{
+                  getTranslationForMonths(month) }}
+                </option>
+              </select>
+            </div>
+            <div class="ml-auto justify-end flex">
+              <div class="flex">
+                <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #29CCB1;">&nbsp;</label> -->
+                <!-- <img src="../../assets/dashboard/sent.png" class="h-3 mt-1 mr-3"> -->
+                <span class=" bg-green-600 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+                <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_SENT
+                  }}</label>
+              </div>
+              <div class="flex">
+                <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #A352CC;">&nbsp;</label> -->
+                <!-- <img src="../../assets/dashboard/dilevered.png" class="h-3 mt-1 mr-3"> -->
+                <span class=" bg-yellow-400 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+                <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_DILEVERED
+                  }}</label>
+              </div>
+              <div class="flex">
+                <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #3399FF;">&nbsp;</label> -->
+                <!-- <img src="../../assets/dashboard/opened.png" class="h-3 mt-1 mr-3"> -->
+                <span class=" bg-red-500 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+                <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_OPENED
+                  }}</label>
+              </div>
+            </div>
+            <div>
+              <kendo-chart class="g1 lg:h-48 xl:h-64  sm:h-60 sm:rounded-b-lg dark:invert">
+                <kendo-chart-category-axis>
+                  <kendo-chart-category-axis-item [categories]="translatedMonthsArr">
+                  </kendo-chart-category-axis-item>
+                </kendo-chart-category-axis>
+                <kendo-chart-series>
+                  <kendo-chart-series-item type="line" [data]="openedClientsGraph.slice(0, selectedMonth)">
+                  </kendo-chart-series-item>
+                  <kendo-chart-series-item type="line" [data]="dileveredClientsGraph.slice(0, selectedMonth)">
+                  </kendo-chart-series-item>
+                  <kendo-chart-series-item type="line" [data]="sentClientsGraph.slice(0, selectedMonth)">
+                  </kendo-chart-series-item>
+                </kendo-chart-series>
+              </kendo-chart>
+            </div>
+          </div>
+        </gridster-item>
+      </ng-container>
+
+      <ng-container *ngIf="graph2toogle">
+        <gridster-item (itemChange)="ongraph2ItemChange($event)" [item]="item" *ngFor="let item of graph2"
+          class="graph2 sm:mb-5 sm:p-3 bg-white lg:h-fit lg:flex-grow rounded-lg h-96 dark:bg-black">
+          <div [class.shake]="isEditMode" class="h-full grid grid-row-3">
+            <div (click)="graph2tooglefunc()"
+              class=" cursor-pointer absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center"
+              *ngIf="isEditMode">
+              <button (click)="graph2tooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <div class="flex p-1.5">
+              <div>
+              <img src="../../assets/dashboard/g2.png" class="dark:invert">
+
+              </div>
+              <h1 class="font-medium text-sm ml-2 dark:text-white"><strong>{{
+                  translation?.CLIENTAPPV2_DASHBOARD_LASTNEWSLETTERSTATISTICS_EMPLOYEES }}</strong>
+              </h1>
+              <div class="ml-auto gap-2 grid grid-cols-2">
+                <div class=" flex text-gray-500 text-sm mt-1 -mr-8">
+                  <p>{{empMonth}}</p>/<p>{{empYear}}</p>
+                </div>
+                <select class="h-8 mr-2 pl-2 pr-2 border rounded-xl text-sm dark:bg-black dark:text-white"
+                  [(ngModel)]="selectedWeek" >
+                  <option style="background-color: red;" class="text-gray-500  dark:text-white" value="0" disabled selected>{{
+                    translation?.CLIENTAPPV2_DASHBOARD_WEEKLY
+                    }}
+                  </option>
+                  <option class=" dark:text-white" *ngFor="let week of weeks; let i = index" [value]="i + 1">{{ week }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="ml-auto justify-end flex">
+              <div class="flex">
+                <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #29CCB1;">&nbsp;</label> -->
+                <!-- <img src="../../assets/dashboard/sent.png" class="h-3 mt-1 mr-3"> -->
+                <span class=" bg-green-600 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+                <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_SENT
+                  }}</label>
+              </div>
+              <div class="flex">
+                <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #A352CC;">&nbsp;</label> -->
+                <!-- <img src="../../assets/dashboard/dilevered.png" class="h-3 mt-1 mr-3"> -->
+                <span class=" bg-yellow-400 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+                <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_DILEVERED
+                  }}</label>
+              </div>
+              <div class="flex">
+                <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #3399FF;">&nbsp;</label> -->
+                <!-- <img src="../../assets/dashboard/opened.png" class="h-3 mt-1 mr-3"> -->
+                <span class=" bg-red-500 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+                <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_OPENED
+                  }}</label>
+              </div>
+            </div>
+            <kendo-chart class="g2 lg:h-48 xl:h-64 sm:h-60 sm:rounded-b-lg dark:invert">
+              <kendo-chart-category-axis>
+                <kendo-chart-category-axis-item [categories]="weeks">
+                </kendo-chart-category-axis-item>
+              </kendo-chart-category-axis>
+              <kendo-chart-series>
+                <kendo-chart-series-item type="line" [data]="openedemployeeGraph.slice(0, selectedWeek)">
+                </kendo-chart-series-item>
+                <kendo-chart-series-item type="line" [data]="dileveredemployeeGraph.slice(0, selectedWeek)">
+                </kendo-chart-series-item>
+                <kendo-chart-series-item type="line" [data]="sentemployeeGraph.slice(0, selectedWeek)">
+                </kendo-chart-series-item>
+              </kendo-chart-series>
+            </kendo-chart>
+          </div>
+        </gridster-item>
+      </ng-container>
+
+      <ng-container *ngIf="infotoogle">
+        <gridster-item (itemChange)="oninfomailerItemChange($event)" [item]="item" *ngFor="let item of infomailer"
+          class="info sm:bg-white sm:rounded-lg dark:bg-black">
+          <div (click)="infotooglefunc()"
+            class=" cursor-pointer absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center "
+            *ngIf="isEditMode">
+            <button (click)="infotooglefunc()" class="text-red-500">&#x2715;</button>
+          </div>
+          <div [class.shake]="isEditMode" class="flex w-full h-full dark:bg-black">
+            <div class="grid grid-cols-1 flex-grow w-full h-full">
+              <!-- infomailer -->
+
+              <app-infomailer class="xl:bg-white rounded-lg dark:bg-black"></app-infomailer>
+            </div>
+          </div>
+        </gridster-item>
+      </ng-container>
+
+      <ng-container *ngIf="filetoogle">
+        <gridster-item (itemChange)="onfileItemChange($event)" [item]="item" *ngFor="let item of file"
+          class="file sm:bg-white sm:rounded-lg sm:mt-4 lg:mt-0 xl:flex-1 h-96 dark:bg-black">
+          <div [class.shake]="isEditMode">
+            <!-- file and sign -->
+            <div (click)="filetooglefunc()"
+              class=" cursor-pointer absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center "
+              *ngIf="isEditMode">
+              <button (click)="filetooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <app-file-and-sign class="xl:bg-white h-fit lg:flex-1 xl:flex-1 lg:pt-3 rounded-lg"></app-file-and-sign>
+          </div>
+        </gridster-item>
+      </ng-container>
+
+      <ng-container *ngIf="learntoogle">
+        <gridster-item (itemChange)="oninfolearningItemChange($event)" [item]="item" *ngFor="let item of infolearning"
+          class="learn sm:bg-white sm:rounded-lg xl:flex-1 h-96 dark:bg-black">
+          <div [class.shake]="isEditMode">
+            <!-- infolearning -->
+            <div (click)="learntooglefunc()"
+              class=" absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center cursor-pointer"
+              *ngIf="isEditMode">
+              <button (click)="learntooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <app-infolearning class="xl:bg-white h-fit lg:flex-1 rounded-lg"></app-infolearning>
+          </div>
+        </gridster-item>
+      </ng-container>
+
+      <ng-container *ngIf="hightoogle">
+        <gridster-item (itemChange)="onhighItemChange($event)" [item]="item" *ngFor="let item of high"
+          class="high sm:bg-white sm:rounded-lg sm:mt-4 lg:mt-0 h-96 dark:bg-black">
+          <div (click)="hightooglefunc()"
+            class=" absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center cursor-pointer"
+            *ngIf="isEditMode">
+            <button (click)="hightooglefunc()" class="text-red-500">&#x2715;</button>
+          </div>
+          <div [class.shake]="isEditMode">
+            <!-- high achievers -->
+
+            <app-high-achievers class="xl:bg-white rounded-lg"></app-high-achievers>
+          </div>
+        </gridster-item>
+      </ng-container>
+
+      <ng-container *ngIf="recentSocialtoogle">
+        <gridster-item (itemChange)="onrecentArticlesItemChange($event)" [item]="item"
+          *ngFor="let item of recentArticles" class=" sm:bg-white sm:rounded-lg sm:mt-4 lg:mt-0 h-96 dark:bg-black">
+          <div [class.shake]="isEditMode" (click)="routeToSocialMedia()">
+            <div (click)="recentSocialtooglefunc()"
+              class=" absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center cursor-pointer"
+              *ngIf="isEditMode">
+              <button (click)="recentSocialtooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <div class="latest flex-grow h-full">
+              <div class="bg-white rounded-3xl h-screen dark:bg-black  p-2.5">
+                <div class="flex ml-1 mt-1">
+                  <div>
+                    <img src="../../assets/sidebar/social.png" class=" dark:invert">
+
+                  </div>
+                  <label class="font-semibold text-base ml-2  dark:text-white">{{
+                    translation?.CLIENTAPPV2_DASHBOARD_UPCOMINGPOSTS }}</label>
+                    <button class="ml-auto mr-2 pl-2 pr-2 border rounded-xl text-sm dark:text-white">{{
+                      translation?.CLIENTAPPV2_DASHBOARD_VIEWALL }}</button>
+                </div>
+                <app-upcoming-posts></app-upcoming-posts>
+              </div>
+            </div>
+            <!-- <app-recent-five-articles></app-recent-five-articles> -->
+          </div>
+        </gridster-item>
+      </ng-container>
+
+      <ng-container *ngIf="dataImporttoogle">
+        <gridster-item (itemChange)="ondataImportItemChange($event)" [item]="item" *ngFor="let item of dataImport"
+          class="flex sm:bg-white sm:rounded-lg  h-96 dark:bg-black">
+          <div [class.shake]="isEditMode" (click)="routeToDataImport()">
+            <div (click)="dataImporttooglefunc()"
+              class=" absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center cursor-pointer"
+              *ngIf="isEditMode">
+              <button (click)="dataImporttooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <app-dashboard-data-import></app-dashboard-data-import>
+          </div>
+        </gridster-item>
+      </ng-container>
+
+      <ng-container *ngIf="configurationtoogle">
+        <gridster-item (itemChange)="onconfigurationItemChange($event)" [item]="item" *ngFor="let item of configuration"
+          class=" sm:bg-white sm:rounded-lg  h-96 dark:bg-black">
+          <div [class.shake]="isEditMode" (click)="routeToConfiguration()">
+            <div (click)="configurationtooglefunc()"
+              class=" absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center cursor-pointer"
+              *ngIf="isEditMode">
+              <button (click)="configurationtooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <div class="articles">
+              <app-reauthorize-article [DashboardToogle]="toogle"></app-reauthorize-article>
+            </div>
+          </div>
+        </gridster-item>
+      </ng-container>
+
+      <ng-container *ngIf="selectConcepttoogle">
+        <gridster-item (itemChange)="onselectConceptItemChange($event)" [item]="item" *ngFor="let item of selectConcept"
+          class=" sm:bg-white sm:rounded-lg h-96 dark:bg-black">
+          <div [class.shake]="isEditMode" (click)="routeToSelectConcept()">
+            <div (click)="concepttooglefunc()"
+              class=" absolute right-0 top-0 bg-white rounded-full p-1 w-6 h-6 flex justify-center items-center cursor-pointer"
+              *ngIf="isEditMode">
+              <button (click)="concepttooglefunc()" class="text-red-500">&#x2715;</button>
+            </div>
+            <app-dashboard-select-concept></app-dashboard-select-concept>
+          </div>
+        </gridster-item>
+      </ng-container>
+
+    </gridster>
+  </div>
+
+
+</div>
+
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- for mobile -->
+<div *ngIf="isMobile">
+  <div class="card lg:flex xl:flex 2xl:flex lg:h-fit xl:h-fit 2xl:h-fit flex-grow">
+
+    <div class="sm:flex lg:h-44 flex-grow sm:mr-5 lg:mr-0 mt-10">
+      <!-- subscriber btn -->
+      <div
+        class="shadow subscriber sm:flex-grow lg:w-32 lg:mr-8 xl:mr-6 xl:flex-grow 2xl:flex-grow  bg-white 2xl:mr-6 mr-5 p-2 rounded-lg dark:bg-black">
+        <div class="flex p-2">
+          <h1 class="text-4xl font-medium dark:text-white">{{ subcribers }}</h1>
+          <img src="../../assets/dashboard/cards/sub-icon.png" class="ml-auto" />
+        </div>
+        <h1 class="mt-3 ml-2 text-lg xl:text-xl xl:mb-2 dark:text-white">Subscribers</h1>
+        <button class="pr-2 pl-2 rounded-lg ml-1 mr-1 text-xs p-0.5 mt-1 xl:text-sm"
+          style="background-color: #d7fff8; color: #29ccb1">
+          Clients
+        </button>
+        <label class="text-slate-400 xl:text-sm">|</label>
+        <button class="pr-2 pl-2 rounded-lg ml-1 mr-1 text-xs p-0.5 lg:mt-1.5 sm:mt-0 xl:text-sm"
+          style="background-color: #d7fff8; color: #29ccb1">
+          Employees
+        </button>
+      </div>
+
+      <div
+        class="shadow employees sm:flex-grow lg:w-32 lg:mr-8 xl:mr-6 xl:flex-grow 2xl:flex-grow bg-white 2xl:mr-6 mr-5 p-2 rounded-lg dark:bg-black">
+        <div class="flex p-2">
+          <h1 class="text-4xl font-medium  dark:text-white">{{ employees }}</h1>
+          <img src="../../assets/dashboard/cards/emp.png" class="ml-auto" />
+        </div>
+        <h1 class="mt-3 ml-2 text-lg xl:text-xl xl:mb-2 dark:text-white">Employees</h1>
+        <button class="pr-2 pl-2 rounded-lg ml-1 mr-1 text-xs p-0.5 mt-1 xl:text-sm"
+          style="background-color: #f3ebf7; color: #a352cc">
+          Add New
+        </button>
+      </div>
+
+      <div
+        class="shadow clients sm:flex-grow sm:mr-5 lg:w-32 lg:mr-6 xl:mr-6 xl:flex-grow 2xl:flex-grow bg-white 2xl:mr-6 mr-5  p-2 rounded-lg dark:bg-black">
+        <div class="flex p-2">
+          <h1 class="text-4xl font-medium dark:text-white">{{ clients }}</h1>
+          <img src="../../assets/dashboard/cards/cli.png" class="ml-auto" />
+        </div>
+        <h1 class="mt-3 ml-2 text-lg xl:text-xl xl:mb-2 dark:text-white">Clients</h1>
+        <button class="pr-2 pl-2 rounded-lg ml-1 mr-1 text-xs p-0.5 mt-1 xl:text-sm"
+          style="background-color: #ebf5ff; color: #3399ff">
+          Clients
+        </button>
+      </div>
+    </div>
+
+    <div class=" sm:flex sm:mt-4 lg:h-44 lg:mt-0 flex-grow sm:mr-5 lg:mr-0">
+
+      <div
+        class="shadow printNewsletter sm:flex-grow lg:w-32 lg:mr-8 xl:mr-6 xl:flex-grow 2xl:flex-grow bg-white 2xl:mr-6 mr-5  p-2 rounded-lg dark:bg-black">
+        <div class="flex p-2">
+          <h1 class="text-4xl font-medium dark:text-white">{{ printNewsletter }}</h1>
+          <img src="../../assets/dashboard/cards/printer.png" class="ml-auto" />
+        </div>
+        <h1 class="mt-5 ml-2 sm:text-base text-lg xl:text-xl xl:mb-2 dark:text-white">Subcribed to Printed Newsletter
+        </h1>
+      </div>
+
+      <div
+        class="shadow emailNewsletter sm:flex-grow lg:w-32 lg:mr-8 xl:mr-6 xl:flex-grow 2xl:flex-grow bg-white 2xl:mr-6 mr-5 p-2 rounded-lg dark:bg-black">
+        <div class="flex p-2">
+          <h1 class="text-4xl font-medium dark:text-white">{{ emailNewsletter }}</h1>
+          <img src="../../assets/dashboard/cards/sms-star.png" class="ml-auto" />
+        </div>
+        <h1 class="mt-5 ml-2 2xl:text-lg xl:text-xl xl:mb-2 dark:text-white">Subcribed to Email Newsletter</h1>
+      </div>
+
+      <div
+        class="shadow unsub sm:flex-grow lg:w-32 lg:mr-8 xl:mr-6 xl:flex-grow 2xl:flex-grow bg-white 2xl:mr-6 mr-5 p-2 rounded-lg dark:bg-black">
+        <div class="flex p-2">
+          <h1 class="text-4xl font-medium dark:text-white">{{ unsub }}</h1>
+          <img src="../../assets/dashboard/cards/unsub.png" class="ml-auto" />
+        </div>
+        <h1 class="mt-3 ml-2 2xl:text-lg xl:text-xl xl:mb-2 dark:text-white">Unsubcribers</h1>
+        <button class="pr-2 pl-2 rounded-lg ml-1 mr-1 text-xs p-0.5 mt-1 xl:text-sm"
+          style="background-color: #fff6d7; color: #f2b80c">
+          View List
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- graph -->
+  <div class="md:flex-grow-0 sm:h-fit lg:flex lg:space-x-5 mt-4 mr-5">
+    <!-- div2 -->
+    <div class="shadow graph1 sm:mb-5 sm:p-3 bg-white lg:mb-4 lg:h-fit lg:flex-grow rounded-lg h-96 dark:bg-black">
+      <div class="h-full grid grid-row-3">
+        <div class="flex p-1.5">
+          <img src="../../assets/dashboard/g1.png" class="w-7 h-7 dark:invert">
+          <h1 class="font-medium text-sm ml-2  dark:text-white"><strong>{{
+              translation?.CLIENTAPPV2_DASHBOARD_LASTNEWSLETTERSTATISTICS_CLIENTS }}</strong></h1>
+          <select class="ml-auto h-8 mr-2 pl-2 pr-2 border rounded-xl text-sm dark:bg-black dark:text-white"
+            [(ngModel)]="selectedMonth" (change)="console(selectedMonth)">
+            <option class="text-gray-500 dark:text-white" value="" disabled selected>{{
+              translation?.CLIENTAPPV2_DASHBOARD_MONTHLY }}
+            </option>
+            <option class=" dark:text-white" *ngFor="let month of months; let i = index" [value]="i + 1">{{
+              getTranslationForMonths(month) }}
+            </option>
+          </select>
+        </div>
+        <div class="ml-auto justify-end flex">
+          <div class="flex">
+            <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #29CCB1;">&nbsp;</label> -->
+            <!-- <img src="../../assets/dashboard/sent.png" class="h-3 mt-1 mr-3"> -->
+            <span class=" bg-green-600 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+            <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_SENT
+              }}</label>
+          </div>
+          <div class="flex">
+            <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #A352CC;">&nbsp;</label> -->
+            <!-- <img src="../../assets/dashboard/dilevered.png" class="h-3 mt-1 mr-3"> -->
+            <span class=" bg-yellow-400 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+            <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_DILEVERED
+              }}</label>
+          </div>
+          <div class="flex">
+            <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #3399FF;">&nbsp;</label> -->
+            <!-- <img src="../../assets/dashboard/opened.png" class="h-3 mt-1 mr-3"> -->
+            <span class=" bg-red-500 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+            <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_OPENED
+              }}</label>
+          </div>
+        </div>
+        <div>
+          <kendo-chart class="g1 sm:rounded-b-lg dark:invert" style="height: 18rem;">
+            <kendo-chart-category-axis>
+              <kendo-chart-category-axis-item [categories]="translatedMonthsArr">
+              </kendo-chart-category-axis-item>
+            </kendo-chart-category-axis>
+            <kendo-chart-series>
+              <kendo-chart-series-item type="line" [data]="openedClientsGraph.slice(0, selectedMonth)">
+              </kendo-chart-series-item>
+              <kendo-chart-series-item type="line" [data]="dileveredClientsGraph.slice(0, selectedMonth)">
+              </kendo-chart-series-item>
+              <kendo-chart-series-item type="line" [data]="sentClientsGraph.slice(0, selectedMonth)">
+              </kendo-chart-series-item>
+            </kendo-chart-series>
+          </kendo-chart>
+        </div>
+      </div>
+    </div>
+
+    <!-- div3 -->
+    <div class="shadow graph2 sm:mb-5 sm:p-3 bg-white lg:h-fit lg:flex-grow rounded-lg h-96 dark:bg-black">
+      <div class="h-full grid grid-row-3">
+        <div class="flex p-1.5">
+          <img src="../../assets/dashboard/g2.png" class="w-7 h-7 dark:invert">
+          <h1 class="font-medium text-sm ml-2  dark:text-white"><strong>{{
+              translation?.CLIENTAPPV2_DASHBOARD_LASTNEWSLETTERSTATISTICS_EMPLOYEES }}</strong>
+          </h1>
+          <div class="ml-auto gap-2 grid grid-cols-2">
+            <div class=" flex text-gray-400 text-sm mt-1 -mr-8">
+              <p>{{empMonth}}</p>/<p>{{empYear}}</p>
+            </div>
+            <select class="h-8 mr-2 pl-2 pr-2 border rounded-xl text-sm dark:bg-black dark:text-white"
+              [(ngModel)]="selectedWeek">
+              <option class="text-gray-500 dark:text-white" value="0" disabled selected>{{
+                translation?.CLIENTAPPV2_DASHBOARD_WEEKLY
+                }}
+              </option>
+              <option class=" dark:text-white" *ngFor="let week of weeks; let i = index" [value]="i + 1">{{ week }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="ml-auto justify-end flex">
+          <div class="flex">
+            <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #29CCB1;">&nbsp;</label> -->
+            <!-- <img src="../../assets/dashboard/sent.png" class="h-3 mt-1 mr-3"> -->
+            <span class=" bg-green-600 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+            <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_SENT
+              }}</label>
+          </div>
+          <div class="flex">
+            <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #A352CC;">&nbsp;</label> -->
+            <!-- <img src="../../assets/dashboard/dilevered.png" class="h-3 mt-1 mr-3"> -->
+            <span class=" bg-yellow-400 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+            <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_DILEVERED
+              }}</label>
+          </div>
+          <div class="flex">
+            <!-- <label class="pr-3 pl-3 mr-3" style="background-color: #3399FF;">&nbsp;</label> -->
+            <!-- <img src="../../assets/dashboard/opened.png" class="h-3 mt-1 mr-3"> -->
+            <span class=" bg-red-500 h-2 w-5 mt-1 mr-3 dark:invert">&nbsp;</span>
+            <label class="text-xs items-center mr-3 dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_OPENED
+              }}</label>
+          </div>
+        </div>
+        <kendo-chart class="g2 sm:h-60 sm:rounded-b-lg dark:invert" style="height: 18rem;">
+          <kendo-chart-category-axis>
+            <kendo-chart-category-axis-item [categories]="weeks">
+            </kendo-chart-category-axis-item>
+          </kendo-chart-category-axis>
+          <kendo-chart-series>
+            <kendo-chart-series-item type="line" [data]="openedemployeeGraph.slice(0, selectedWeek)">
+            </kendo-chart-series-item>
+            <kendo-chart-series-item type="line" [data]="dileveredemployeeGraph.slice(0, selectedWeek)">
+            </kendo-chart-series-item>
+            <kendo-chart-series-item type="line" [data]="sentemployeeGraph.slice(0, selectedWeek)">
+            </kendo-chart-series-item>
+          </kendo-chart-series>
+        </kendo-chart>
+      </div>
+    </div>
+  </div>
+
+  <!-- infomailer_&_file&sign -->
+  <div class="lg:flex lg:space-x-3 xl:space-x-6 lg:mt-1 mr-5">
+    <!-- div4 -->
+    <div class="shadow info bg-white sm:rounded-lg xl:w-4/12 2xl:w-2/5 dark:bg-black">
+      <!-- infomailer -->
+      <app-infomailer class=" w-4/12 h-fit rounded-lg"></app-infomailer>
+    </div>
+
+    <!-- div5 -->
+    <div class="shadow file bg-white sm:rounded-lg sm:mt-4 lg:mt-0 xl:flex-1 dark:bg-black">
+      <!-- file and sign -->
+      <app-file-and-sign class=" h-fit lg:flex-1 xl:flex-1 lg:pt-3 rounded-lg"></app-file-and-sign>
+    </div>
+  </div>
+
+  <!-- infolearning & high achievers -->
+  <div class="lg:flex lg:space-x-6 mt-4 mr-5">
+    <!-- div6 -->
+    <div class="shadow learn bg-white sm:rounded-lg xl:flex-1 dark:bg-black">
+      <!-- infolearning -->
+      <app-infolearning class=" h-fit lg:flex-1 rounded-lg"></app-infolearning>
+    </div>
+
+    <!-- div7 -->
+    <div class="shadow high bg-white sm:rounded-lg sm:mt-4 lg:mt-0 h-96 dark:bg-black">
+      <div>
+        <!-- high achievers -->
+
+        <app-high-achievers class=" rounded-lg"></app-high-achievers>
+      </div>
+    </div>
+  </div>
+
+  <!-- upcoming posts & data import  -->
+  <div class="mt-4 mr-5 h-fit">
+    <div class="shadow learn bg-white sm:rounded-lg xl:flex-1 dark:bg-black" (click)="routeToSocialMedia()">
+      <label class="flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl  dark:text-white">{{
+        translation?.CLIENTAPPV2_DASHBOARD_UPCOMINGPOSTS }}</label>
+      <!-- upcoming posts -->
+      <app-upcoming-posts></app-upcoming-posts>
+    </div>
+
+    <div class=" learn mt-0 sm:rounded-lg h-fit " (click)="routeToDataImport()">
+      <!-- data import -->
+      <app-dashboard-data-import></app-dashboard-data-import>
+    </div>
+  </div>
+
+
+
+  <!-- configuration & select concept -->
+  <div class="lg:flex -mt-8  mr-5">
+    <div class=" learn   sm:rounded-lg " (click)="routeToConfiguration()">
+      <!-- configuration -->
+      <app-reauthorize-article [DashboardToogle]="toogle" class=" lg:flex-1 rounded-lg"></app-reauthorize-article>
+    </div>
+
+    <div class=" learn -mt-2 sm:rounded-lg " (click)="routeToSelectConcept()">
+      <!-- select concept -->
+      <app-dashboard-select-concept ></app-dashboard-select-concept>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,145 @@
+<div class="sercli pb-4 flex-grow h-full">
+    <div class="shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black">
+
+        <div class="flex border-b border-gray-300 pt-6 pb-5 pl-6  dark:border-neutral-700">
+            <label class="text-2xl pt-2 dark:text-white">{{
+                translation?.CLIENTAPPV2_PROFILESETTINGS_PROFILESETTINGS }}</label>
+    
+                <div class="ml-auto mr-6">
+                    <div class="btn flex">
+                        <div class="flex flex-grow">
+                            <div class="ml-auto xl:ml-2">
+                                <button class="text-white p-2 pl-3 text-sm rounded-lg flex items-center sm:pr-0 lg:pr-6"
+                                    style="background-color: #29CCB1;" (click)="routeToImportNewSteps()">
+                                    {{ translation?.CLIENTAPPV2_PROFILESETTINGS_IMPORTNEWSTEPS }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="flex-row">
+            <!-- table -->
+            <div class="p-4">
+                <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                    <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                        <thead class="">
+                            <tr class="bg-gray-400  dark:bg-neutral-700">
+                                <th class="text-start justify-start">
+                                    <input type="checkbox" class="border-gray-400 dark:bg-black" size="large"
+                                        [(ngModel)]="selectAll" (change)="toggleSelectAll()" kendoCheckBox checked
+                                        #large />
+                                </th>
+                                <th class="text-start lg:text-sm font-semibold sm:text-xs"></th>
+                                <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                    translation?.CLIENTAPPV2_PROFILESETTINGS_DATE }}</th>
+                                <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                    translation?.CLIENTAPPV2_PROFILESETTINGS_TYPE }}</th>
+                                <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                    translation?.CLIENTAPPV2_PROFILESETTINGS_MODE }}</th>
+                                <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                    translation?.CLIENTAPPV2_PROFILESETTINGS_SPLITTER }}</th>
+                                <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                                    translation?.CLIENTAPPV2_PROFILESETTINGS_ACTION }}</th>
+                                <th class="text-start"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- row1 -->
+                            <tr *ngFor="let profile of paginatedData" (click)="handleRowClick(profile.id)">
+                                <td>
+                                    <input type="checkbox" class="border-gray-400  dark:bg-black"
+                                        [(ngModel)]="profile.selected" size="large" kendoCheckBox checked #large />
+                                </td>
+                                <td class="lg:text-base sm:text-xs dark:text-white">{{ profile.title }}</td>
+                                <td class="lg:text-base sm:text-xs dark:text-white">{{ profile.date }}</td>
+                                <td class="lg:text-base sm:text-xs dark:text-white">{{ profile.type }}</td>
+                                <td class="lg:text-base sm:text-xs dark:text-white">{{ profile.mode }}</td>
+                                <td class="lg:text-base sm:text-xs dark:text-white">{{ profile.splitter }}</td>
+                                <td class="lg:text-base sm:text-xs dark:text-white">{{ profile.action }}</td>
+                                <td>
+                                    <div class="">
+                                        <img src="../../../assets/manage_clients/table_buton.png"
+                                            class=" cursor-pointer sm:mr-0 sm:w-5 sm:h-5 dark:invert"
+                                            (click)="togglePanelVisibility(profile.id)">
+                                    </div>
+
+                                    <div *ngIf="panel && (profile.id == panelid)"
+                                        class="imgpanel dark:border-neutral-700 absolute bg-white border border-gray-300 k-min-w-max mt-0 py-2 md:right-16 xl:right-20 sm:right-8 2xl:right- rounded-lg shadow-lg pl-2 pr-2 dark:bg-black">
+                                        <button (click)="handleEditClick(profile.id)"
+                                            class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                            <img src="../../../assets/manage_clients/edit.png"
+                                                class="imgpanelimg mr-1.5 dark:invert">
+                                            {{ translation?.CLIENTAPPV2_PROFILESETTINGS_EDIT }}
+                                        </button>
+                                        <button (click)="handleDeleteClick(profile.id)"
+                                            class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                                            <img src="../../../assets/manage_clients/delete-r.png"
+                                                class="imgpanelimg mr-1.5 dark:invert">
+                                            {{ translation?.CLIENTAPPV2_PROFILESETTINGS_DELETE }}</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+
+                <!-- pagination of table -->
+                <div class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+                    <div class="pagination-info">
+                        <span class="text-sm dark:text-white">
+                            <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                            {{ calculateMaxValue() }}
+                            <span class="text-sm text-gray-400">
+                                OF
+                                {{ totalItems }}
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="pagination-controls flex">
+                        <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                            class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                            [ngClass]="{'disabled-button': currentPage === 1}">
+                            < </button>
+
+
+                                <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                                    <ng-container *ngFor="let page of getPages() | slice:0:4">
+                                        <button [disabled]="currentPage === page" (click)="currentPage = page"
+                                            [class.pagibtn]="currentPage == page"
+                                            class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page
+                                            }}</button>
+                                    </ng-container>
+                                </div>
+
+
+                                <button [disabled]="currentPage * itemsPerPage >= totalItems"
+                                    (click)="currentPage = currentPage + 1"
+                                    class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                                    [ngClass]="{'disabled-button': currentPage * itemsPerPage >= totalItems}">
+                                    >
+                                </button>
+                                <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+                    </div>
+
+                    <div class="pagination-jump">
+                        <span class="text-xs text-gray-400 dark:text-white">{{
+                            translation?.CLIENTAPPV2_PROFILESETTINGS_JUMPTO }}</span>
+                        <input type="number" [(ngModel)]="currentPage" min="1" max="{{ totalPages }}"
+                            class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+                        <button (click)="jumpToPage()"></button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="sercli">
+    <div class="table-container xl:p-3 sm:pt-3 lg:pt-0 flex-grow ">
+      <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+        <thead class="">
+          <tr class="bg-gray-400  dark:bg-neutral-700">
+            <th class="text-start lg:text-sm font-semibold sm:text-xs ">
+              <div class="flex dark:text-white">
+                {{ translation?.CLIENTAPPV2_DASHBOARD_POSTTITLE }}
+              </div>
+            </th>
+            <th class="text-start lg:text-sm font-semibold sm:text-xs" kendoTooltip class="top" position="top">
+              <div class="flex font-semibold text-sm dark:text-white" >
+                {{ translation?.CLIENTAPPV2_DASHBOARD_PUBLISHEDDATE | truncate : 14 }}
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row1 -->
+          <tr *ngFor="let client of LASTEST_DATA ">
+            <td>
+              <div class="ava flex p-1">
+                <!-- <span class="avatar pt-1 mr-3 font-medium sm:mr-1 sm:text-xs" [style.background-color]="avaColorservice(client.surname.charAt(0) )">{{ client.surname.charAt(0) }}</span> -->
+                <img src="../../../../assets/history/Avatar.png"class="p-1 w-10 h-10">
+                <span class="sm:text-xs sm:mt-1.5 sm:ml-0 lg:text-sm lg:ml-2 dark:text-white">{{
+                  client.arcticles | slice:0:20 }}...</span>
+              </div>
+            </td>
+            <td class="lg:text-sm sm:text-xs text-gray-500 dark:text-white">{{ client.published_date | truncate : 14 }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+    </div>
+
+  </div>

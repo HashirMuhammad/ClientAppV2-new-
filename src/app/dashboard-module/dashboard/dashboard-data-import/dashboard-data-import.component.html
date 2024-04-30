@@ -1,0 +1,64 @@
+<div class=" pb-4 flex-grow h-full" >
+    <div class="sercli bg-white mb-5 mt-3 rounded-3xl dark:bg-black" >
+      <div class="flex dark:border-neutral-700">
+        <div >
+          <img src="../../../assets/sidebar/user/data-imp.png" class="ml-2 mr-1 dark:invert">
+        </div>
+        <label class="font-semibold text-base ml-2  dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_DATAIMPORT }}</label>
+        <button class="ml-auto mr-2 pl-2 pr-2 border rounded-xl text-sm dark:text-white">{{
+          translation?.CLIENTAPPV2_DASHBOARD_VIEWALL }}</button>
+      </div>
+
+      <!-- table -->
+      <div>
+        <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+          <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+            <thead class="">
+              <tr class="bg-gray-400  dark:bg-neutral-700">
+                <!-- <th class="text-start xl:text-sm lg:text-sm font-medium sm:text-xs">User ID</th> -->
+                <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">
+                  {{ translation?.CLIENTAPPV2_DASHBOARD_DATE }} </th>
+                <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">
+                  {{ translation?.CLIENTAPPV2_DASHBOARD_TYPE }} </th>
+                <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">
+                  {{ translation?.CLIENTAPPV2_DASHBOARD_SHARE }} </th>
+                <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">
+                  {{ translation?.CLIENTAPPV2_DASHBOARD_ROWS }} </th>
+                <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">
+                  {{ translation?.CLIENTAPPV2_DASHBOARD_MODE }} </th>
+                <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">
+                  {{ translation?.CLIENTAPPV2_DASHBOARD_SOURCE }} </th>
+                <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs dark:text-white">
+                  {{ translation?.CLIENTAPPV2_DASHBOARD_STATUS }} </th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- row1 -->
+              <tr *ngFor="let user of DATA_IMPORT_USER_DATA">
+                <!-- <td class="text-sm">{{ user.userId }}</td> -->
+                <td class="text-sm dark:text-white">{{ user.dateAdded }}</td>
+                <td class="text-sm dark:text-white">{{ user.type }}</td>
+                <td class="text-sm">
+                  <span [class.bg-red]="user.share === 'no'" [class.bg-green]="user.share === 'yes'">{{ user.share
+                    }}</span>
+                </td>
+                <td class="text-sm dark:text-white">{{ user.rows }}</td>
+                <td class="text-sm dark:text-white">{{ user.mode }}</td>
+                <td class="text-sm">
+                  <label class="bg-blue-200 px-1.5 py-1 rounded-xl">{{ user.from }}</label>
+                </td>
+                <td class="text-sm">
+                  <label [ngStyle]="getStatusStyle(user.status)" class="font-medium text-sm">{{ user.status |
+                    uppercase }}</label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+
+        </div>
+
+      </div>
+    </div>
+</div>

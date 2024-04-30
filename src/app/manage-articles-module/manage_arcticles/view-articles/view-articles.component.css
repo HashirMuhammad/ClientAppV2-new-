@@ -1,0 +1,24 @@
+@media screen and (max-width: 730px) {
+
+    .viewdiv,
+    .titlediv {
+        padding-left: 15px;
+    }
+
+    .textareadiv {
+        padding-top: 15px;
+    }
+
+    .imgdiv {
+        padding: 10px;
+    }
+
+    .btndiv {
+        display: block;
+        padding: 10px;
+    }
+
+    .btndiv button {
+        margin-bottom: 10px;
+    }
+}

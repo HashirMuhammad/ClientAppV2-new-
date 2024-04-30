@@ -1,0 +1,691 @@
+<div class="sercli pb-4 flex-grow h-full">
+  <div class=" shadow bg-white mb-5 mt-3 mr-7 rounded-2xl dark:bg-black">
+
+    <label class="flex border-b border-gray-300 pt-6 pb-5 pl-6 text-2xl dark:text-white dark:border-neutral-700">{{
+      translation?.CLIENTAPPV2_HISTORY_HISTORY }}</label>
+
+    <div class="xl:flex lg:flex flex-grow">
+      <!-- buttons -->
+      <div class="flex-col ">
+        <div class="mt-2">
+          <button class="btn flex pl-2 py-2 w-full dark:text-white" (click)="clientTableToogle()"
+            [class.activecli]="clientTable">
+            <img src="../../../assets/history/client.png" class="mr-4 dark:invert" [class.activecliimg]="clientTable"
+              (click)="clientTableToogle()">
+            {{ translation?.CLIENTAPPV2_HISTORY_CLIENTS }}
+          </button>
+        </div>
+
+        <div>
+          <button class="btn flex pl-2 py-2 w-full dark:text-white" [class.activeemp]="empTable" (click)="empToogle()">
+            <img src="../../../assets/history/emp.png" [class.activeempimg]="empTable" class="mr-4 dark:invert"
+              (click)="empToogle()">
+            {{ translation?.CLIENTAPPV2_HISTORY_EMPLOYEES }}
+          </button>
+        </div>
+
+        <div>
+          <button class="btn flex pl-2 py-2 w-full dark:text-white" [class.activeart]="arcticleTable"
+            (click)="arcticleToogle()">
+            <img src="../../../assets/history/articles.png" [class.activeimgart]="arcticleTable"
+              class="mr-4 dark:invert" (click)="arcticleToogle()">
+            {{ translation?.CLIENTAPPV2_HISTORY_ARTICLES }}
+          </button>
+        </div>
+
+        <!-- search input  -->
+        <div class="mx-4 mt-3">
+          <div class="relative">
+            <input type="text" placeholder="KEYWORDS"
+              class="my-input border py-2 pl-2 border-gray-300 rounded-md pr-8 dark:bg-black dark:text-white">
+            <img src="../../../assets/history/search.png" alt=""
+              class="absolute top-1/2 right-5 transform -translate-y-1/2 cursor-pointer dark:invert">
+          </div>
+        </div>
+
+
+
+        <!-- filters -->
+        <div *ngIf="filters">
+          <div
+            class=" border-gray-300 2xl:border-b-transparent sm:border-b flex-col flex-grow lg:border-b-transparent pl-4">
+
+            <div class="flex pl-4 pr-4 pt-4 pb-2 flex-grow">
+              <label class="fltrlbl pr-52 ml-4 sm:text-sm sm:ml-2.5 sm:pr-0 lg:-ml-3 lg:text-base xl:text-lg"
+                style="color: #999999;">{{ translation?.CLIENTAPPV2_HISTORY_FILTERS }}</label>
+            </div>
+            <!-- filter div -->
+            <div class="md:flex lg:flex-col">
+              <!-- filter  -->
+              <div class="chkbox flex pt-6 pb-2 sm:pt-1 sm:pb-1">
+                <input type="radio" class="chkbx1 " size="none" id="chkbx1" name="chkbx1" (click)="toggleChecked(0)"
+                  [checked]="isChecked[0]" />
+
+                <h6 class="ml-4"><label class=" sm:text-sm sm:text-center lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_HISTORY_REGISTERONLINE }}</label></h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1 xl:ml-0 md:ml-0">
+                <input type="radio" class="chkbx2" size="none" id="chkbx2" name="chkbx2" (click)="toggleChecked(1)"
+                  [checked]="isChecked[1]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_HISTORY_REGISTEROFFLINE }}</label>
+                </h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2  sm:pt-1 sm:pb-1">
+                <input type="radio" class="chkbx3" size="none" id="chkbx3" name="chkbx3" (click)="toggleChecked(2)"
+                  [checked]="isChecked[2]" />
+
+                <h6 class="ml-4"><label class=" sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_HISTORY_PRINTEDNEWSLETTER }}</label></h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1 xl:ml-0 md:ml-0">
+                <input type="radio" class="chkbx4" size="none" id="chkbx4" name="chkbx4" (click)="toggleChecked(3)"
+                  [checked]="isChecked[3]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_HISTORY_NOPRINTEDNEWSLETTER }}</label></h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1">
+                <input type="radio" class="chkbx5" size="none" id="chkbx5" name="chkbx5" (click)="toggleChecked(4)"
+                  [checked]="isChecked[4]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_HISTORY_EMAILNEWSLETTER }}</label>
+                </h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1 xl:ml-0 md:ml-0">
+                <input type="radio" class="chkbx6" size="none" id="chkbx6" name="chkbx6" (click)="toggleChecked(5)"
+                  [checked]="isChecked[5]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_HISTORY_NOEMAILNEWSLETTER }}</label></h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1 sm:mr-2">
+                <input type="radio" class="chkbx7" size="none" id="chkbx7" name="chkbx7" (click)="toggleChecked(6)"
+                  [checked]="isChecked[6]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_HISTORY_MALE }}</label></h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1 xl:ml-0 md:ml-0">
+                <input type="radio" class="chkbx8" size="none" id="chkbx8" name="chkbx8" (click)="toggleChecked(7)"
+                  [checked]="isChecked[7]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_HISTORY_FEMALE }}</label></h6>
+              </div>
+            </div>
+
+            <div class="md:flex xl:flex-col lg:flex-col">
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1 sm:mr-3">
+                <input type="radio" class="chkbx9" size="none" id="chkbx9" name="chkbx9" (click)="toggleChecked(8)"
+                  [checked]="isChecked[8]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_HISTORY_UNKNOWN }}</label></h6>
+              </div>
+
+              <div class="chkbox flex pt-5 pb-2 sm:pt-1 sm:pb-1  lg:ml-0 xl:ml-0 md:ml-7">
+                <input type="radio" class="chkbx10" size="none" id="chkbx10" name="chkbx10" (click)="toggleChecked(9)"
+                  [checked]="isChecked[9]" />
+
+                <h6 class="ml-4"><label class="sm:text-sm lg:text-sm dark:text-white">{{
+                    translation?.CLIENTAPPV2_HISTORY_ALL }}</label></h6>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div *ngIf="!filters" class="">
+
+          <div class="fltr2 border-b border-gray-300 ml-3 mr-3">
+            <select
+              class="bg-white p-2.5 pr-32 mt-2 sm:pr-24 md:pr-40 lg:pr-10 xl:pr-24  flex-grow dark:bg-black dark:text-white">
+              <option class="text-gray-500" value="" disabled selected>{{ translation?.CLIENTAPPV2_HISTORY_CATEGORY
+                }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </option>
+              <option value="search">Option 1</option>
+              <option value="filter">Option 2</option>
+            </select>
+          </div>
+
+          <div class="fltr2 border-b border-gray-300 ml-3 mr-3">
+            <select
+              class="bg-white p-2.5 pr-32 mt-2 sm:pr-24 md:pr-40 lg:pr-10 xl:pr-24  flex-grow dark:bg-black dark:text-white">
+              <option class="text-gray-500" value="" disabled selected>
+                {{ translation?.CLIENTAPPV2_HISTORY_AGENCY }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </option>
+              <option value="search">Option 1</option>
+              <option value="filter">Option 2</option>
+            </select>
+          </div>
+
+          <div class="fltr2 border-b border-gray-300 ml-3 mr-3">
+            <select
+              class="bg-white p-2.5 pr-32 mt-2 sm:pr-24 md:pr-40 lg:pr-10 xl:pr-24  flex-grow dark:bg-black dark:text-white">
+              <option class="text-gray-500" value="" disabled selected>{{ translation?.CLIENTAPPV2_HISTORY_QUALIFICATION
+                }}</option>
+              <option value="search">Option 1</option>
+              <option value="filter">Option 2</option>
+            </select>
+          </div>
+
+          <div class="fltr2 border-b border-gray-300 ml-3 mr-3">
+            <select
+              class="bg-white p-2.5 pr-32 mt-2 sm:pr-24 md:pr-40 lg:pr-10 xl:pr-24  flex-grow dark:bg-black dark:text-white">
+              <option class="text-gray-500" value="" disabled selected>
+                {{ translation?.CLIENTAPPV2_HISTORY_SUBJECT }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </option>
+              <option value="search">Option 1</option>
+              <option value="filter">Option 2</option>
+            </select>
+          </div>
+
+          <div class="fltr2 border-b border-gray-300 ml-3 mr-3">
+            <select
+              class="bg-white  p-2.5 pr-32 mt-2 sm:pr-24 md:pr-40 lg:pr-10 xl:pr-24  flex-grow dark:bg-black dark:text-white">
+              <option class="text-gray-500" value="" disabled selected>{{ translation?.CLIENTAPPV2_HISTORY_CHARACTER
+                }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+              <option value="search">Option 1</option>
+              <option value="filter">Option 2</option>
+            </select>
+          </div>
+
+          <div class="date-picker-container mt-3 ml-3 mr-3">
+            <div class="flex border-b">
+              <!-- <mat-form-field class="date">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field> -->
+              <kendo-datepicker placeholder="Choose a date ..."
+                class="date-picker border border-transparent  dark:bg-black dark:text-white"></kendo-datepicker>
+            </div>
+          </div>
+
+          <div class="btnfltr mt-4 ml-5">
+            <button
+              class="bg-white border p-1.5 pl-4 pr-4 mr-0 rounded-lg flex flex-grow items-center  lg:pr-6 tracking-wider dark:bg-black"
+              style="color: #29CCB1; border-color: #29CCB1;">
+              {{ translation?.CLIENTAPPV2_HISTORY_APPLYSEARCHFILTERS }}
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flex-grow h-full p-3 border-l dark:border-neutral-700">
+        <div class=" lg:flex flex-grow">
+
+
+          <!-- for table -->
+          <div class="flex-grow h-full">
+            <div *ngIf="clientTable" class="flex-grow">
+              <div class="tablediv">
+                <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                  <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                    <thead class="">
+                      <tr class="bg-gray-400  dark:bg-neutral-700">
+                        <th class="text-start justify-start">
+                          <input type="checkbox" class="border-gray-400 dark:bg-black" size="large"
+                            [(ngModel)]="selectAll" (change)="toggleSelectAll()" kendoCheckBox checked #large />
+                        </th>
+                        <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                          translation?.CLIENTAPPV2_HISTORY_CLIENTID }}</th>
+                        <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                          translation?.CLIENTAPPV2_HISTORY_SURNAME }}</th>
+                        <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                          translation?.CLIENTAPPV2_HISTORY_FIRSTNAME }}</th>
+                        <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                          translation?.CLIENTAPPV2_HISTORY_COMPANYNAME }}</th>
+                        <th class="text-start lg:text-sm font-semibold sm:text-xs dark:text-white">{{
+                          translation?.CLIENTAPPV2_HISTORY_EMAILADDRESS }}</th>
+                        <th class="text-start"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- row1 -->
+                      <tr *ngFor="let client of ClientpaginatedData">
+                        <td>
+                          <input type="checkbox" class="border-gray-400 dark:bg-black " [(ngModel)]="client.selected"
+                            size="large" kendoCheckBox checked #large />
+                        </td>
+                        <td class="xl:text-sm sm:text-xs dark:text-white">{{ client.clientId }}</td>
+                        <td>
+                          <div class=" flex">
+                            <span class="avatar pt-2.5 mt-1.5 mr-3 font-medium sm:mr-1 sm:text-xs"
+                              [style.background-color]="avaColorservice(client.surname.charAt(0) )">{{
+                              client.surname.charAt(0) }}</span>
+                            <span class="sm:text-xs sm:mt-1.5 sm:ml-0 lg:text-sm lg:ml-2 dark:text-white pt-2">{{
+                              client.surname }}</span>
+                          </div>
+                        </td>
+                        <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.firstName }}</td>
+                        <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.companyName }}</td>
+                        <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.emailAddress }}</td>
+                        <td>
+                          <div>
+                            <img src="../../../assets/manage_clients/table_buton.png"
+                              class="cursor-pointer sm:mr-0 sm:w-5 sm:h-5 dark:invert"
+                              (click)="togglePanelVisibility(client.clientId)">
+                          </div>
+
+                          <div *ngIf="panel && (client.clientId == panelid)"
+                            class="imgpanel dark:border-neutral-700 absolute bg-white border border-gray-300 k-min-w-max mt-0 py-2 md:right-16 xl:right-20 sm:right-8 2xl:right- rounded-lg shadow-lg pl-2 pr-2 dark:bg-black">
+                            <button (click)="handleEditClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/edit.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_HISTORY_EDIT }}
+                            </button>
+                            <button (click)="handleHistoryClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/history.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_HISTORY_HISTORY }}</button>
+                            <button (click)="handleDataUsageClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <div>
+                                <img src="../../../assets/manage_clients/data_usage.png" class="mr-1.5 dark:invert">
+                              </div>
+                              {{ translation?.CLIENTAPPV2_HISTORY_DATAUSAGE }}&nbsp;[GDPR]
+                            </button>
+                            <button (click)="handleSendPasswordClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <div>
+                                <img src="../../../assets/manage_clients/send_password.png" class="mr-1.5 dark:invert">
+                              </div>
+                              {{ translation?.CLIENTAPPV2_HISTORY_SENDPASSWORD }}
+                            </button>
+                            <button (click)="handleSendUsernameClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <div>
+                                <img src="../../../assets/manage_clients/send_username.png" class="mr-1.5 dark:invert">
+                              </div>
+                              {{ translation?.CLIENTAPPV2_HISTORY_SENDUSERNAME }}
+                            </button>
+                            <button (click)="handleDeleteClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/delete-r.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_HISTORY_DELETE }}</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+
+                </div>
+
+                <!-- pagination of table -->
+                <div class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+                  <div class="pagination-info">
+                    <span class="text-sm dark:text-white">
+                      <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                      {{ calculateMaxValue() }}
+                      <span class="text-sm text-gray-400">
+                        OF
+                        {{ clienttotalItems }}
+                      </span>
+                    </span>
+                  </div>
+
+                  <div class="pagination-controls flex">
+                    <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                      class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                      [ngClass]="{'disabled-button': currentPage === 1}">
+                      < </button>
+
+
+                        <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                          <ng-container *ngFor="let page of getPages() | slice:0:4">
+                            <button [disabled]="currentPage === page" (click)="currentPage = page"
+                              [class.pagibtn]="currentPage == page"
+                              class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page }}</button>
+                          </ng-container>
+                        </div>
+
+                        <button [disabled]="currentPage * itemsPerPage >= clienttotalItems"
+                          (click)="currentPage = currentPage + 1"
+                          class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                          [ngClass]="{'disabled-button': currentPage * itemsPerPage >= clienttotalItems}">
+                          >
+                        </button>
+                        <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+                  </div>
+
+                  <div class="pagination-jump">
+                    <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_HISTORY_JUMPTO }}&nbsp; </span>
+                    <input type="number" [(ngModel)]="currentPage" min="1" max="{{ clienttotalPages }}"
+                      class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+                    <button (click)="jumpToPage()"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="empTable" class="flex-grow">
+              <div>
+                <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                  <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                    <thead class="">
+                      <tr class="bg-gray-400  dark:bg-neutral-700">
+                        <th class="text-start justify-start">
+                          <input type="checkbox" class="border-gray-400 dark:bg-black" size="large"
+                            [(ngModel)]="selectAll" (change)="employeetoggleSelectAll()" kendoCheckBox checked #large />
+                        </th>
+                        <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs">
+                          <div class="flex dark:text-white">
+                            {{ translation?.CLIENTAPPV2_HISTORY_ID }}
+                            <img src="../../../../assets/history/filter.png" class="w-3 h-3 ml-auto dark:invert"
+                              (click)="employeetoggleIdSorting()" [class.activeidimg]="!ascendingOrder">
+                          </div>
+                        </th>
+                        <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs ">
+                          <div class="flex dark:text-white">
+                            {{ translation?.CLIENTAPPV2_HISTORY_FULLNAME }}
+                            <img src="../../../../assets/history/filter.png" class="w-3 h-3 ml-auto dark:invert"
+                              (click)="employeetoggleFullNameSorting()" [class.activeidimg]="!ascendingOrderFullName">
+                          </div>
+                        </th>
+                        <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs">
+                          <div class="flex dark:text-white">
+                            {{ translation?.CLIENTAPPV2_HISTORY_EMAILADDRESS }}
+                            <img src="../../../../assets/history/filter.png" class="w-3 h-3 ml-auto dark:invert"
+                              (click)="employeetoggleEmailSorting()" [class.activeidimg]="!ascendingOrderEmail">
+                          </div>
+                        </th>
+                        <th class="text-start xl:text-sm lg:text-sm font-semibold sm:text-xs">
+                          <div class="flex dark:text-white">
+                            {{ translation?.CLIENTAPPV2_HISTORY_COMPANYNAME }}
+                            <img src="../../../../assets/history/filter.png" class="w-3 h-3 ml-auto dark:invert"
+                              (click)="employeetoggleCompanyNameSorting()"
+                              [class.activeidimg]="!sortingColumnCompanyName">
+                          </div>
+                        </th>
+                        <th class="text-start"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- row1 -->
+                      <tr *ngFor="let client of employeepaginatedData">
+                        <td>
+                          <input type="checkbox" class="border-gray-400  dark:bg-black" [(ngModel)]="client.selected"
+                            size="large" kendoCheckBox checked #large />
+                        </td>
+                        <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.clientId }}</td>
+                        <td>
+                          <div class="ava flex">
+                            <!-- <span class="avatar pt-1 mr-3 font-medium sm:mr-1 sm:text-xs" [style.background-color]="avaColorservice(client.surname.charAt(0) )">{{ client.surname.charAt(0) }}</span> -->
+                            <img src="../../../../assets/history/Avatar.png" class="pt-1">
+                            <span class="sm:text-xs sm:mt-1.5 sm:ml-0 lg:text-sm lg:ml-2 dark:text-white">{{
+                              client.fullname }}</span>
+                          </div>
+                        </td>
+                        <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.email }}</td>
+                        <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.companyName }}</td>
+                        <td>
+                          <div>
+                            <img src="../../../assets/manage_clients/table_buton.png"
+                              class="cursor-pointer sm:mr-0 sm:w-5 sm:h-5 dark:invert"
+                              (click)="employeetogglePanelVisibility(client.clientId)">
+                          </div>
+
+                          <div *ngIf="panel && (client.clientId == panelid)"
+                            class="imgpanel dark:border-neutral-700 absolute bg-white border border-gray-300 k-min-w-max mt-0 py-2 md:right-16 xl:right-20 sm:right-8 2xl:right- rounded-lg shadow-lg pl-2 pr-2 dark:bg-black">
+                            <button (click)="employeehandleEditClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/edit.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_HISTORY_EDIT }}
+                            </button>
+                            <button (click)="employeehandleHistoryClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/history.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_HISTORY_HISTORY }}</button>
+                            <button (click)="employeehandleDataUsageClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <div>
+                                <img src="../../../assets/manage_clients/data_usage.png" class="mr-1.5 dark:invert">
+                              </div>
+                              {{ translation?.CLIENTAPPV2_HISTORY_DATAUSAGE }}&nbsp;[GDPR]
+                            </button>
+                            <button (click)="employeehandleSendPasswordClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <div>
+                                <img src="../../../assets/manage_clients/send_password.png" class="mr-1.5 dark:invert">
+                              </div>
+                              {{ translation?.CLIENTAPPV2_HISTORY_SENDPASSWORD }}
+                            </button>
+                            <button (click)="employeehandleSendUsernameClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <div>
+                                <img src="../../../assets/manage_clients/send_username.png" class="mr-1.5 dark:invert">
+                              </div>
+                              {{ translation?.CLIENTAPPV2_HISTORY_SENDUSERNAME }}
+                            </button>
+                            <button (click)="employeehandleDeleteClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/delete-r.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_HISTORY_DELETE }}</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+
+                </div>
+
+                <!-- pagination of table -->
+                <div class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+                  <div class="pagination-info">
+                    <span class="text-sm dark:text-white">
+                      <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                      {{ employeecalculateMaxValue() }}
+                      <span class="text-sm text-gray-400">
+                        OF
+                        {{ employeetotalItems }}
+                      </span>
+                    </span>
+                  </div>
+
+                  <div class="pagination-controls flex">
+                    <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                      class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                      [ngClass]="{'disabled-button': currentPage === 1}">
+                      < </button>
+
+
+                        <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                          <ng-container *ngFor="let page of employeegetPages() | slice:0:4">
+                            <button [disabled]="currentPage === page" (click)="currentPage = page"
+                              [class.pagibtn]="currentPage == page"
+                              class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page }}</button>
+                          </ng-container>
+                        </div>
+
+                        <button [disabled]="currentPage * itemsPerPage >= employeetotalItems"
+                          (click)="currentPage = currentPage + 1"
+                          class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                          [ngClass]="{'disabled-button': currentPage * itemsPerPage >= employeetotalItems}">
+                          >
+                        </button>
+                        <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+                  </div>
+
+                  <div class="pagination-jump">
+                    <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_HISTORY_JUMPTO }}&nbsp; </span>
+                    <input type="number" [(ngModel)]="currentPage" min="1" max="{{ employeetotalPages }}"
+                      class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+                    <button (click)="employeejumpToPage()"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="arcticleTable" class="flex-grow">
+              <div>
+                <div class="table-container xl:p-3 sm:pt-3 flex-grow ">
+                  <table id="tre" class="lg:flex-grow xl:flex-grow md:w-full sm:w-11/12">
+                    <thead class="">
+                      <tr class="bg-gray-400  dark:bg-neutral-700">
+                        <th class="text-start justify-start">
+                          <input type="checkbox" class="border-gray-400 dark:bg-black" size="large"
+                            [(ngModel)]="selectAll" (change)="articletoggleSelectAll()" kendoCheckBox checked #large />
+                        </th>
+                        <th class="text-start lg:text-sm font-semibold sm:text-xs">
+                          <div class="flex dark:text-white">
+                            {{ translation?.CLIENTAPPV2_HISTORY_ID }}
+                          </div>
+                        </th>
+                        <th class="text-start lg:text-sm font-semibold sm:text-xs ">
+                          <div class="flex dark:text-white">
+                            {{ translation?.CLIENTAPPV2_HISTORY_ARTICLES }}
+                          </div>
+                        </th>
+                        <th class="text-start lg:text-sm font-semibold sm:text-xs">
+                          <div class="flex dark:text-white">
+                            {{ translation?.CLIENTAPPV2_HISTORY_PUBLISHEDDATE }}
+                          </div>
+                        </th>
+                        <th class="text-start"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- row1 -->
+                      <tr *ngFor="let client of articlepaginatedData">
+                        <td>
+                          <input type="checkbox" class="border-gray-400  dark:bg-black" [(ngModel)]="client.selected"
+                            size="large" kendoCheckBox checked #large />
+                        </td>
+                        <td class="lg:text-sm sm:text-xs dark:text-white">{{ client.clientId }}</td>
+                        <td>
+                          <div class="ava flex">
+                            <!-- <span class="avatar pt-1 mr-3 font-medium sm:mr-1 sm:text-xs" [style.background-color]="avaColorservice(client.surname.charAt(0) )">{{ client.surname.charAt(0) }}</span> -->
+                            <img src="../../../../assets/history/Avatar.png" class="pt-1">
+                            <span class="sm:text-xs sm:mt-1.5 sm:ml-0 lg:text-sm lg:ml-2 dark:text-white">{{
+                              client.arcticles | truncate:70 }}</span>
+                          </div>
+                        </td>
+                        <td class="lg:text-sm sm:text-xs text-gray-400 dark:text-white">{{ client.published_date }}</td>
+                        <td>
+                          <div>
+                            <img src="../../../assets/manage_clients/table_buton.png"
+                              class="cursor-pointer sm:mr-0 sm:w-5 sm:h-5 dark:invert"
+                              (click)="articletogglePanelVisibility(client.clientId)">
+                          </div>
+
+                          <div *ngIf="panel && (client.clientId == panelid)"
+                            class="imgpanel dark:border-neutral-700 absolute bg-white border border-gray-300 k-min-w-max mt-0 py-2 md:right-16 xl:right-20 sm:right-8 2xl:right- rounded-lg shadow-lg pl-2 pr-2 dark:bg-black">
+                            <button (click)="articlehandleEditClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/edit.png" class="mr-1.5">
+                              {{ translation?.CLIENTAPPV2_HISTORY_EDIT }}
+                            </button>
+                            <button (click)="articlehandleHistoryClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/history.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_HISTORY_HISTORY }}</button>
+                            <button (click)="articlehandleDataUsageClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <div>
+                                <img src="../../../assets/manage_clients/data_usage.png" class="mr-1.5 dark:invert">
+                              </div>
+                              {{ translation?.CLIENTAPPV2_HISTORY_DATAUSAGE }}&nbsp;[GDPR]
+                            </button>
+                            <button (click)="articlehandleSendPasswordClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <div>
+                                <img src="../../../assets/manage_clients/send_password.png" class="mr-1.5 dark:invert">
+                              </div>
+                              {{ translation?.CLIENTAPPV2_HISTORY_SENDPASSWORD }}
+                            </button>
+                            <button (click)="articlehandleSendUsernameClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <div>
+                                <img src="../../../assets/manage_clients/send_username.png" class="mr-1.5 dark:invert">
+                              </div>
+                              {{ translation?.CLIENTAPPV2_HISTORY_SENDUSERNAME }}
+                            </button>
+                            <button (click)="articlehandleDeleteClick(client.clientId)"
+                              class="drpbtn flex py-2 w-full dark:border-black dark:text-white">
+                              <img src="../../../assets/manage_clients/delete-r.png" class="mr-1.5 dark:invert">
+                              {{ translation?.CLIENTAPPV2_HISTORY_DELETE }}</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+
+                </div>
+
+                <!-- pagination of table -->
+                <div class="pagination flex justify-between border-t p-2 flex-grow dark:border-neutral-700">
+
+                  <div class="pagination-info">
+                    <span class="text-sm dark:text-white">
+                      <!-- {{ (currentPage - 1) * itemsPerPage + 1 }} - -->
+                      {{ articlecalculateMaxValue() }}
+                      <span class="text-sm text-gray-400">
+                        OF
+                        {{ articletotalItems }}
+                      </span>
+                    </span>
+                  </div>
+
+                  <div class="pagination-controls flex">
+                    <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1"
+                      class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black mr-4 dark:text-white dark:border-white"
+                      [ngClass]="{'disabled-button': currentPage === 1}">
+                      < </button>
+
+
+                        <div class="border rounded-md py-1 pl-1.5 pr-1.5">
+                          <ng-container *ngFor="let page of articlegetPages() | slice:0:4">
+                            <button [disabled]="currentPage === page" (click)="currentPage = page"
+                              [class.pagibtn]="currentPage == page"
+                              class="rounded-md pt-0 pb-0 pr-2 pl-2 text-sm dark:text-white">{{ page }}</button>
+                          </ng-container>
+                        </div>
+
+                        <button [disabled]="currentPage * itemsPerPage >= articletotalItems"
+                          (click)="currentPage = currentPage + 1"
+                          class="border border-black rounded-md pl-1.5 pr-1.5 mt-1.5 mb-1.5 text-sm text-black ml-4 dark:text-white dark:border-white"
+                          [ngClass]="{'disabled-button': currentPage * itemsPerPage >= articletotalItems}">
+                          >
+                        </button>
+                        <!-- <button [disabled]="currentPage * itemsPerPage >= totalItems" (click)="currentPage = currentPage + 1" class="border rounded-md mt-1.5 mb-1.5 pl-1.5 pr-1.5 text-base ml-4">></button> -->
+                  </div>
+
+                  <div class="pagination-jump">
+                    <span class="text-xs text-gray-400">{{ translation?.CLIENTAPPV2_HISTORY_JUMPTO }}&nbsp; </span>
+                    <input type="number" [(ngModel)]="currentPage" min="1" max="{{ articletotalPages }}"
+                      class="border text-center text-xs p-1 mr-2 rounded-lg dark:bg-black dark:text-white" />
+                    <button (click)="articlejumpToPage()"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

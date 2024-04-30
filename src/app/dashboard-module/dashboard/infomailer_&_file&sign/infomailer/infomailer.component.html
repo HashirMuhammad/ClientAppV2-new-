@@ -1,0 +1,42 @@
+<div class=" p-2 dark:bg-black">
+  <div class="flex p-2">
+    <div>
+    <img src="../../assets/dashboard/infomailer.png" class="dark:invert">
+    </div>
+    <h1 class="font-medium text-sm ml-2  dark:text-white"><strong>{{
+        translation?.CLIENTAPPV2_DASHBOARD_INFOMAILER }}</strong></h1>
+    <button class="ml-auto mr-2 pl-2 pr-2 border rounded-xl text-sm dark:text-white">{{
+      translation?.CLIENTAPPV2_DASHBOARD_VIEWALL }}</button>
+  </div>
+  <div class="table-container px-3 pb-3 xl:mt-2 height">
+    <table id="tre" class="w-full">
+      <thead class="">
+        <tr class="bg-gray-100   dark:bg-neutral-700">
+          <th></th>
+          <th class="text-start text-sm dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_CUSTOMER }}</th>
+          <th colspan="4" class="p-1 text-sm dark:text-white">{{ translation?.CLIENTAPPV2_DASHBOARD_STATUS }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let campaign of informailerData">
+          <td>
+            <img [src]="campaign.imgSrc" class="mr-3 lg:mr-8 xl:mr-1">
+          </td>
+          <td class="lg:mb-0">
+            <div class="lg:mb-0">
+              <label class="lg:text-xs xl:text-sm  dark:text-white">{{ campaign.campaignName }}</label><br />
+              <label class="k-font-size-md text-gray-500 text-xs dark:text-white">{{ campaign.dateTime }}</label>
+            </div>
+          </td>
+          <td class="xl:text-start">
+            <label class="ml-6 pr-2 pl-2 rounded-lg mr-1 text-xs p-0.5 font-medium tracking-wider"
+                   [style.background-color]="campaign.statusLabel.backgroundColor"
+                   [style.color]="campaign.statusLabel.textColor">{{ campaign.statusLabel.text }}</label>
+          </td>
+        </tr>
+      </tbody>
+      
+    </table>
+
+  </div>
+</div>
